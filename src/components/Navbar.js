@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const toggleNavbar = () => setIsExpanded(!isExpanded);
 
-  // More curved arc positions without rotation
+  // More curved arc positions
   const iconPositions = [
     { x: 10, y: -60 },
     { x: 40, y: -30 },
@@ -26,6 +26,8 @@ const Navbar = () => {
   ];
 
   const labels = ["Menu", "Home", "About", "Projects", "Contact"];
+  const icons = [faBars, faHome, faUser, faFolderOpen, faEnvelope];
+  const links = ["#", "/", "/About", "#projects", "#contact"];
 
   return (
     <aside
@@ -33,101 +35,26 @@ const Navbar = () => {
       onMouseLeave={() => setIsExpanded(false)}
       className={`${styles.navbar} ${isExpanded ? styles.expanded : ""}`}
     >
-      <div className={styles.iconWrapper}>
-        <button
-          onClick={toggleNavbar}
-          className={styles.navIcon}
-          style={{
-            transform: isExpanded
-              ? `translate(${iconPositions[0].x}px, ${iconPositions[0].y}px)`
-              : "none",
-          }}
-        >
-          <FontAwesomeIcon icon={faBars} />
-          <span
-            className={`${styles.iconLabel} ${
-              isExpanded ? styles.showLabel : ""
-            }`}
+      <div
+        className={`${styles.iconWrapper} ${isExpanded ? styles.expanded : ""}`}
+      >
+        {icons.map((icon, index) => (
+          <div
+            key={index}
+            className={styles.iconParent}
+            style={{
+              transform: isExpanded
+                ? `translate(${iconPositions[index].x}px, ${iconPositions[index].y}px)`
+                : "none",
+              paddingLeft: index === 3 ? "17px" : index === 4 ? "12px" : "0px", // Additional padding
+            }}
           >
-            {labels[0]}
-          </span>
-        </button>
-
-        <Link
-          href="#home"
-          className={styles.navIcon}
-          style={{
-            transform: isExpanded
-              ? `translate(${iconPositions[1].x}px, ${iconPositions[1].y}px)`
-              : "none",
-          }}
-        >
-          <FontAwesomeIcon icon={faHome} />
-          <span
-            className={`${styles.iconLabel} ${
-              isExpanded ? styles.showLabel : ""
-            }`}
-          >
-            {labels[1]}
-          </span>
-        </Link>
-
-        <Link
-          href="#about"
-          className={styles.navIcon}
-          style={{
-            transform: isExpanded
-              ? `translate(${iconPositions[2].x}px, ${iconPositions[2].y}px)`
-              : "none",
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} />
-          <span
-            className={`${styles.iconLabel} ${
-              isExpanded ? styles.showLabel : ""
-            }`}
-          >
-            {labels[2]}
-          </span>
-        </Link>
-
-        <Link
-          href="#projects"
-          className={styles.navIcon}
-          style={{
-            transform: isExpanded
-              ? `translate(${iconPositions[3].x}px, ${iconPositions[3].y}px)`
-              : "none",
-          }}
-        >
-          <FontAwesomeIcon icon={faFolderOpen} />
-          <span
-            className={`${styles.iconLabel} ${
-              isExpanded ? styles.showLabel : ""
-            }`}
-          >
-            {labels[3]}
-          </span>
-        </Link>
-
-        <Link
-          href="#contact"
-          className={styles.navIcon}
-          style={{
-            transform: isExpanded
-              ? `translate(${iconPositions[4].x}px, ${iconPositions[4].y}px)`
-              : "none",
-          }}
-        >
-          <FontAwesomeIcon icon={faEnvelope} />
-          <span
-            className={`${styles.iconLabel} ${
-              isExpanded ? styles.showLabel : ""
-            }`}
-          >
-            {labels[4]}
-          </span>
-        </Link>
+            <Link href={links[index]} className={styles.navIcon}>
+              <FontAwesomeIcon icon={icon} />
+            </Link>
+            <span className={styles.iconLabel}>{labels[index]}</span>
+          </div>
+        ))}
       </div>
     </aside>
   );

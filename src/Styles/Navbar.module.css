@@ -9,8 +9,8 @@
   justify-content: center;
   align-items: center;
   transition: width 0.3s ease;
-  background: transparent;
   z-index: 10;
+  pointer-events: none;
 }
 
 .iconWrapper {
@@ -19,65 +19,62 @@
   align-items: center;
   gap: 30px;
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  pointer-events: auto;
+  padding-left: 30px;
+}
+
+.iconWrapper.expanded {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(58, 57, 57, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 90px;
+  transition: all 0.5s ease;
+  background-position: -120px center;
+}
+
+.iconParent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   will-change: transform;
 }
 
 .navIcon {
   font-size: 24px;
   color: #fff;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   cursor: pointer;
-  position: relative;
+  transition: background 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: 30px;  /* Consistent left margin */
-
+  justify-content: center;
+  border-radius: 50%;
+  padding: 10px;
 }
 
 .navIcon:hover {
-  transform: scale(2);
-  color: #f87171;
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  -ms-transform: scale(2);
-  -o-transform: scale(2);
-  background-color: rgba(7, 248, 248, 0.5);
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.navIcon span {
+.iconLabel {
   opacity: 0;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
+  transition: opacity 0.3s ease, padding 0.3s ease;
   color: #f87171;
   font-size: 14px;
+  white-space: nowrap;
+  padding: 0;
+  pointer-events: none;
+  transform: translateX(0);
 }
 
-.navIcon span {
+.iconParent:hover .iconLabel {
   opacity: 1;
-}
-
-.iconWrapper.expanded .navIcon:nth-child(1) {
-  transform: translate(0, -40px) rotate(0deg);
-}
-
-.iconWrapper.expanded .navIcon:nth-child(2) {
-  transform: translate(20px, -80px) rotate(0deg);
-}
-
-.iconWrapper.expanded .navIcon:nth-child(3) {
-  transform: translate(60px, -100px) rotate(0deg);
-}
-
-.iconWrapper.expanded .navIcon:nth-child(4) {
-  transform: translate(100px, -80px) rotate(0deg);
-}
-
-.iconWrapper.expanded .navIcon:nth-child(5) {
-  transform: translate(120px, -40px) rotate(0deg);
+  padding-left: 10px;
 }
