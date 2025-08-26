@@ -149,25 +149,41 @@ export default function Home() {
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <a href="https://github.com" target="_blank" rel="noreferrer">
+          <Link
+            href="https://github.com/theamanullahdev"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
             <FontAwesomeIcon
               icon={faGithub}
               className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
             />
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+          </Link>
+          <Link
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <FontAwesomeIcon
               icon={faLinkedin}
               className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
             />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer">
+          </Link>
+          <Link
+            href="https://twitter.com/theamanullahdev"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Twitter"
+          >
             <FontAwesomeIcon
               icon={faTwitter}
               className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
             />
-          </a>
+          </Link>
         </motion.div>
+
         <h2 className="text-3xl font-semibold mb-4 text-green-700 dark:text-green-300">
           Get in Touch
         </h2>

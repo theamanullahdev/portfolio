@@ -1,9 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PROJECTS = [
   {
@@ -46,149 +51,213 @@ const PROJECTS = [
     link: "https://github.com",
     buttonText: "Source",
   },
-  {
-    title: "Future Placeholder",
-    description:
-      "This slot is reserved for upcoming projects — stay tuned for something amazing!",
-    picture: "/AD_logo.png",
-    link: "#",
-    buttonText: "Coming Soon",
-  },
 ];
 
 const Page = () => {
   return (
     <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
       {/* Hero Section */}
-      <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
+      <section className="snap-start h-screen flex flex-col md:flex-row items-center justify-center gap-8 px-8 text-center md:text-left">
         <motion.div
-          className="w-48 h-48 mb-6 rounded-full border-4 border-blue-600 flex items-center justify-center overflow-hidden shadow-lg bg-white dark:bg-gray-800"
-          initial={{ scale: 0, rotate: 180 }}
-          animate={{ scale: 1, rotate: 0 }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex-1"
+        >
+          <h1 className="text-5xl font-extrabold mb-6 text-blue-700 dark:text-blue-300">
+            Welcome to My Projects
+          </h1>
+          <p className="text-lg max-w-xl mb-6">
+            I love building tools that blend <strong>AI</strong>,{" "}
+            <strong>blockchain</strong>, and{" "}
+            <strong>open-source software</strong>. Scroll down to see some
+            highlights of my work!
+          </p>
+          <Link
+            href="#projects"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+          >
+            Explore Projects
+          </Link>
+        </motion.div>
+
+        <motion.div
+          className="flex-1 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
         >
           <img
-            src="/AD_logo.png"
-            alt="Hero"
-            className="object-cover w-full h-full"
+            src="/globe.svg"
+            alt="Hero Illustration"
+            className="w-72 h-72 md:w-96 md:h-96"
           />
         </motion.div>
-        <motion.h1
-          className="text-5xl font-bold mb-4"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          My Projects
-        </motion.h1>
-        <motion.p
-          className="text-lg max-w-2xl font-medium"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          Welcome! Here you’ll find the projects I’ve built — ranging from
-          security scripts and AI tools to blockchain-powered apps and NFT
-          platforms.
-        </motion.p>
       </section>
 
       {/* Talking Section */}
-      <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
-        <motion.h2
-          className="text-3xl font-semibold mb-6 text-yellow-700 dark:text-yellow-300"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Why I Build These Projects
-        </motion.h2>
-        <motion.p
-          className="text-lg max-w-3xl"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          Each project I’ve worked on is a step forward in exploring new
-          technologies — whether it’s **system security** (Wine-Locker), **AI
-          for productivity** (LetterSmith), or **blockchain innovation**
-          (on-chain chat apps & NFT launchpads).
-          <br />I aim to solve real problems with creative, modern solutions.
-        </motion.p>
+      <section
+        id="projects"
+        className="snap-start h-screen flex flex-col items-center justify-center px-8"
+      >
+        <h2 className="text-4xl font-bold mb-10 text-blue-700 dark:text-blue-300">
+          What I Build
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8 w-full max-w-5xl">
+          <motion.div
+            className="p-6 border-4 border-blue-400 rounded-xl shadow-lg bg-white dark:bg-gray-800"
+            whileHover={{ scale: 1.05 }}
+          >
+            <h3 className="text-xl font-semibold mb-2">🔒 Security</h3>
+            <p>Projects like Wine-Locker that secure your Linux environment.</p>
+          </motion.div>
+          <motion.div
+            className="p-6 border-4 border-green-400 rounded-xl shadow-lg bg-white dark:bg-gray-800"
+            whileHover={{ scale: 1.05 }}
+          >
+            <h3 className="text-xl font-semibold mb-2">🤖 AI</h3>
+            <p>AI apps like LetterSmith to simplify job applications.</p>
+          </motion.div>
+          <motion.div
+            className="p-6 border-4 border-purple-400 rounded-xl shadow-lg bg-white dark:bg-gray-800"
+            whileHover={{ scale: 1.05 }}
+          >
+            <h3 className="text-xl font-semibold mb-2">🌐 Blockchain</h3>
+            <p>
+              On-chain chat apps, NFT launchpads, and dApps on Solana/Injective.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Projects Sections */}
+      {/* Project Sections */}
       {PROJECTS.map((proj, idx) => (
         <section
           key={idx}
-          className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center"
+          className="snap-start h-screen grid md:grid-cols-2 items-center px-8 gap-8"
         >
-          <motion.div
-            className="w-64 h-64 mb-6 rounded-2xl border-4 border-blue-500 flex items-center justify-center overflow-hidden shadow-lg bg-white dark:bg-gray-800"
-            initial={{ scale: 0.7, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img
-              src={proj.picture}
-              alt={proj.title}
-              className="object-cover w-full h-full"
-            />
-          </motion.div>
+          {idx % 2 === 0 ? (
+            <>
+              {/* Image */}
+              <motion.div
+                className="w-full h-80 border-4 border-blue-500 rounded-xl shadow-lg overflow-hidden"
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <img
+                  src={proj.picture}
+                  alt={proj.title}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
 
-          <motion.h2
-            className="text-3xl font-bold mb-4 text-blue-700 dark:text-blue-300"
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            {proj.title}
-          </motion.h2>
+              {/* Text */}
+              <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold mb-4">{proj.title}</h2>
+                <p className="text-lg mb-6">{proj.description}</p>
+                <Link
+                  href={proj.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+                >
+                  {proj.buttonText}
+                </Link>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              {/* Text first */}
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold mb-4">{proj.title}</h2>
+                <p className="text-lg mb-6">{proj.description}</p>
+                <Link
+                  href={proj.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+                >
+                  {proj.buttonText}
+                </Link>
+              </motion.div>
 
-          <motion.p
-            className="text-lg max-w-2xl mb-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            {proj.description}
-          </motion.p>
-
-          <Link
-            href={proj.link}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition"
-          >
-            {proj.buttonText}
-          </Link>
+              {/* Image */}
+              <motion.div
+                className="w-full h-80 border-4 border-blue-500 rounded-xl shadow-lg overflow-hidden"
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <img
+                  src={proj.picture}
+                  alt={proj.title}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+            </>
+          )}
         </section>
       ))}
 
       {/* Outro Section */}
-      <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
-        <motion.h2
-          className="text-4xl font-bold mb-6 text-green-700 dark:text-green-300"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      <section className="snap-start h-screen flex flex-col items-center justify-center text-center px-8">
+        <motion.div
+          className="mb-6 flex gap-6"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          Thanks for Scrolling!
-        </motion.h2>
-        <motion.p
-          className="text-lg max-w-2xl mb-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          That’s a glimpse into my work. I’m always open to collaborations,
-          ideas, or just a chat. Let’s build something amazing together!
-        </motion.p>
-        <Link
-          href="/MsgMe"
-          className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 hover:shadow-lg transition"
-        >
+          <Link
+            href="https://github.com/theamanullahdev"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <FontAwesomeIcon
+              icon={faGithub}
+              className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+            />
+          </Link>
+          <Link
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FontAwesomeIcon
+              icon={faLinkedin}
+              className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+            />
+          </Link>
+          <Link
+            href="https://twitter.com/theamanullahdev"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Twitter"
+          >
+            <FontAwesomeIcon
+              icon={faTwitter}
+              className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+            />
+          </Link>
+        </motion.div>
+
+        <h2 className="text-3xl font-semibold mb-4 text-green-700 dark:text-green-300">
           Get in Touch
-        </Link>
+        </h2>
+        <p className="text-lg max-w-xl">
+          Let&apos;s collaborate or just say hi! I&apos;m always open to
+          interesting projects and ideas.
+        </p>
       </section>
     </div>
   );
