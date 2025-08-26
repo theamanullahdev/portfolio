@@ -8,11 +8,12 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import Cards from "@/components/Cards";
+import Link from "next/link";
 
 export default function Home() {
   return (
-  <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
-
+    <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
       {/* Home Section */}
       <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center  text-white">
         <motion.div
@@ -22,7 +23,7 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <img
-            src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+            src="/AD_logo.png"
             alt="Hero"
             className="object-cover w-full h-full"
           />
@@ -40,7 +41,8 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          I build modern websites and dApps on any blockchain. Let&apos;s create something amazing together!
+          I build modern websites and dApps on any blockchain. Let&apos;s create
+          something amazing together!
         </motion.p>
       </section>
 
@@ -69,48 +71,74 @@ export default function Home() {
           About Me
         </h2>
         <p className="text-lg max-w-xl">
-          I&apos;m a versatile developer who can build any website, specializing in dApps on any blockchain. I bring ideas to life with modern and efficient solutions.
+          I&apos;m a versatile developer who can build any website, specializing
+          in dApps on any blockchain. I bring ideas to life with modern and
+          efficient solutions.
         </p>
       </section>
 
       {/* Projects Section */}
+
       <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center ">
         <h2 className="text-3xl font-semibold mb-6 text-blue-700 dark:text-blue-300">
           Projects
         </h2>
-        <motion.div
-          className="flex gap-6 overflow-x-auto pb-2 max-w-full px-4 hide-scrollbar"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          style={{
-            justifyContent: "center",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-          }}
-        >
-          {[1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              className="w-72 flex-shrink-0 border-4 border-blue-400 rounded-xl p-4 shadow-xl bg-white dark:bg-gray-800 transition-transform hover:scale-105 scroll-snap-align-start"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-                alt={"Project " + i}
-                className="object-cover w-full h-36 mb-4 rounded"
-              />
-              <h3 className="text-xl font-bold mb-2">Project {i}</h3>
-              <p className="text-sm mb-2">Short description of what this project does.</p>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
-                See More
-              </button>
-            </motion.div>
-          ))}
-        </motion.div>
+        <Cards
+          numberOfCards={4}
+          items={[
+            {
+              picture:
+                "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              title: "My Cool Project",
+              description: "This project does something awesome.",
+              link: "https://github.com",
+              buttonText: "GitHub",
+            },
+            {
+              picture:
+                "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              title: "My Cool Project",
+              description: "This project does something awesome.",
+              link: "https://github.com",
+              buttonText: "GitHub",
+            },
+
+            {
+              picture:
+                "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              title: "Blockchain dApp",
+              description: "Smart contracts + React frontend.",
+              link: "https://example.com",
+              buttonText: "Visit",
+            },
+            {
+              picture:
+                "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              title: "Blockchain dApp",
+              description: "Smart contracts + React frontend.",
+              link: "https://example.com",
+              buttonText: "Visit",
+            },
+            {
+              picture:
+                "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              title: "Blockchain dApp",
+              description: "Smart contracts + React frontend.",
+              link: "https://example.com",
+              buttonText: "Visit",
+            },
+          ]}
+        />
         <p className="text-lg max-w-xl mt-6">
           Check out some of the awesome websites and dApps I&apos;ve built!
         </p>
+
+        <Link
+          href="/MyProjects"
+          className="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition"
+        >
+          See More
+        </Link>
       </section>
 
       {/* Contact Section */}
@@ -144,7 +172,8 @@ export default function Home() {
           Get in Touch
         </h2>
         <p className="text-lg max-w-xl">
-          Let&apos;s collaborate or just say hi! I&apos;m always open to interesting projects and ideas.
+          Let&apos;s collaborate or just say hi! I&apos;m always open to
+          interesting projects and ideas.
         </p>
       </section>
     </div>

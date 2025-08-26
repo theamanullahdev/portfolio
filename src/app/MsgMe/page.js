@@ -4,7 +4,8 @@ const page = () => {
   return (
     <>
       <div>This is pagejs bro, lets see</div>
-      <div>This about page too bruhe</div>
+      <div>This is message me page too bruhe</div>
+      
     </>
   );
 };

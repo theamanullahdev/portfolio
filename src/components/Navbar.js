@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const labels = ["Menu", "Home", "About", "Projects", "Contact"];
   const icons = [faBars, faHome, faUser, faFolderOpen, faEnvelope];
-  const links = ["#", "/", "/About", "#projects", "#contact"];
+  const links = ["#", "/", "/About", "/MyProjects", "/MsgMe"];
 
   return (
     <aside
