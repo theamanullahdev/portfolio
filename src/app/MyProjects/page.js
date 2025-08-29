@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
@@ -14,9 +15,9 @@ const PROJECTS = [
   {
     title: "Wine-Locker",
     description:
-      "A Linux shell script that can lock or unlock Wine execution on demand — preventing random EXEs from running and improving system security.",
-    picture: "/file.svg",
-    link: "https://github.com",
+      "A Linux security utility that lets you lock Wine so only root can run it thus blocking random `.exe` files from executing. Unlock temporarily (e.g., 60s) or toggle access with one command.",
+    picture: "/winlock.png",
+    link: "https://github.com/theamanullahdev/wine-locker",
     buttonText: "GitHub",
   },
   {
