@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
 
 :root {
   --background: #ffffff;
@@ -19,20 +19,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family:  Ubuntu Sans, sans-serif;
-}
-.cursor-trail {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(209, 31, 31, 0.3), transparent);
-  pointer-events: none;
-  transition: transform 0.1s ease;
-  mix-blend-mode: difference;
-  z-index: 0;
-  backdrop-filter: blur(15px);
-  transform: translate3d(0, 0, 0);
+  font-family: Ubuntu Sans, sans-serif;
 }
 /* Hide scrollbar but allow scroll */
 .hide-scrollbar::-webkit-scrollbar {
@@ -42,3 +29,75 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Cursor effects css below */
+.cursor-trail {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.25), transparent);
+  pointer-events: none;
+  transition: transform 0.1s ease;
+  mix-blend-mode: screen; /* brighter blending */
+  z-index: 1;
+  backdrop-filter: blur(12px);
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.35);
+}
+
+.cursor-particle {
+  position: fixed;
+  pointer-events: none;
+  color: #00ff88;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: bold;
+  opacity: 0.9;
+  transform: translate(-50%, -50%);
+  animation: trail-fade 0.9s forwards; /* faster fade */
+  z-index: 9999;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  opacity: 0.8;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: dot-fade 0.7s forwards;
+  z-index: 5000;
+}
+
+@keyframes trail-fade {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+@keyframes dot-fade {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+/* Cursor effects css Ended above */
