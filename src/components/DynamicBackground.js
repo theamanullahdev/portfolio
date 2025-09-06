@@ -1,14 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
 const randomRange = (min, max) => Math.random() * (max - min) + min;
 
 function FloatingElement({ type }) {
-  // Generate all random values ONCE per component instance
+  // Generate all random values ONCE per client render
   const {
     size,
     startX,
@@ -127,16 +127,23 @@ const DynamicBackground = ({
   triangleCount,
   codeCount,
 }) => {
-  // Shapes are deterministic, only count-based
-  const shapes = useMemo(
-    () => [
-      ...Array.from({ length: circleCount }, () => "circle"),
-      ...Array.from({ length: lineCount }, () => "line"),
-      ...Array.from({ length: triangleCount }, () => "triangle"),
-      ...Array.from({ length: codeCount }, () => "code"),
-    ],
-    [circleCount, lineCount, triangleCount, codeCount]
-  );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Nothing renders on server → no hydration mismatch
+    return <>{children}</>;
+  }
+
+  const shapes = [
+    ...Array.from({ length: circleCount }, () => "circle"),
+    ...Array.from({ length: lineCount }, () => "line"),
+    ...Array.from({ length: triangleCount }, () => "triangle"),
+    ...Array.from({ length: codeCount }, () => "code"),
+  ];
 
   return (
     <div className="relative w-full h-full overflow-hidden">
