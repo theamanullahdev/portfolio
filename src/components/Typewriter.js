@@ -3,8 +3,19 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const Typewriter = ({ text, delay }) => {
+const Typewriter = ({ text, delay, color }) => {
   const [displayed, setDisplayed] = useState("");
+
+  // Define terminal color themes
+  const colorThemes = {
+    green: "text-green-400",
+    orange: "text-orange-400",
+    cyan: "text-cyan-400",
+    white: "text-white",
+  };
+
+  // Default to white if invalid or not provided
+  const colorClass = colorThemes[color] || colorThemes.white;
 
   useEffect(() => {
     let i = 0;
@@ -17,7 +28,7 @@ const Typewriter = ({ text, delay }) => {
   }, [text, delay]);
 
   return (
-    <span>
+    <span className={`font-mono ${colorClass}`}>
       {displayed}
       <span className="animate-pulse">|</span>
     </span>
@@ -27,10 +38,12 @@ const Typewriter = ({ text, delay }) => {
 Typewriter.propTypes = {
   text: PropTypes.string.isRequired,
   delay: PropTypes.number,
+  color: PropTypes.oneOf(["green", "orange", "cyan", "white"]),
 };
 
 Typewriter.defaultProps = {
   delay: 100,
+  color: "white", // safer default for non-terminal pages
 };
 
 export default Typewriter;

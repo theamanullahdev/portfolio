@@ -4,9 +4,18 @@ import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 
-const TerminalButton = ({ href, children, external, type, onClick }) => {
-  const classes =
-    "font-mono bg-black text-green-400 border-2 border-green-400 px-6 py-3 rounded-lg shadow-md hover:bg-green-900 hover:text-green-200 transition";
+const TerminalButton = ({ href, children, external, type, onClick, color }) => {
+  const colorThemes = {
+    green:
+      "text-green-400 border-green-400 hover:bg-green-900 hover:text-green-200",
+    orange:
+      "text-orange-400 border-orange-400 hover:bg-orange-900 hover:text-orange-200",
+    cyan: "text-cyan-400 border-cyan-400 hover:bg-cyan-900 hover:text-cyan-200",
+  };
+
+  const colorClass = colorThemes[color] || colorThemes.green;
+
+  const classes = `font-mono bg-black px-6 py-3 rounded-lg shadow-md border-2 transition ${colorClass}`;
 
   // Case 1: External link
   if (external && href) {
@@ -40,6 +49,7 @@ TerminalButton.propTypes = {
   external: PropTypes.bool,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
   onClick: PropTypes.func,
+  color: PropTypes.oneOf(["green", "orange", "cyan"]), 
 };
 
 TerminalButton.defaultProps = {
@@ -47,6 +57,7 @@ TerminalButton.defaultProps = {
   external: false,
   type: "button",
   onClick: undefined,
+  color: "green", // default to terminal green
 };
 
 export default TerminalButton;
