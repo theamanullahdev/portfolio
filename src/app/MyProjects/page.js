@@ -33,24 +33,24 @@ const PROJECTS = [
     description:
       "A decentralized chat application deployed on Injective/Solana. Full profiles, messaging, and identity stored on-chain.",
     picture: "/window.svg",
-    link: "https://example.com",
-    buttonText: "Demo",
+    link: "/ComingSoon",
+    buttonText: "Coming Soon",
   },
   {
     title: "NFT Launchpad",
     description:
       "A platform to launch NFT collections seamlessly, complete with minting dashboard, whitelist, and blockchain integration.",
     picture: "/next.svg",
-    link: "https://example.com",
-    buttonText: "Visit",
+    link: "/ComingSoon",
+    buttonText: "Coming Soon",
   },
   {
     title: "Portfolio Website",
     description:
       "The site you are looking at right now! Built with Next.js, TailwindCSS, and framer-motion for animations.",
     picture: "/vercel.svg",
-    link: "https://github.com",
-    buttonText: "Source",
+    link: "/ComingSoon",
+    buttonText: "Coming Soon",
   },
 ];
 
