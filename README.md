@@ -1,7 +1,7 @@
-# 🚀 Amanullah Developer – Portfolio
+# 🚀 Amanullah Developer – Portfolio 
 
-A modern, interactive portfolio website built with **Next.js 13+, TailwindCSS, and Framer Motion**.  
-This project showcases my work, skills, and journey as a developer, with smooth animations, scroll-snap sections, and custom effects.
+A modern and interactive portfolio built with **Next.js 15, React 19, TailwindCSS 3, Framer Motion 12, and FontAwesome 6**.  
+This site highlights my projects, skills, and journey as a developer with smooth animations and responsive design.
 
 ---
 
@@ -17,30 +17,30 @@ This project showcases my work, skills, and journey as a developer, with smooth 
 │   └── layout.js         # Root layout
 ├── src/components/       # Reusable React components
 ├── src/Styles/           # CSS Modules
-└── src/utils/            # Utility functions (placeholder)
+└── src/utils/            # Utilities (placeholder)
 
 ---
 
 ## ✨ Features
 
-- 🎨 Dynamic Backgrounds (moving shapes, particles, trails)  
+- 🎨 Dynamic Background with shapes and particles  
 - 🖱️ Custom Cursor Trail (characters + glowing dots)  
-- 📝 Typewriter Effect for headings and taglines  
-- ⚡ Framer Motion Animations (hover, scale, timeline effects)  
-- 🎭 Scroll Snap Sections (Home, About, Projects, Contact)  
-- 🖼️ Responsive Project Cards with hover actions  
-- 🌙 Dark Mode Ready (Tailwind dark classes included)  
-- 📱 Fully Responsive (mobile → desktop)  
+- 📝 Typewriter Effect for animated text  
+- ⚡ Framer Motion animations (smooth transitions & hover effects)  
+- 🎭 Full-page Scroll Snap Layout (Home, About, Projects, Contact)  
+- 🖼️ Project Cards with hover animations and links  
+- 🌙 Dark Mode support via Tailwind  
+- 📱 Responsive design (mobile to desktop)  
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Next.js 13+ (App Router)
-- React
-- Tailwind CSS
-- Framer Motion
-- Font Awesome
+- **Framework**: Next.js 15  
+- **UI Library**: React 19  
+- **Styling**: Tailwind CSS 3  
+- **Animations**: Framer Motion 12  
+- **Icons**: FontAwesome 6  
 
 ---
 
@@ -48,15 +48,15 @@ This project showcases my work, skills, and journey as a developer, with smooth 
 
 1. Clone the repository
    git clone https://github.com/theamanullahdev/portfolio.git
-   cd portfolio
+   cd test1
 
 2. Install dependencies
    npm install
 
-3. Run the dev server
+3. Run the development server
    npm run dev
 
-   Then open http://localhost:3000 🎉
+   Open http://localhost:3000 🎉
 
 4. Build for production
    npm run build
@@ -64,18 +64,6 @@ This project showcases my work, skills, and journey as a developer, with smooth 
 
 ---
 
-## 📸 Screenshots (Preview)
-
-Home Section  
-[Placeholder Image](https://via.placeholder.com/800x400?text=Home+Preview)
-
-About Section  
-[Placeholder Image](https://via.placeholder.com/800x400?text=About+Preview)
-
-Projects Section  
-[Placeholder Image](https://via.placeholder.com/800x400?text=Projects+Preview)
-
----
 
 ## 🔗 Links
 
@@ -87,4 +75,4 @@ Projects Section
 
 ## 📜 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the **MIT License**.
