@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 Amanullah Developer – Portfolio
 
-## Getting Started
+A modern, interactive portfolio website built with **Next.js 13+, TailwindCSS, and Framer Motion**.  
+This project showcases my work, skills, and journey as a developer, with smooth animations, scroll-snap sections, and custom effects.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📂 Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.
+├── public/               # Static assets (logos, svgs, images)
+├── src/app/              # Next.js App Router pages
+│   ├── page.js           # Home page
+│   ├── About/page.js     # About page
+│   ├── MyProjects/page.js# Projects page
+│   ├── MsgMe/page.js     # Contact page
+│   └── layout.js         # Root layout
+├── src/components/       # Reusable React components
+├── src/Styles/           # CSS Modules
+└── src/utils/            # Utility functions (placeholder)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
 
-## Learn More
+- 🎨 Dynamic Backgrounds (moving shapes, particles, trails)  
+- 🖱️ Custom Cursor Trail (characters + glowing dots)  
+- 📝 Typewriter Effect for headings and taglines  
+- ⚡ Framer Motion Animations (hover, scale, timeline effects)  
+- 🎭 Scroll Snap Sections (Home, About, Projects, Contact)  
+- 🖼️ Responsive Project Cards with hover actions  
+- 🌙 Dark Mode Ready (Tailwind dark classes included)  
+- 📱 Fully Responsive (mobile → desktop)  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js 13+ (App Router)
+- React
+- Tailwind CSS
+- Framer Motion
+- Font Awesome
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Installation & Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository
+   git clone https://github.com/theamanullahdev/portfolio.git
+   cd portfolio
+
+2. Install dependencies
+   npm install
+
+3. Run the dev server
+   npm run dev
+
+   Then open http://localhost:3000 🎉
+
+4. Build for production
+   npm run build
+   npm start
+
+---
+
+## 📸 Screenshots (Preview)
+
+Home Section  
+[Placeholder Image](https://via.placeholder.com/800x400?text=Home+Preview)
+
+About Section  
+[Placeholder Image](https://via.placeholder.com/800x400?text=About+Preview)
+
+Projects Section  
+[Placeholder Image](https://via.placeholder.com/800x400?text=Projects+Preview)
+
+---
+
+## 🔗 Links
+
+- 🌐 Live Portfolio: https://theamanullahdev.com  
+- 💻 GitHub Profile: https://github.com/theamanullahdev  
+- 🐦 Twitter: https://twitter.com/theamanullahdev  
+
+---
+
+## 📜 License
+
+This project is open source and available under the MIT License.
