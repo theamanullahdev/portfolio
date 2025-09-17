@@ -1,220 +1,203 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  faGithub,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faJs,
+  faReact,
+  faNode,
+  faGithub,
+  faPython,
+  faRust,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faDatabase,
+  faCube,
+  faRocket,
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
-import Typewriter from "@/components/Typewriter";
 import HighlightWords from "@/components/HighlightWords";
-import TerminalButton from "@/components/TerminalButton";
 
-const AboutPage = () => {
+export default function About() {
   return (
     <DynamicBackground
-      circleCount={5}
-      lineCount={5}
-      triangleCount={4}
-      codeCount={8}
+      circleCount={6}
+      lineCount={6}
+      triangleCount={3}
+      codeCount={10}
     >
-      <div className="snap-y snap-mandatory h-screen overflow-scroll text-gray-800 dark:text-white">
-        {/* Hero / Intro */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-8 text-center">
+      <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
+        {/* Intro Section */}
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
+            initial={{ scale: 0 }}
+            animate={{
+              scale: [1, 1.05, 1],
+              y: [0, -10, 0],
+            }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            whileHover={{
+              scale: 1.15,
+              rotate: 5,
+              transition: { duration: 0.2 },
+            }}
           >
-            <h1 className="text-5xl font-extrabold mb-6 text-green-500 dark:text-green-300 font-mono">
-              <Typewriter text="Amanullah Malik" delay={120} />
-            </h1>
-            <HighlightWords text="The Code That Works!" />
-            <p className="text-lg mb-8">
-              <Typewriter
-                text="Full-stack developer specialized in Next.js, React, and Blockchain. I build secure, performant apps that scale — from dApps to AI tools."
-                delay={20}
-              />
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <TerminalButton href="/projects">See My Projects</TerminalButton>
-              <TerminalButton href="/resume.pdf" external>
-                Download Resume
-              </TerminalButton>
-            </div>
+            <img
+              src="/piclogo.png"
+              alt="Profile"
+              className="object-cover w-full h-full"
+            />
           </motion.div>
-        </section>
 
-        {/* Snapshot Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <h2 className="text-4xl font-bold mb-6 text-green-500 dark:text-green-300 font-mono">
-              About Me
-            </h2>
-            <p className="text-lg mb-6">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            <HighlightWords text="About Me" color="green" />
+          </div>
+          <div className="text-base sm:text-lg max-w-2xl leading-relaxed">
+            <p className="mb-6">
               I am The Amanullah Developer. Hence the name AmanullahDev.com
             </p>
-            <p className="text-lg mb-6">
+            <p className="mb-6">
               I&apos;m a developer who blends creativity and precision. My work
               spans modern web frameworks, smart contracts, and open-source
               projects. Whether it&apos;s designing secure blockchain apps or
               crafting smooth React UIs, I focus on solutions that last.
             </p>
-            <TerminalButton href="https://github.com/theamanullahdev" external>
-              Explore My GitHub
-            </TerminalButton>
-          </motion.div>
+          </div>
         </section>
 
         {/* Skills Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-8 text-center">
-          <h2 className="text-4xl font-bold mb-10 text-green-500 dark:text-green-300 font-mono">
-            Skills & Tech Stack
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
+            <HighlightWords text="My Skills" color="orange" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">
             {[
+              { icon: faJs, label: "JavaScript", color: "text-yellow-400" },
+              { icon: faReact, label: "React", color: "text-cyan-400" },
+              { icon: faNode, label: "Node.js", color: "text-green-500" },
+              { icon: faPython, label: "Python", color: "text-blue-400" },
+              { icon: faRust, label: "Rust", color: "text-orange-600" },
               {
-                name: "JavaScript",
-                logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+                icon: faDatabase,
+                label: "Databases",
+                color: "text-purple-400",
               },
-              {
-                name: "React",
-                logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
-              },
-              {
-                name: "Next.js",
-                logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg",
-              },
-              {
-                name: "Node.js",
-                logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
-              },
-              {
-                name: "Electron",
-                logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/electron/electron-original.svg",
-              },
-              {
-                name: "Solidity",
-                logo: "https://logowik.com/content/uploads/images/solidity-programming-language881.logowik.com.webp",
-              },
-              {
-                name: "CosmWasm",
-                logo: "https://avatars.githubusercontent.com/u/56747695?s=200&v=4",
-              },
-              {
-                name: "Bash",
-                logo: "https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg",
-              },
+              { icon: faCube, label: "Blockchain", color: "text-indigo-400" },
+              { icon: faRocket, label: "dApps", color: "text-pink-500" },
             ].map((skill, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ scale: 1.1 }}
-                className="p-6 border-4 border-green-400 rounded-xl shadow-lg bg-black text-green-400 font-mono flex flex-col items-center"
+                className="flex flex-col items-center justify-center p-4 rounded-xl shadow-md border bg-white/10 dark:bg-gray-800/40"
+                animate={{ y: [0, -5, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 3,
+                  delay: idx * 0.2,
+                }}
+                whileHover={{
+                  scale: 1.15,
+                  y: -10,
+                  transition: { duration: 0.2 },
+                }}
               >
-                <div className="w-20 h-20 flex items-center justify-center bg-white rounded-lg shadow-md mb-4 overflow-hidden p-2">
-                  <img
-                    src={skill.logo}
-                    alt={skill.name}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-                <p className="font-semibold">{skill.name}</p>
+                <FontAwesomeIcon
+                  icon={skill.icon}
+                  className={`text-3xl sm:text-4xl mb-2 ${skill.color}`}
+                />
+                <span className="font-medium text-sm sm:text-base md:text-lg">
+                  {skill.label}
+                </span>
               </motion.div>
             ))}
           </div>
-          <div className="mt-12">
-            <TerminalButton href="/MsgMe">Let&apos;s Connect</TerminalButton>
+        </section>
+
+        {/* Journey / Timeline */}
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
+            <HighlightWords text="My Journey" color="blue" />
+          </div>
+          <div className="space-y-6 max-w-2xl text-left text-sm sm:text-base md:text-lg">
+            {[
+              {
+                year: "2021 – Getting Started",
+                text: "Began with normal web development, learning the fundamentals of coding.",
+                color: "border-green-400",
+              },
+              {
+                year: "2022 – Blockchain Exploration",
+                text: "Entered the blockchain world through Solana, experimenting with smart contracts.",
+                color: "border-orange-400",
+              },
+              {
+                year: "2023 – First CRUD App",
+                text: "Built my first full-stack CRUD application, gaining real-world dev experience.",
+                color: "border-blue-400",
+              },
+              {
+                year: "2025 – Present",
+                text: "Exploring AI, blockchain, and modern development together to build impactful projects.",
+                color: "border-purple-400",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{
+                  scale: 1.05,
+                  x: 10,
+                  transition: { duration: 0.2 },
+                }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  delay: idx * 0.3,
+                  ease: "easeInOut",
+                }}
+                className={`p-4 border-l-4 ${item.color} bg-white/10 dark:bg-gray-800/40 rounded`}
+              >
+                <div className="font-bold text-base sm:text-lg md:text-xl">
+                  {item.year}
+                </div>
+                <p className="text-sm sm:text-base">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* Philosophy / Motto */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-8 text-center">
-          <motion.img
-            src="/AD_logo.png"
-            alt="AD Logo"
-            className="w-32 h-32 mb-6"
-            initial={{ opacity: 0, rotate: -90 }}
-            whileInView={{ opacity: 1, rotate: 0 }}
-            transition={{ duration: 0.8 }}
-          />
-          <h2 className="text-3xl font-bold mb-4 text-green-500 dark:text-green-300 font-mono">
-            “The Code That Works!”
-          </h2>
-          <p className="text-lg max-w-xl mb-6">
-            I believe good code is simple, reliable, and built to last.
-            That&apos;s the philosophy behind every project I ship.
+        {/* Call to Action */}
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
+            <HighlightWords text="Let’s Work Together" color="green" />
+          </div>
+          <p className="text-base sm:text-lg md:text-xl max-w-xl mb-6">
+            I&apos;m always open to collaborations, freelance opportunities, or
+            just a chat about tech & blockchain. Feel free to reach out and
+            let&apos;s build something amazing!
           </p>
-          <TerminalButton href="/MsgMe">Message Me</TerminalButton>
-        </section>
-
-        {/* Outro / Contact */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center text-center px-8">
           <motion.div
-            className="mb-6 flex gap-6"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 0.6 }}
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            whileHover={{
+              scale: 1.15,
+              rotate: -2,
+              transition: { duration: 0.2 },
+            }}
           >
             <Link
               href="https://github.com/theamanullahdev"
               target="_blank"
               rel="noreferrer"
-              aria-label="GitHub"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-green-500 text-white font-semibold hover:bg-green-600 transition text-sm sm:text-base md:text-lg"
             >
-              <FontAwesomeIcon
-                icon={faGithub}
-                className="text-4xl text-green-400 hover:text-green-200 transition"
-              />
-            </Link>
-            <Link
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className="text-4xl text-green-400 hover:text-green-200 transition"
-              />
-            </Link>
-            <Link
-              href="https://twitter.com/theamanullahdev"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Twitter"
-            >
-              <FontAwesomeIcon
-                icon={faTwitter}
-                className="text-4xl text-green-400 hover:text-green-200 transition"
-              />
+              Connect on GitHub
             </Link>
           </motion.div>
-
-          <h2 className="text-3xl font-semibold mb-4 text-green-500 dark:text-green-300 font-mono">
-            Get in Touch
-          </h2>
-          <p className="text-lg max-w-xl mb-6">
-            I&apos;m open to collaborations, freelance gigs, and exciting new
-            roles. Let&apos;s build something amazing together.
-          </p>
-          <TerminalButton href="/resume.pdf" external>
-            Download Resume
-          </TerminalButton>
         </section>
       </div>
     </DynamicBackground>
   );
-};
-
-export default AboutPage;
+}
