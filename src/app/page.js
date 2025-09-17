@@ -59,7 +59,11 @@ export default function Home() {
           </motion.div>
 
           <div className="text-xl font-semibold mb-6">
-            <Typewriter text="The Amanullah Developer!" delay={20} color="green" />
+            <Typewriter
+              text="The Amanullah Developer!"
+              delay={20}
+              color="green"
+            />
           </div>
         </section>
 
@@ -90,52 +94,44 @@ export default function Home() {
           </div>
 
           <div className="text-lg max-w-xl">
-            Im a versatile developer who can build any website, specializing
-            in dApps on any blockchain. I bring ideas to life with modern and
+            Im a versatile developer who can build any website, specializing in
+            dApps on any blockchain. I bring ideas to life with modern and
             efficient solutions.
           </div>
         </section>
 
         {/* Projects Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center ">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center">
           <div className="text-3xl font-semibold mb-6">
             <HighlightWords text="Projects" color="blue" />
           </div>
 
           <Cards
-            numberOfCards={4}
+            numberOfCards={3}
             items={[
               {
-                picture:
-                  "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-                title: "My Cool Project",
-                description: "This project does something awesome.",
-                link: "https://github.com",
+                picture: "/winlock.png",
+                title: "Wine-Locker",
+                description:
+                  "A Linux security utility that lets you lock Wine so only root can run it thus blocking random `.exe` files from executing.",
+                link: "https://github.com/theamanullahdev/wine-locker",
                 buttonText: "GitHub",
               },
               {
-                picture:
-                  "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-                title: "My Cool Project",
-                description: "This project does something awesome.",
-                link: "https://github.com",
+                picture: "/LTsmith1.png",
+                title: "LetterSmith",
+                description:
+                  "An AI-powered tool that generates tailored cover letters. Input your CV, job post, and prompt — instantly download a polished cover letter.",
+                link: "https://github.com/theamanullahdev/lettersmith",
                 buttonText: "GitHub",
               },
               {
-                picture:
-                  "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-                title: "Blockchain dApp",
-                description: "Smart contracts + React frontend.",
-                link: "https://example.com",
-                buttonText: "Visit",
-              },
-              {
-                picture:
-                  "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-                title: "Blockchain dApp",
-                description: "Smart contracts + React frontend.",
-                link: "https://example.com",
-                buttonText: "Visit",
+                picture: "/portfolio.png",
+                title: "Portfolio Website",
+                description:
+                  "The site you are looking at right now! Built with Next.js, TailwindCSS, and framer-motion for animations.",
+                link: "https://github.com/theamanullahdev/portfolio",
+                buttonText: "GitHub",
               },
             ]}
           />
