@@ -76,7 +76,7 @@ const PROJECTS = [
     title: "Portfolio Website",
     description:
       "This very website is my portfolio, built solo using Next.js, TailwindCSS, and Framer Motion. It demonstrates my frontend and backend skills, attention to detail, and ability to integrate smooth animations and responsive design. It also acts as a live showcase of my coding style and Full-Stack expertise.",
-    preview: "https://amanullahdev.com/PreviewCard",  
+    preview: "https://www.amanullahdev.com/PreviewCard",  
     picture: "/portfolio.png",
     buttons: [
       {

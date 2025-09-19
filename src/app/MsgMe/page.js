@@ -1,24 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { useForm, ValidationError } from "@formspree/react";
 import HighlightWords from "@/components/HighlightWords";
 import Typewriter from "@/components/Typewriter";
 import TerminalButton from "@/components/TerminalButton";
 import DynamicBackground from "@/components/DynamicBackground";
 
 export default function MsgMePage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", form);
-    // 🔥 hook into backend / email API later
-  };
+  // Grab form ID from env (must start with NEXT_PUBLIC_)
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+  const [state, handleSubmit] = useForm(formId);
 
   return (
     <DynamicBackground
@@ -68,53 +61,72 @@ export default function MsgMePage() {
         </div>
 
         {/* Message Form */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full max-w-md bg-black border-4 border-green-400 rounded-xl shadow-lg p-6 flex flex-col gap-4 text-left text-green-400 font-mono"
-        >
-          <label className="flex flex-col">
-            <span className="mb-1">Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              className="p-2 rounded-md bg-white text-black outline-none"
-            />
-          </label>
+        {state.succeeded ? (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full max-w-md bg-black border-4 border-green-400 rounded-xl shadow-lg p-6 text-center text-green-400 font-mono"
+          >
+            <p className="text-lg">✅ Thanks! Your message has been sent.</p>
+          </motion.div>
+        ) : (
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full max-w-md bg-black border-4 border-green-400 rounded-xl shadow-lg p-6 flex flex-col gap-4 text-left text-green-400 font-mono"
+          >
+            <label className="flex flex-col">
+              <span className="mb-1">Name</span>
+              <input
+                type="text"
+                name="name"
+                required
+                className="p-2 rounded-md bg-white text-black outline-none"
+              />
+            </label>
 
-          <label className="flex flex-col">
-            <span className="mb-1">Email</span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="p-2 rounded-md bg-white text-black outline-none"
-            />
-          </label>
+            <label className="flex flex-col">
+              <span className="mb-1">Email</span>
+              <input
+                type="email"
+                name="email"
+                required
+                className="p-2 rounded-md bg-white text-black outline-none"
+              />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="text-red-400 text-sm mt-1"
+              />
+            </label>
 
-          <label className="flex flex-col">
-            <span className="mb-1">Message</span>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              required
-              rows="4"
-              className="p-2 rounded-md bg-white text-black outline-none resize-none"
-            />
-          </label>
+            <label className="flex flex-col">
+              <span className="mb-1">Message</span>
+              <textarea
+                name="message"
+                required
+                rows="4"
+                className="p-2 rounded-md bg-white text-black outline-none resize-none"
+              />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="text-red-400 text-sm mt-1"
+              />
+            </label>
 
-          <div className="flex justify-center mt-4">
-            <TerminalButton type="submit">Send Message</TerminalButton>
-          </div>
-        </motion.form>
+            <div className="flex justify-center mt-4">
+              <TerminalButton type="submit" disabled={state.submitting}>
+                {state.submitting ? "Sending..." : "Send Message"}
+              </TerminalButton>
+            </div>
+          </motion.form>
+        )}
       </section>
     </DynamicBackground>
   );
