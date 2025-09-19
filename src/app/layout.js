@@ -19,8 +19,24 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "My Developer Portfolio",
-  description: "I build modern websites and dApps on any blockchain.",
+  description: "I build modern websites and dApps on any blockchain. A professional vibe code specialist",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "android-chrome",
+        url: "/android-chrome-192x192.png",
+      },
+      {
+        rel: "android-chrome",
+        url: "/android-chrome-512x512.png",
+      },
+    ],
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
