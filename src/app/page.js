@@ -25,9 +25,9 @@ export default function Home() {
     >
       <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
         {/* Home Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center text-white">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
           <motion.div
-            className="w-48 h-48 mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
+            className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 sm:mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
             initial={{ scale: 0, rotate: 180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 1 }}
@@ -40,13 +40,13 @@ export default function Home() {
           </motion.div>
 
           {/* Title */}
-          <div className="text-5xl font-bold mb-4 drop-shadow-lg">
+          <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 drop-shadow-lg">
             <HighlightWords text="Welcome to my portfolio" color="green" />
           </div>
 
           {/* Tagline */}
           <motion.div
-            className="text-lg max-w-xl font-medium mb-4"
+            className="text-sm sm:text-base md:text-lg max-w-xl font-medium mb-2 sm:mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -58,7 +58,7 @@ export default function Home() {
             />
           </motion.div>
 
-          <div className="text-xl font-semibold mb-6">
+          <div className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6">
             <Typewriter
               text="The Amanullah Developer!"
               delay={20}
@@ -68,14 +68,14 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center ">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
           <motion.div
-            className="mb-6 flex gap-6"
+            className="mb-4 sm:mb-6 flex gap-3 sm:gap-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-36 h-36 border-4 border-orange-500 rounded-xl flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
+            <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-xl border-4 border-orange-500 flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
               <img
                 src="https://www.ccn.com/wp-content/uploads/2023/10/how-does-the-bitcoin-source-code-define-its-21-million-cap.webp"
                 alt="About Img 1"
@@ -83,7 +83,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="w-36 h-36 border-4 border-orange-500 rounded-xl flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
+            <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-xl border-4 border-orange-500 flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
               <img
                 src="https://www.finoit.com/wp-content/uploads/2022/09/java-coding-best-practices.jpg"
                 alt="About Img 2"
@@ -91,16 +91,16 @@ export default function Home() {
               />
             </div>
           </motion.div>
-          <div className="text-3xl font-semibold mb-4">
+
+          <div className="text-2xl sm:text-3xl md:text-3xl font-semibold mb-2 sm:mb-4">
             <HighlightWords text="About Me" color="orange" />
           </div>
 
-          <div className="text-lg max-w-xl space-y-3">
+          <div className="text-sm sm:text-base md:text-lg max-w-xl space-y-2 sm:space-y-3">
             <p>
-              I&apos;m a full-stack developer with a strong focus on the
-              blockchain. I build smart contracts, decentralized applications,
-              and complete web solutions that are designed to perform reliably
-              in the real world.
+              I&apos;m a full-stack developer with a strong focus on blockchain.
+              I build smart contracts, decentralized applications, and complete
+              web solutions that perform reliably in the real world.
             </p>
             <p>
               I also bring a background in cybersecurity, ensuring every project
@@ -110,15 +110,17 @@ export default function Home() {
             </p>
             <p>I write Code, That works!</p>
           </div>
-          {/* <div className="mt-6">-----------------------</div> */}
-          <div className="mt-6">
+
+          <div className="mt-4 sm:mt-6">
             <TerminalButton href="/About" color="orange">
               See More
             </TerminalButton>
           </div>
         </section>
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center">
-          <div className="text-3xl font-semibold mb-6">
+
+        {/* Projects Section */}
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6">
             <HighlightWords text="Projects" color="blue" />
           </div>
 
@@ -152,7 +154,7 @@ export default function Home() {
             ]}
           />
 
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <TerminalButton href="/MyProjects" color="blue">
               See More
             </TerminalButton>
@@ -160,9 +162,9 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
           <motion.div
-            className="mb-6 flex gap-6"
+            className="mb-4 sm:mb-6 flex gap-4 sm:gap-6"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -175,7 +177,7 @@ export default function Home() {
             >
               <FontAwesomeIcon
                 icon={faGithub}
-                className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+                className="text-3xl sm:text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
               />
             </Link>
             <Link
@@ -186,7 +188,7 @@ export default function Home() {
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
-                className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+                className="text-3xl sm:text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
               />
             </Link>
             <Link
@@ -197,21 +199,21 @@ export default function Home() {
             >
               <FontAwesomeIcon
                 icon={faTwitter}
-                className="text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
+                className="text-3xl sm:text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
               />
             </Link>
           </motion.div>
 
-          <div className="text-3xl font-semibold mb-4">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-4">
             <HighlightWords text="Get in Touch" color="green" />
           </div>
 
-          <div className="text-lg max-w-xl mb-6">
-            Let&apos;s collaborate or just say hi! Im always open to interesting
-            projects and ideas.
+          <div className="text-sm sm:text-base md:text-lg max-w-xl mb-4 sm:mb-6">
+            Let&apos;s collaborate or just say hi! I&apos;m always open to
+            interesting projects and ideas.
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <TerminalButton href="/resume.pdf" external color="orange">
               Download Resume
             </TerminalButton>
