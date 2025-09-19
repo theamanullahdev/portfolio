@@ -9,7 +9,7 @@ const PROJECTS = [
   {
     title: "Wine-Locker",
     description:
-      "A Linux security utility that lets you lock Wine so only root can run it thus blocking random `.exe` files from executing. Unlock temporarily (e.g., 60s) or toggle access with one command.",
+      "A Linux security utility I built solo using shell scripts. Locks Wine so only root can execute .exe files, preventing accidental or malicious execution. Features temporary unlock timers and toggleable access for secure workflows. Demonstrates my expertise in Linux security, system-level scripting, and backend logic.",
     picture: "/winlock.png",
     buttons: [
       {
@@ -23,7 +23,7 @@ const PROJECTS = [
   {
     title: "LetterSmith",
     description:
-      "An AI-powered tool that generates tailored cover letters. Input your CV, job post, and prompt — instantly download a polished cover letter.",
+      "An AI-powered cover letter generator I built using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input their CV, job description, and prompts to instantly get polished cover letters. This project showcases my Full-Stack development skills, API integration expertise, and attention to frontend experience.",
     preview: "https://lettersmithai.vercel.app",
     picture: "/LTsmith1.png",
     buttons: [
@@ -44,7 +44,7 @@ const PROJECTS = [
   {
     title: "On-Chain Chat App",
     description:
-      "A decentralized chat application deployed on Injective/Solana. Full profiles, messaging, and identity stored on-chain.",
+      "A decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with a Next.js and Framer Motion frontend. Highlights my blockchain architecture knowledge, smart contract development, and ability to build full-stack dApps independently.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
     buttons: [
@@ -59,7 +59,7 @@ const PROJECTS = [
   {
     title: "NFT Launchpad",
     description:
-      "A platform to launch NFT collections seamlessly, complete with minting dashboard, whitelist, and blockchain integration.",
+      "A platform I built to launch NFT collections with minting dashboards, whitelist management, and blockchain integration. Developed with Next.js, smart contracts, and Solana/Ethereum SDKs. This project highlights my Full-Stack and blockchain expertise, smart contract skills, and experience building scalable dApps.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
     buttons: [
@@ -74,8 +74,7 @@ const PROJECTS = [
   {
     title: "Portfolio Website",
     description:
-      "The site you are looking at right now! Built with Next.js, TailwindCSS, and framer-motion for animations.",
-    // preview: "https://amanullahdev.com",
+      "This very website is my portfolio, built solo using Next.js, TailwindCSS, and Framer Motion. It demonstrates my frontend and backend skills, attention to detail, and ability to integrate smooth animations and responsive design. It also acts as a live showcase of my coding style and Full-Stack expertise.",
     picture: "/portfolio.png",
     buttons: [
       {

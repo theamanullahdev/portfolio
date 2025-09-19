@@ -75,32 +75,48 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            {[1, 2].map((i) => (
-              <div
-                key={i}
-                className="w-36 h-36 border-4 border-orange-500 rounded-xl flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all"
-              >
-                <img
-                  src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-                  alt={"About Img " + i}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            ))}
-          </motion.div>
+            <div className="w-36 h-36 border-4 border-orange-500 rounded-xl flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
+              <img
+                src="https://www.ccn.com/wp-content/uploads/2023/10/how-does-the-bitcoin-source-code-define-its-21-million-cap.webp"
+                alt="About Img 1"
+                className="object-cover w-full h-full"
+              />
+            </div>
 
+            <div className="w-36 h-36 border-4 border-orange-500 rounded-xl flex items-center justify-center overflow-hidden shadow-md hover:scale-105 transition-all">
+              <img
+                src="https://www.finoit.com/wp-content/uploads/2022/09/java-coding-best-practices.jpg"
+                alt="About Img 2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </motion.div>
           <div className="text-3xl font-semibold mb-4">
             <HighlightWords text="About Me" color="orange" />
           </div>
 
-          <div className="text-lg max-w-xl">
-            Im a versatile developer who can build any website, specializing in
-            dApps on any blockchain. I bring ideas to life with modern and
-            efficient solutions.
+          <div className="text-lg max-w-xl space-y-3">
+            <p>
+              I&apos;m a full-stack developer with a strong focus on the
+              blockchain. I build smart contracts, decentralized applications,
+              and complete web solutions that are designed to perform reliably
+              in the real world.
+            </p>
+            <p>
+              I also bring a background in cybersecurity, ensuring every project
+              is secure, reliable, and resilient. When codebases get messy, I
+              step in to clean up and restore clarity so teams can move faster
+              with confidence.
+            </p>
+            <p>I write Code, That works!</p>
+          </div>
+          {/* <div className="mt-6">-----------------------</div> */}
+          <div className="mt-6">
+            <TerminalButton href="/About" color="orange">
+              See More
+            </TerminalButton>
           </div>
         </section>
-
-        {/* Projects Section */}
         <section className="snap-start h-screen flex flex-col items-center justify-center px-4 text-center">
           <div className="text-3xl font-semibold mb-6">
             <HighlightWords text="Projects" color="blue" />

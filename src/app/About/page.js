@@ -55,15 +55,28 @@ export default function About() {
           <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             <HighlightWords text="About Me" color="green" />
           </div>
-          <div className="text-base sm:text-lg max-w-2xl leading-relaxed">
-            <p className="mb-6">
-              I am The Amanullah Developer. Hence the name AmanullahDev.com
+
+          <div className="text-base sm:text-lg max-w-2xl leading-relaxed space-y-4">
+            <p>
+              I&#39;m a <strong>Full-Stack Developer</strong> and{" "}
+              <strong>Backend Expert</strong> with a strong focus on{" "}
+              <strong>blockchain</strong>. I build{" "}
+              <strong>smart contracts</strong>, <strong>dApps</strong>, and
+              scalable web solutions... Whether it&#39;s designing secure
+              blockchain apps or optimizing messy codebases, I&#39;m your{" "}
+              <strong>Vibe Code Cleanup Specialist</strong>, making sure
+              everything runs smoothly and efficiently.
             </p>
-            <p className="mb-6">
-              I&apos;m a developer who blends creativity and precision. My work
-              spans modern web frameworks, smart contracts, and open-source
-              projects. Whether it&apos;s designing secure blockchain apps or
-              crafting smooth React UIs, I focus on solutions that last.
+            <p>
+              My work spans frontend frameworks like <strong>React</strong>,
+              backend services in <strong>Node.js</strong>, and open-source
+              contributions. Security and reliability are always top of mind,
+              especially in decentralized and blockchain systems.
+            </p>
+            <p>
+              I love blending creativity with precision, building applications
+              that are not only functional, but maintainable, optimized, and
+              ready for real-world use.
             </p>
           </div>
         </section>
@@ -113,6 +126,16 @@ export default function About() {
               </motion.div>
             ))}
           </div>
+
+          <p className="mt-6 text-base sm:text-lg max-w-xl">
+            Key skills: <strong>Full-Stack Development</strong>,{" "}
+            <strong>Backend Engineering</strong>,{" "}
+            <strong>Smart Contracts</strong>, <strong>dApps</strong>,{" "}
+            <strong>Blockchain Architecture</strong>, <strong>Databases</strong>
+            , <strong>React</strong>, <strong>Node.js</strong>,{" "}
+            <strong>Python</strong>, <strong>Rust</strong>, and code
+            optimization & cleanup.
+          </p>
         </section>
 
         {/* Journey / Timeline */}
@@ -123,23 +146,23 @@ export default function About() {
           <div className="space-y-6 max-w-2xl text-left text-sm sm:text-base md:text-lg">
             {[
               {
-                year: "2021 – Getting Started",
-                text: "Began with normal web development, learning the fundamentals of coding.",
+                year: "2021 … Getting Started",
+                text: "Began with web development fundamentals and basic projects, learning the core concepts of coding and software design.",
                 color: "border-green-400",
               },
               {
-                year: "2022 – Blockchain Exploration",
-                text: "Entered the blockchain world through Solana, experimenting with smart contracts.",
+                year: "2022 … Blockchain Exploration",
+                text: "Entered the blockchain world, experimenting with smart contracts and building early dApps on Solana and Ethereum.",
                 color: "border-orange-400",
               },
               {
-                year: "2023 – First CRUD App",
-                text: "Built my first full-stack CRUD application, gaining real-world dev experience.",
+                year: "2023 … Full-Stack Projects",
+                text: "Built full-stack CRUD applications, integrated backend services with databases, and optimized code for maintainability.",
                 color: "border-blue-400",
               },
               {
-                year: "2025 – Present",
-                text: "Exploring AI, blockchain, and modern development together to build impactful projects.",
+                year: "2025 … Present",
+                text: "Expanding into AI, blockchain, and modern web development simultaneously, focusing on secure, scalable, and high-performance applications.",
                 color: "border-purple-400",
               },
             ].map((item, idx) => (
@@ -171,12 +194,13 @@ export default function About() {
         {/* Call to Action */}
         <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
           <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
-            <HighlightWords text="Let’s Work Together" color="green" />
+            <HighlightWords text="Let&#39;s Work Together" color="green" />
           </div>
           <p className="text-base sm:text-lg md:text-xl max-w-xl mb-6">
-            I&apos;m always open to collaborations, freelance opportunities, or
-            just a chat about tech & blockchain. Feel free to reach out and
-            let&apos;s build something amazing!
+            I&#39;m always open to collaborations, freelance opportunities, or
+            consulting on blockchain and full-stack projects. Let&#39;s build
+            secure, scalable, and high-performance applications together ...
+            from backend to frontend.
           </p>
           <motion.div
             animate={{ scale: [1, 1.05, 1] }}
