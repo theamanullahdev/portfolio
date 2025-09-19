@@ -67,8 +67,8 @@
   opacity: 0;
   transition: opacity 0.3s ease, padding 0.3s ease;
   color: #f87171;
-  font-size: 16px; /* Bigger font for readability */
-  font-weight: bold; /* Bold for emphasis */
+  font-size: 16px;
+  font-weight: bold;
   white-space: nowrap;
   padding: 0;
   pointer-events: none;
@@ -78,4 +78,76 @@
 .iconParent:hover .iconLabel {
   opacity: 1;
   padding-left: 10px;
+}
+
+.hamburgerBtn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: -25%;
+  width: 20%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+
+  transition: left 0.8s ease-in-out, opacity 1s ease;
+}
+
+.showOverlay {
+  left: 0;
+  opacity: 1;
+}
+
+.mobileNavbar {
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.25s ease, transform 0.4s ease;
+}
+
+.showNavbar {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mobileNavbar .iconLabel {
+  opacity: 1 !important;
+  padding-left: 10px !important;
+  pointer-events: auto;
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    display: none;
+  }
+  .hamburgerBtn {
+    display: block;
+  }
+  .iconWrapper.expanded {
+    margin-left: 25px;
+  }
+  .mobileNavbar {
+    margin-left: 30px;
+  }
 }
