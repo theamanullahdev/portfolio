@@ -1,17 +1,55 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useForm, ValidationError } from "@formspree/react";
 import HighlightWords from "@/components/HighlightWords";
 import Typewriter from "@/components/Typewriter";
 import TerminalButton from "@/components/TerminalButton";
 import DynamicBackground from "@/components/DynamicBackground";
 
 export default function MsgMePage() {
-  // Grab form ID from env (must start with NEXT_PUBLIC_)
-  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-  const [state, handleSubmit] = useForm(formId);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
+
+  const FORMSUBMIT_URL = `https://formsubmit.co/${process.env.NEXT_PUBLIC_FORMSUBMIT_KEY}`;
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("message", form.message);
+      formData.append("_replyto", form.email);
+      formData.append("_subject", `New message from ${form.name}`);
+      formData.append("_captcha", "false");
+      formData.append("_template", "table");
+
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        const text = await res.text();
+        setStatus("error");
+        setError(text || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setStatus("error");
+      setError("Network error. Please check your connection and try again.");
+    }
+  };
 
   return (
     <DynamicBackground
@@ -21,7 +59,6 @@ export default function MsgMePage() {
       codeCount={5}
     >
       <section className="snap-start min-h-screen flex flex-col items-center justify-center px-8 text-center space-y-12">
-        {/* Header */}
         <div className="text-4xl font-bold mb-2 text-green-500 dark:text-green-300 font-mono">
           <HighlightWords text="Let's Connect" />
         </div>
@@ -29,9 +66,7 @@ export default function MsgMePage() {
           <Typewriter text="Drop me a message or reach me directly!" />
         </div>
 
-        {/* Direct Contact Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-          {/* Email Card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,7 +80,6 @@ export default function MsgMePage() {
             </TerminalButton>
           </motion.div>
 
-          {/* Twitter/X Card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,8 +94,7 @@ export default function MsgMePage() {
           </motion.div>
         </div>
 
-        {/* Message Form */}
-        {state.succeeded ? (
+        {status === "success" ? (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,6 +116,8 @@ export default function MsgMePage() {
               <input
                 type="text"
                 name="name"
+                value={form.name}
+                onChange={handleChange}
                 required
                 className="p-2 rounded-md bg-white text-black outline-none"
               />
@@ -93,14 +128,10 @@ export default function MsgMePage() {
               <input
                 type="email"
                 name="email"
+                value={form.email}
+                onChange={handleChange}
                 required
                 className="p-2 rounded-md bg-white text-black outline-none"
-              />
-              <ValidationError
-                prefix="Email"
-                field="email"
-                errors={state.errors}
-                className="text-red-400 text-sm mt-1"
               />
             </label>
 
@@ -108,21 +139,21 @@ export default function MsgMePage() {
               <span className="mb-1">Message</span>
               <textarea
                 name="message"
+                value={form.message}
+                onChange={handleChange}
                 required
                 rows="4"
                 className="p-2 rounded-md bg-white text-black outline-none resize-none"
               />
-              <ValidationError
-                prefix="Message"
-                field="message"
-                errors={state.errors}
-                className="text-red-400 text-sm mt-1"
-              />
             </label>
 
+            {status === "error" && (
+              <p className="text-red-400 text-sm">{error}</p>
+            )}
+
             <div className="flex justify-center mt-4">
-              <TerminalButton type="submit" disabled={state.submitting}>
-                {state.submitting ? "Sending..." : "Send Message"}
+              <TerminalButton type="submit" disabled={status === "submitting"}>
+                {status === "submitting" ? "Sending..." : "Send Message"}
               </TerminalButton>
             </div>
           </motion.form>
