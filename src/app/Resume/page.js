@@ -6,6 +6,7 @@ import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { Document, Packer, Paragraph } from "docx";
 import { saveAs } from "file-saver";
+import DynamicBackground from "@/components/DynamicBackground";
 
 export default function ResumePage() {
   const resumeRef = useRef();
@@ -162,80 +163,87 @@ export default function ResumePage() {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen">
-      {/* Scrollable resume */}
-      <div className="flex-1 overflow-y-auto px-4 md:px-8 py-4">
-        <div ref={resumeRef} className="max-w-4xl mx-auto space-y-6">
-          {resumeSections.map((section, idx) => {
-            if (section.type === "heading")
-              return (
-                <h1
-                  key={idx}
-                  className="font-bold mb-4"
-                  style={{
-                    fontSize: "clamp(1.8rem, 5vw, 3rem)",
-                  }}
-                >
-                  {section.text}
-                </h1>
-              );
-            if (section.type === "subheading")
-              return (
-                <h2
-                  key={idx}
-                  className="font-semibold mb-4"
-                  style={{
-                    fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
-                  }}
-                >
-                  {section.text}
-                </h2>
-              );
-            if (section.type === "section")
-              return (
-                <div key={idx} className="mb-6">
-                  <h3
-                    className="font-bold mb-2"
-                    style={{ fontSize: "clamp(1rem, 2.5vw, 1.5rem)" }}
+    <DynamicBackground
+      circleCount={4}
+      lineCount={3}
+      triangleCount={2}
+      codeCount={5}
+    >
+      <div className="flex flex-col w-full h-screen">
+        {/* Scrollable resume */}
+        <div className="flex-1 overflow-y-auto px-4 md:px-8 py-4">
+          <div ref={resumeRef} className="max-w-4xl mx-auto space-y-6">
+            {resumeSections.map((section, idx) => {
+              if (section.type === "heading")
+                return (
+                  <h1
+                    key={idx}
+                    className="font-bold mb-4"
+                    style={{
+                      fontSize: "clamp(1.8rem, 5vw, 3rem)",
+                    }}
                   >
-                    {section.title}
-                  </h3>
-                  <ul
-                    className="list-disc list-inside space-y-1"
-                    style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}
+                    {section.text}
+                  </h1>
+                );
+              if (section.type === "subheading")
+                return (
+                  <h2
+                    key={idx}
+                    className="font-semibold mb-4"
+                    style={{
+                      fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
+                    }}
                   >
-                    {section.items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            return null;
-          })}
+                    {section.text}
+                  </h2>
+                );
+              if (section.type === "section")
+                return (
+                  <div key={idx} className="mb-6">
+                    <h3
+                      className="font-bold mb-2"
+                      style={{ fontSize: "clamp(1rem, 2.5vw, 1.5rem)" }}
+                    >
+                      {section.title}
+                    </h3>
+                    <ul
+                      className="list-disc list-inside space-y-1"
+                      style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}
+                    >
+                      {section.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              return null;
+            })}
+          </div>
+        </div>
+
+        {/* Bottom buttons */}
+        <div className="flex-none border-t border-white bg-gray-100 dark:bg-gray-900 flex px-4 py-2 gap-2">
+          <button
+            onClick={downloadPDF}
+            className="flex-1 font-mono border-2 border-green-400 bg-black text-green-400 rounded-lg shadow-md transition hover:bg-green-900 hover:text-green-200 px-4 py-3"
+          >
+            {pdfBtnText}
+          </button>
+          <button
+            onClick={downloadDOCX}
+            className="flex-1 font-mono border-2 border-orange-400 bg-black text-orange-400 rounded-lg shadow-md transition hover:bg-orange-900 hover:text-orange-200 px-4 py-3"
+          >
+            {docxBtnText}
+          </button>
+          <button
+            onClick={copyResume}
+            className="flex-1 font-mono border-2 border-cyan-400 bg-black text-cyan-400 rounded-lg shadow-md transition hover:bg-cyan-900 hover:text-cyan-200 px-4 py-3"
+          >
+            {copyBtnText}
+          </button>
         </div>
       </div>
-
-      {/* Bottom buttons */}
-      <div className="flex-none border-t border-white bg-gray-100 dark:bg-gray-900 flex px-4 py-2 gap-2">
-        <button
-          onClick={downloadPDF}
-          className="flex-1 font-mono border-2 border-green-400 bg-black text-green-400 rounded-lg shadow-md transition hover:bg-green-900 hover:text-green-200 px-4 py-3"
-        >
-          {pdfBtnText}
-        </button>
-        <button
-          onClick={downloadDOCX}
-          className="flex-1 font-mono border-2 border-orange-400 bg-black text-orange-400 rounded-lg shadow-md transition hover:bg-orange-900 hover:text-orange-200 px-4 py-3"
-        >
-          {docxBtnText}
-        </button>
-        <button
-          onClick={copyResume}
-          className="flex-1 font-mono border-2 border-cyan-400 bg-black text-cyan-400 rounded-lg shadow-md transition hover:bg-cyan-900 hover:text-cyan-200 px-4 py-3"
-        >
-          {copyBtnText}
-        </button>
-      </div>
-    </div>
+    </DynamicBackground>
   );
 }
