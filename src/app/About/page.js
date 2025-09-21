@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
 import HighlightWords from "@/components/HighlightWords";
+import TerminalButton from "@/components/TerminalButton";
 
 export default function About() {
   return (
@@ -192,34 +193,34 @@ export default function About() {
         </section>
 
         {/* Call to Action */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center space-y-6">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold">
             <HighlightWords text="Let&#39;s Work Together" color="green" />
           </div>
-          <p className="text-base sm:text-lg md:text-xl max-w-xl mb-6">
-            I&#39;m always open to collaborations, freelance opportunities, or
-            consulting on blockchain and full-stack projects. Let&#39;s build
+
+          <p className="text-base sm:text-lg md:text-xl max-w-xl">
+            I&apos;m always open to collaborations, freelance opportunities, or
+            consulting on blockchain and full-stack projects. Let&apos;s build
             secure, scalable, and high-performance applications together ...
             from backend to frontend.
           </p>
-          <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            whileHover={{
-              scale: 1.15,
-              rotate: -2,
-              transition: { duration: 0.2 },
-            }}
-          >
-            <Link
+          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <TerminalButton
               href="https://github.com/theamanullahdev"
-              target="_blank"
-              rel="noreferrer"
-              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-green-500 text-white font-semibold hover:bg-green-600 transition text-sm sm:text-base md:text-lg"
+              external
+              className="px-4 sm:px-6 py-2 sm:py-3"
             >
               Connect on GitHub
-            </Link>
-          </motion.div>
+            </TerminalButton>
+
+            <TerminalButton
+            color="orange"
+              href="/Resume"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-orange-500 border-orange-500 hover:bg-orange-600 hover:border-orange-600"
+            >
+              View Resume
+            </TerminalButton>
+          </div>
         </section>
       </div>
     </DynamicBackground>

@@ -3,11 +3,7 @@
 
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Cards from "@/components/Cards";
 import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
@@ -108,6 +104,12 @@ export default function Home() {
               step in to clean up and restore clarity so teams can move faster
               with confidence.
             </p>
+            <p>
+              You can reach me at:{" "}
+              <span className="font-semibold text-green-500">
+                theamanullahdev@gmail.com
+              </span>
+            </p>
             <p>I write Code, That works!</p>
           </div>
 
@@ -180,17 +182,7 @@ export default function Home() {
                 className="text-3xl sm:text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
               />
             </Link>
-            <Link
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className="text-3xl sm:text-4xl text-green-800 dark:text-green-300 hover:text-green-600 transition"
-              />
-            </Link>
+
             <Link
               href="https://twitter.com/theamanullahdev"
               target="_blank"
@@ -210,11 +202,14 @@ export default function Home() {
 
           <div className="text-sm sm:text-base md:text-lg max-w-xl mb-4 sm:mb-6">
             Let&apos;s collaborate or just say hi! I&apos;m always open to
-            interesting projects and ideas.
+            interesting projects and ideas. My email:{" "}
+            <span className="font-semibold text-green-500">
+              theamanullahdev@gmail.com
+            </span>
           </div>
 
           <div className="mt-4 sm:mt-6">
-            <TerminalButton href="/resume.pdf" external color="orange">
+            <TerminalButton href="/Resume" color="orange">
               Download Resume
             </TerminalButton>
           </div>
