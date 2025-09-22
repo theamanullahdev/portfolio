@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
@@ -36,21 +35,21 @@ export default function ResumePage() {
       title: "Summary",
       items: [
         "Full-Stack Developer specializing in blockchain, smart contracts, decentralized applications, web development, and cybersecurity.",
-        "Experienced in building scalable, secure, and maintainable applications using Next.js, React, TailwindCSS, framer-motion, Node.js, JavaScript, Python, Rust.",
-        "Skilled in backend development, database design and optimization (MongoDB, SQL, PostgreSQL, SQLite), server deployment (VPS, Nginx), code refactoring, legacy code cleanup, and system optimization.",
+        "Experienced in building scalable, secure, and maintainable applications using Next.js, React, Node.js, JavaScript, Python,",
+        "Skilled in backend development, database design and optimization (MongoDB, SQL, PostgreSQL, SQLite), server deployment (VPS, Nginx), Code optimization.",
       ],
     },
     {
       type: "section",
       title: "Skills",
       items: [
-        "Frontend: Next.js, React, TailwindCSS, framer-motion, Responsive UI/UX, Interactive Interfaces",
         "Backend: Node.js, Express.js, RESTful APIs, Server-side Logic, VPS Deployment, Nginx Configuration",
+        "Frontend: Next.js, React, TailwindCSS, framer-motion, Responsive UI/UX, Interactive Interfaces",
         "Databases: MongoDB, SQL, PostgreSQL, SQLite, Database Design, Query Optimization",
-        "Blockchain & dApps: Smart Contracts, Solidity, Ethereum, Binance Smart Chain, Web3.js, Decentralized Applications",
-        "Security: Linux Security Hardening, Cybersecurity, Application Security, Penetration Testing",
+        "Blockchain & dApps: Smart Contracts, Solidity, Cosm wasm, Web3.js, Decentralized Applications",
+        "Security: Linux Security Hardening, Cybersecurity, Application Security,",
         "Programming & Tools: JavaScript, Python, Rust, Git Version Control, Agile Methodologies",
-        "Code Quality & Optimization: Maintainable Code, Code Refactoring, Performance Tuning, Scalability, Legacy Code Cleanup",
+        "Code Quality & Optimization: Maintainable Code, , Performance Tuning, Scalability, Vibe Code Cleanup Speacialist",
       ],
     },
     {
