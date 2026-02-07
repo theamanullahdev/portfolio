@@ -104,8 +104,8 @@ const Navbar = () => {
                 >
                   <Link href={links[index]} className={styles.navIcon}>
                     <FontAwesomeIcon icon={icon} />
-                  </Link>
                   <span className={styles.iconLabel}>{labels[index]}</span>
+                  </Link>
                 </div>
               ))}
             </div>
