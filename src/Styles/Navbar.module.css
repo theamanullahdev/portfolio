@@ -51,35 +51,60 @@
   font-size: 24px;
   color: #fff;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   padding: 10px;
+  position: relative;
+}
+
+.navIcon::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(248, 113, 113, 0.3),
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.navIcon:hover::before {
+  transform: scale(1.3);
 }
 
 .navIcon:hover {
   background: rgba(255, 255, 255, 0.2);
+  color: #f87171;
+  transform: scale(1.1);
 }
 
 .iconLabel {
   opacity: 0;
   transition:
     opacity 0.3s ease,
-    padding 0.3s ease;
+    padding 0.3s ease,
+    transform 0.3s ease;
   color: #f87171;
   font-size: 16px;
   font-weight: bold;
   white-space: nowrap;
   padding: 0;
   pointer-events: none;
-  transform: translateX(0);
+  transform: translateX(-5px);
 }
 
 .iconParent:hover .iconLabel {
   opacity: 1;
   padding-left: 10px;
+  transform: translateX(0);
 }
 
 .hamburgerBtn {
@@ -95,6 +120,12 @@
   font-size: 22px;
   cursor: pointer;
   display: none;
+  transition: all 0.3s ease;
+}
+
+.hamburgerBtn:hover {
+  background: rgba(248, 113, 113, 0.2);
+  transform: scale(1.05);
 }
 
 .mobileOverlay {
