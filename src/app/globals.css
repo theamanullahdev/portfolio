@@ -21,6 +21,14 @@ body {
   background: var(--background);
   font-family: Ubuntu Sans, sans-serif;
 }
+
+/* Ultra-responsive breakpoints */
+@media (max-width: 380px) {
+  body {
+    font-size: 14px;
+  }
+}
+
 /* Hide scrollbar but allow scroll */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -100,4 +108,208 @@ body {
     transform: translate(-50%, -50%) scale(0.3);
   }
 }
+
 /* Cursor effects css Ended above */
+
+/* Advanced terminal animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(34, 197, 94, 0.6));
+  }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.7), 0 0 20px rgba(34, 197, 94, 0.4);
+  }
+  20%, 24%, 55% {
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.3), 0 0 10px rgba(34, 197, 94, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3), 0 0 10px rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.3);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(50px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(50px) rotate(-360deg);
+  }
+}
+
+@keyframes blink {
+  0%, 49%, 51%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+.animate-float-up {
+  animation: float-up 1s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 10s linear infinite;
+}
+
+.animate-neon-flicker {
+  animation: neon-flicker 1.5s infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbit 20s linear infinite;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Terminal-style text effect */
+.terminal-text {
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Responsive text sizing for ultra-small screens */
+@media (max-width: 380px) {
+  .terminal-text {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+}
+
+/* Responsive spacing helpers */
+@media (max-width: 380px) {
+  .px-responsive {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  @apply transition-[box-shadow,transform,background-color,border-color] duration-300;
+}
+
+button, a, [role="button"] {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Ensure proper scaling on 8K displays */
+@media (min-width: 7680px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .text-3xl {
+    font-size: clamp(2rem, 3vw, 4rem);
+  }
+  
+  .text-2xl {
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+  }
+}
+
+/* Fluid typography system for responsiveness */
+html {
+  font-size: clamp(12px, 1.5vw, 18px);
+}
