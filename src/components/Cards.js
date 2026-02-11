@@ -88,15 +88,15 @@ const Cards = ({ items }) => {
                 ? "w-[75vw]" // small screens: big card
                 : "w-56 sm:w-64 md:w-72" // normal cards
             }`}
-            whileHover={{ scale: 1.08, y: -10 }}
-            animate={{ y: [0, -8, 0] }}
+            whileHover={{ scale: 1.05 }}
+            animate={{ y: [0, -4, 0] }}
             transition={{
-              hover: { type: "spring", stiffness: 300, damping: 25 },
+              hover: { type: "spring", stiffness: 280, damping: 20 },
               y: {
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: idx * 0.3,
+                delay: idx * 0.2,
               },
             }}
             onHoverStart={() => setActiveCard(idx)}
@@ -109,11 +109,11 @@ const Cards = ({ items }) => {
             }}
           >
             <motion.div 
-              className="border-4 border-blue-400 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg sm:shadow-xl bg-white dark:bg-gray-800/90 hover:shadow-2xl hover:shadow-blue-400/40 transition-all duration-300 h-full flex flex-col"
+              className="border-2 border-green-500 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg sm:shadow-xl bg-white dark:bg-gray-800/90 hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 h-full flex flex-col"
               animate={{
-                borderColor: activeCard === idx ? "#00d9ff" : "#60a5fa",
+                borderColor: activeCard === idx ? "#06b6d4" : "#22c55e",
                 boxShadow: activeCard === idx 
-                  ? "0 0 30px rgba(0, 217, 255, 0.4)"
+                  ? "0 0 20px rgba(6, 182, 212, 0.3)"
                   : "0 10px 25px rgba(0, 0, 0, 0.1)",
               }}
             >
@@ -126,15 +126,35 @@ const Cards = ({ items }) => {
                   transition={{ duration: 0.4 }}
                 />
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-t from-blue-600/30 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-green-600/20 to-transparent"
                   animate={{ opacity: activeCard === idx ? 1 : 0 }}
                 />
               </div>
+
+              {/* Tech Badges */}
+              {card.techs && (
+                <div className="flex flex-wrap gap-1.5 mb-2 sm:mb-3">
+                  {card.techs.slice(0, 3).map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded border border-green-400/40 font-mono"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {card.techs && card.techs.length > 3 && (
+                    <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded border border-green-400/40 font-mono">
+                      +{card.techs.length - 3}
+                    </span>
+                  )}
+                </div>
+              )}
+
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 line-clamp-2">{card.title}</h3>
               <p className="text-xs sm:text-sm mb-3 sm:mb-4 flex-grow line-clamp-3 text-gray-700 dark:text-gray-300">{card.description}</p>
               
               <motion.div
-                className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-2 px-4 rounded font-medium transition-all text-xs sm:text-sm font-mono"
+                className="inline-block bg-gradient-to-r from-green-500 to-cyan-600 hover:from-green-600 hover:to-cyan-700 text-white py-2 px-4 rounded font-medium transition-all text-xs sm:text-sm font-mono"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

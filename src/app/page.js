@@ -10,6 +10,8 @@ import DynamicBackground from "@/components/DynamicBackground";
 import HighlightWords from "@/components/HighlightWords";
 import Typewriter from "@/components/Typewriter";
 import TerminalButton from "@/components/TerminalButton";
+import SkillsShowcase from "@/components/SkillsShowcase";
+import StatsSection from "@/components/StatsSection";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -293,6 +295,16 @@ export default function Home() {
               → See More
             </TerminalButton>
           </motion.div>
+        </section>
+
+        {/* Skills Showcase Section */}
+        <section className="snap-start bg-gray-100/50 dark:bg-gray-900/50 relative">
+          <SkillsShowcase />
+        </section>
+
+        {/* Stats Section */}
+        <section className="snap-start bg-gray-100/50 dark:bg-gray-900/50 relative">
+          <StatsSection />
         </section>
 
         {/* Projects Section */}

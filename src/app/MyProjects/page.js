@@ -13,6 +13,8 @@ const PROJECTS = [
     description:
       "A Linux security utility I built solo using shell scripts. Locks Wine so only root can execute .exe files, preventing accidental or malicious execution. Features temporary unlock timers and toggleable access for secure workflows. Demonstrates my expertise in Linux security, system-level scripting, and backend logic.",
     picture: "/winlock.png",
+    techs: ["Bash", "Linux", "Security"],
+    difficulty: "Advanced",
     buttons: [
       {
         link: "/projectpgs/wine-locker",
@@ -35,6 +37,8 @@ const PROJECTS = [
       "An AI-powered cover letter generator I built using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input their CV, job description, and prompts to instantly get polished cover letters. This project showcases my Full-Stack development skills, API integration expertise, and attention to frontend experience.",
     preview: "https://lettersmithai.vercel.app",
     picture: "/LTsmith1.png",
+    techs: ["Next.js", "React", "TailwindCSS", "Framer Motion", "APIs"],
+    difficulty: "Intermediate",
     buttons: [
       {
         link: "/projectpgs/lettersmith",
@@ -63,6 +67,8 @@ const PROJECTS = [
       "A decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with a Next.js and Framer Motion frontend. Highlights my blockchain architecture knowledge, smart contract development, and ability to build full-stack dApps independently.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
+    techs: ["CosmWasm", "Solidity", "Next.js", "Web3.js", "Blockchain"],
+    difficulty: "Advanced",
     comingSoon: true,
     buttons: [
       {
@@ -80,6 +86,8 @@ const PROJECTS = [
       "A platform I built to launch NFT collections with minting dashboards, whitelist management, and blockchain integration. Developed with Next.js, smart contracts, and Solana/Ethereum SDKs. This project highlights my Full-Stack and blockchain expertise, smart contract skills, and experience building scalable dApps.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
+    techs: ["Solidity", "Next.js", "Web3.js", "Smart Contracts"],
+    difficulty: "Advanced",
     comingSoon: true,
     buttons: [
       {
@@ -97,6 +105,8 @@ const PROJECTS = [
       "This very website is my portfolio, built solo using Next.js, TailwindCSS, and Framer Motion. It demonstrates my frontend and backend skills, attention to detail, and ability to integrate smooth animations and responsive design. It also acts as a live showcase of my coding style and Full-Stack expertise.",
     preview: "https://www.amanullahdev.com/PreviewCard",  
     picture: "/portfolio.png",
+    techs: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
+    difficulty: "Intermediate",
     buttons: [
       {
         link: "/projectpgs/portfolio",
@@ -113,6 +123,30 @@ const PROJECTS = [
       {
         link: "https://amanullahdev.com",
         text: "Live Site",
+        color: "orange",
+        external: true,
+      },
+    ],
+  },
+  {
+    id: "digital-marketing-trade",
+    title: "Digital Marketing Trade",
+    description:
+      "Multi-service digital agency platform delivering Web3, ecommerce, and marketing solutions. I led the technical infrastructure design, built the core web platform, service architecture, and client interaction systems. This production-level system demonstrates enterprise architecture, business systems engineering, and real-world deployment at scale.",
+    preview: "https://alhijaz.agency",
+    picture: "/alhijaz.png",
+    techs: ["Full-Stack", "Next.js", "Architecture", "Business Systems"],
+    difficulty: "Enterprise",
+    buttons: [
+      {
+        link: "/projectpgs/digital-marketing-trade",
+        text: "Details",
+        color: "cyan",
+        external: false,
+      },
+      {
+        link: "https://alhijaz.agency",
+        text: "Live Platform",
         color: "orange",
         external: true,
       },

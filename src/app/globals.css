@@ -38,6 +38,55 @@ body {
   scrollbar-width: none;
 }
 
+/* Glassmorphism Effect */
+@supports (backdrop-filter: blur(10px)) {
+  .glass-effect {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Enhanced Badge Animation */
+@keyframes badge-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), inset 0 0 5px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), inset 0 0 8px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.tech-badge {
+  animation: badge-glow 2s ease-in-out infinite;
+}
+
+/* Skill Bar Enhancement */
+@keyframes skill-fill {
+  0% {
+    width: 0;
+  }
+}
+
+.skill-bar {
+  animation: skill-fill 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Counter Number Pulse */
+@keyframes counter-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.counter-number {
+  animation: counter-pulse 1s ease-in-out infinite;
+}
+
 /* Cursor effects css below */
 .cursor-trail {
   position: fixed;
