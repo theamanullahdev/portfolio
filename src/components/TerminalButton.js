@@ -22,6 +22,14 @@ const TerminalButton = ({ href, children, external, type, onClick, color }) => {
     <motion.span
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      animate={{ 
+        // Idle pulse animation for engagement
+        opacity: [1, 0.95, 1],
+      }}
+      transition={{
+        tap: { type: "spring" },
+        opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+      }}
       className="inline-block"
     >
       {children}

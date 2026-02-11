@@ -89,7 +89,16 @@ const Cards = ({ items }) => {
                 : "w-56 sm:w-64 md:w-72" // normal cards
             }`}
             whileHover={{ scale: 1.08, y: -10 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              hover: { type: "spring", stiffness: 300, damping: 25 },
+              y: {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: idx * 0.3,
+              },
+            }}
             onHoverStart={() => setActiveCard(idx)}
             onHoverEnd={() => setActiveCard(null)}
             style={{

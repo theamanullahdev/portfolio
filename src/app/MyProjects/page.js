@@ -8,11 +8,18 @@ import DynamicBackground from "@/components/DynamicBackground";
 
 const PROJECTS = [
   {
+    id: "wine-locker",
     title: "Wine-Locker",
     description:
       "A Linux security utility I built solo using shell scripts. Locks Wine so only root can execute .exe files, preventing accidental or malicious execution. Features temporary unlock timers and toggleable access for secure workflows. Demonstrates my expertise in Linux security, system-level scripting, and backend logic.",
     picture: "/winlock.png",
     buttons: [
+      {
+        link: "/projectpgs/wine-locker",
+        text: "Details",
+        color: "cyan",
+        external: false,
+      },
       {
         link: "https://github.com/theamanullahdev/wine-locker",
         text: "GitHub",
@@ -22,12 +29,19 @@ const PROJECTS = [
     ],
   },
   {
+    id: "lettersmith",
     title: "LetterSmith",
     description:
       "An AI-powered cover letter generator I built using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input their CV, job description, and prompts to instantly get polished cover letters. This project showcases my Full-Stack development skills, API integration expertise, and attention to frontend experience.",
     preview: "https://lettersmithai.vercel.app",
     picture: "/LTsmith1.png",
     buttons: [
+      {
+        link: "/projectpgs/lettersmith",
+        text: "Details",
+        color: "cyan",
+        external: false,
+      },
       {
         link: "https://github.com/theamanullahdev/lettersmith",
         text: "GitHub",
@@ -43,11 +57,13 @@ const PROJECTS = [
     ],
   },
   {
+    id: "on-chain-chat",
     title: "On-Chain Chat App",
     description:
       "A decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with a Next.js and Framer Motion frontend. Highlights my blockchain architecture knowledge, smart contract development, and ability to build full-stack dApps independently.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
+    comingSoon: true,
     buttons: [
       {
         link: "/ComingSoon",
@@ -58,11 +74,13 @@ const PROJECTS = [
     ],
   },
   {
+    id: "nft-launchpad",
     title: "NFT Launchpad",
     description:
       "A platform I built to launch NFT collections with minting dashboards, whitelist management, and blockchain integration. Developed with Next.js, smart contracts, and Solana/Ethereum SDKs. This project highlights my Full-Stack and blockchain expertise, smart contract skills, and experience building scalable dApps.",
     picture:
       "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
+    comingSoon: true,
     buttons: [
       {
         link: "/ComingSoon",
@@ -73,12 +91,19 @@ const PROJECTS = [
     ],
   },
   {
+    id: "portfolio",
     title: "Portfolio Website",
     description:
       "This very website is my portfolio, built solo using Next.js, TailwindCSS, and Framer Motion. It demonstrates my frontend and backend skills, attention to detail, and ability to integrate smooth animations and responsive design. It also acts as a live showcase of my coding style and Full-Stack expertise.",
     preview: "https://www.amanullahdev.com/PreviewCard",  
     picture: "/portfolio.png",
     buttons: [
+      {
+        link: "/projectpgs/portfolio",
+        text: "Details",
+        color: "cyan",
+        external: false,
+      },
       {
         link: "https://github.com/theamanullahdev/portfolio",
         text: "GitHub",

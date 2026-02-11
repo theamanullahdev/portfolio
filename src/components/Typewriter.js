@@ -2,9 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 const Typewriter = ({ text, delay, color }) => {
   const [displayed, setDisplayed] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
 
   // Define terminal color themes
   const colorThemes = {
@@ -22,7 +24,10 @@ const Typewriter = ({ text, delay, color }) => {
     const interval = setInterval(() => {
       setDisplayed(text.slice(0, i + 1));
       i++;
-      if (i === text.length) clearInterval(interval);
+      if (i === text.length) {
+        setIsComplete(true);
+        clearInterval(interval);
+      }
     }, delay);
     return () => clearInterval(interval);
   }, [text, delay]);
@@ -30,7 +35,13 @@ const Typewriter = ({ text, delay, color }) => {
   return (
     <span className={`font-mono ${colorClass}`}>
       {displayed}
-      <span className="animate-pulse">|</span>
+      <motion.span 
+        className="animate-pulse inline-block"
+        animate={{ opacity: [1, 0.3, 1] }}
+        transition={{ duration: 1, repeat: Infinity }}
+      >
+        |
+      </motion.span>
     </span>
   );
 };

@@ -49,16 +49,24 @@ const HighlightWords = ({ text, color }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1, duration: 0.5 }}
           whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.95 }}
         >
           {/* Text with subtle glow effect */}
           <motion.span 
             className={`relative z-10 inline-block px-1 ${theme.glow}`}
-            animate={{ textShadow: [
-              `0 0 0px ${theme.glow}`,
-              `0 0 8px ${theme.glow}`,
-              `0 0 0px ${theme.glow}`
-            ]}}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={{ 
+              textShadow: [
+                `0 0 0px ${theme.glow}`,
+                `0 0 8px ${theme.glow}`,
+                `0 0 0px ${theme.glow}`
+              ],
+              // Idle bounce animation for mobile
+              y: [0, -2, 0],
+            }}
+            transition={{ 
+              textShadow: { duration: 2, repeat: Infinity },
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
+            }}
           >
             {word}
           </motion.span>
