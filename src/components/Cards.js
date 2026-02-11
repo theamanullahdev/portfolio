@@ -88,15 +88,15 @@ const Cards = ({ items }) => {
                 ? "w-[75vw]" // small screens: big card
                 : "w-56 sm:w-64 md:w-72" // normal cards
             }`}
-            whileHover={{ scale: 1.05 }}
-            animate={{ y: [0, -4, 0] }}
+            whileHover={{ scale: 1.03 }}
+            animate={{ y: [0, -2, 0] }}
             transition={{
-              hover: { type: "spring", stiffness: 280, damping: 20 },
+              hover: { type: "tween", duration: 0.3 },
               y: {
-                duration: 4,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: idx * 0.2,
+                delay: idx * 0.15,
               },
             }}
             onHoverStart={() => setActiveCard(idx)}
@@ -109,13 +109,14 @@ const Cards = ({ items }) => {
             }}
           >
             <motion.div 
-              className="border-2 border-green-500 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg sm:shadow-xl bg-white dark:bg-gray-800/90 hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 h-full flex flex-col"
+              className="border-2 border-green-500 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg sm:shadow-xl bg-white dark:bg-gray-800/90 transition-all duration-300 h-full flex flex-col"
               animate={{
                 borderColor: activeCard === idx ? "#06b6d4" : "#22c55e",
                 boxShadow: activeCard === idx 
-                  ? "0 0 20px rgba(6, 182, 212, 0.3)"
-                  : "0 10px 25px rgba(0, 0, 0, 0.1)",
+                  ? "0 0 15px rgba(6, 182, 212, 0.2)"
+                  : "0 8px 20px rgba(0, 0, 0, 0.1)",
               }}
+              transition={{ duration: 0.3 }}
             >
               <div className="relative overflow-hidden rounded h-24 sm:h-32 md:h-36 mb-3 sm:mb-4">
                 <motion.img

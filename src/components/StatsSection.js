@@ -60,9 +60,9 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-2 xs:px-4 sm:px-6">
+    <div className="w-full h-full py-8 sm:py-12 md:py-16 px-2 xs:px-4 sm:px-6 flex flex-col items-center justify-center">
       <motion.div
-        className="max-w-6xl mx-auto"
+        className="max-w-6xl mx-auto w-full"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -70,7 +70,7 @@ export default function StatsSection() {
       >
         {/* Section Title */}
         <motion.div
-          className="text-center mb-10 sm:mb-14 md:mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-14"
           variants={itemVariants}
         >
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
@@ -124,6 +124,6 @@ export default function StatsSection() {
           ))}
         </div>
       </motion.div>
-    </section>
+    </div>
   );
 }

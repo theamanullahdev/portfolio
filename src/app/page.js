@@ -298,18 +298,20 @@ export default function Home() {
         </section>
 
         {/* Skills Showcase Section */}
-        <section className="snap-start bg-gray-100/50 dark:bg-gray-900/50 relative">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 relative">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent" />
           <SkillsShowcase />
         </section>
 
         {/* Stats Section */}
-        <section className="snap-start bg-gray-100/50 dark:bg-gray-900/50 relative">
+        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 relative">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           <StatsSection />
         </section>
 
         {/* Projects Section */}
         <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 text-center relative">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
 
           <motion.div
             className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 md:mb-8"
@@ -318,7 +320,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <HighlightWords text="Projects" color="blue" />
+            <HighlightWords text="Featured Projects" color="green" />
           </motion.div>
 
           <motion.div
@@ -366,8 +368,8 @@ export default function Home() {
             transition={{ delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <TerminalButton href="/MyProjects" color="blue">
-              → See More
+            <TerminalButton href="/MyProjects" color="green">
+              → See All Projects
             </TerminalButton>
           </motion.div>
         </section>

@@ -8,24 +8,26 @@ import DynamicBackground from "@/components/DynamicBackground";
 
 const PROJECTS = [
   {
-    id: "wine-locker",
-    title: "Wine-Locker",
+    id: "digital-marketing-trade",
+    title: "Digital Marketing Trade",
     description:
-      "A Linux security utility I built solo using shell scripts. Locks Wine so only root can execute .exe files, preventing accidental or malicious execution. Features temporary unlock timers and toggleable access for secure workflows. Demonstrates my expertise in Linux security, system-level scripting, and backend logic.",
-    picture: "/winlock.png",
-    techs: ["Bash", "Linux", "Security"],
-    difficulty: "Advanced",
+      "Multi-service digital agency platform delivering Web3, ecommerce, and marketing solutions. Technical infrastructure design, core web platform, service architecture, and client interaction systems. Production-level system demonstrating enterprise architecture, business systems engineering, and real-world deployment at scale.",
+    preview: "https://alhijaz.agency",
+    picture: "/alhijaz.png",
+    techs: ["Full-Stack", "Next.js", "Architecture", "Business Systems"],
+    difficulty: "Enterprise",
+    featured: true,
     buttons: [
       {
-        link: "/projectpgs/wine-locker",
+        link: "/projectpgs/digital-marketing-trade",
         text: "Details",
         color: "cyan",
         external: false,
       },
       {
-        link: "https://github.com/theamanullahdev/wine-locker",
-        text: "GitHub",
-        color: "green",
+        link: "https://alhijaz.agency",
+        text: "Live Platform",
+        color: "orange",
         external: true,
       },
     ],
@@ -34,7 +36,7 @@ const PROJECTS = [
     id: "lettersmith",
     title: "LetterSmith",
     description:
-      "An AI-powered cover letter generator I built using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input their CV, job description, and prompts to instantly get polished cover letters. This project showcases my Full-Stack development skills, API integration expertise, and attention to frontend experience.",
+      "AI-powered cover letter generator using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input CV, job description, and prompts to generate polished cover letters instantly. Full-Stack development showcasing API integration, frontend optimization, and real-time processing.",
     preview: "https://lettersmithai.vercel.app",
     picture: "/LTsmith1.png",
     techs: ["Next.js", "React", "TailwindCSS", "Framer Motion", "APIs"],
@@ -61,48 +63,10 @@ const PROJECTS = [
     ],
   },
   {
-    id: "on-chain-chat",
-    title: "On-Chain Chat App",
-    description:
-      "A decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with a Next.js and Framer Motion frontend. Highlights my blockchain architecture knowledge, smart contract development, and ability to build full-stack dApps independently.",
-    picture:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
-    techs: ["CosmWasm", "Solidity", "Next.js", "Web3.js", "Blockchain"],
-    difficulty: "Advanced",
-    comingSoon: true,
-    buttons: [
-      {
-        link: "/ComingSoon",
-        text: "Coming Soon",
-        color: "orange",
-        external: false,
-      },
-    ],
-  },
-  {
-    id: "nft-launchpad",
-    title: "NFT Launchpad",
-    description:
-      "A platform I built to launch NFT collections with minting dashboards, whitelist management, and blockchain integration. Developed with Next.js, smart contracts, and Solana/Ethereum SDKs. This project highlights my Full-Stack and blockchain expertise, smart contract skills, and experience building scalable dApps.",
-    picture:
-      "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
-    techs: ["Solidity", "Next.js", "Web3.js", "Smart Contracts"],
-    difficulty: "Advanced",
-    comingSoon: true,
-    buttons: [
-      {
-        link: "/ComingSoon",
-        text: "Coming Soon",
-        color: "orange",
-        external: false,
-      },
-    ],
-  },
-  {
     id: "portfolio",
     title: "Portfolio Website",
     description:
-      "This very website is my portfolio, built solo using Next.js, TailwindCSS, and Framer Motion. It demonstrates my frontend and backend skills, attention to detail, and ability to integrate smooth animations and responsive design. It also acts as a live showcase of my coding style and Full-Stack expertise.",
+      "Personal portfolio website featuring responsive design, smooth animations, and terminal-inspired aesthetics. Built with Next.js, TailwindCSS, and Framer Motion. Demonstrates frontend expertise, component architecture, ultra-responsive design (150px - 8K), and attention to user experience details.",
     preview: "https://www.amanullahdev.com/PreviewCard",  
     picture: "/portfolio.png",
     techs: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
@@ -129,26 +93,63 @@ const PROJECTS = [
     ],
   },
   {
-    id: "digital-marketing-trade",
-    title: "Digital Marketing Trade",
+    id: "wine-locker",
+    title: "Wine-Locker",
     description:
-      "Multi-service digital agency platform delivering Web3, ecommerce, and marketing solutions. I led the technical infrastructure design, built the core web platform, service architecture, and client interaction systems. This production-level system demonstrates enterprise architecture, business systems engineering, and real-world deployment at scale.",
-    preview: "https://alhijaz.agency",
-    picture: "/alhijaz.png",
-    techs: ["Full-Stack", "Next.js", "Architecture", "Business Systems"],
-    difficulty: "Enterprise",
+      "Linux security utility using shell scripts to lock Wine executables for enhanced system security. Features temporary unlock timers, toggleable access control, and multi-user security workflows. System-level development demonstrating Linux internals expertise and security best practices.",
+    picture: "/winlock.png",
+    techs: ["Bash", "Linux", "Security", "Scripting"],
+    difficulty: "Advanced",
     buttons: [
       {
-        link: "/projectpgs/digital-marketing-trade",
+        link: "/projectpgs/wine-locker",
         text: "Details",
         color: "cyan",
         external: false,
       },
       {
-        link: "https://alhijaz.agency",
-        text: "Live Platform",
-        color: "orange",
+        link: "https://github.com/theamanullahdev/wine-locker",
+        text: "GitHub",
+        color: "green",
         external: true,
+      },
+    ],
+  },
+  {
+    id: "on-chain-chat",
+    title: "On-Chain Chat App",
+    description:
+      "Decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with Next.js and Framer Motion frontend. Blockchain architecture and smart contract development for production dApps.",
+    picture:
+      "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
+    techs: ["CosmWasm", "Solidity", "Next.js", "Web3.js", "Blockchain"],
+    difficulty: "Advanced",
+    comingSoon: true,
+    buttons: [
+      {
+        link: "/ComingSoon",
+        text: "Coming Soon",
+        color: "orange",
+        external: false,
+      },
+    ],
+  },
+  {
+    id: "nft-launchpad",
+    title: "NFT Launchpad",
+    description:
+      "NFT collection launch platform featuring minting dashboards, whitelist management, and blockchain integration. Solana/Ethereum SDKs with Next.js frontend. Full-Stack and blockchain expertise demonstrating scalable dApp architecture and Web3 integration.",
+    picture:
+      "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
+    techs: ["Solidity", "Next.js", "Web3.js", "Smart Contracts"],
+    difficulty: "Advanced",
+    comingSoon: true,
+    buttons: [
+      {
+        link: "/ComingSoon",
+        text: "Coming Soon",
+        color: "orange",
+        external: false,
       },
     ],
   },
@@ -246,6 +247,19 @@ export default function MyProjects() {
                     {proj.description}
                   </div>
 
+                  {/* Tech Stack Badges */}
+                  <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4 sm:mb-6 w-full">
+                    {proj.techs.map((tech, i) => (
+                      <motion.span
+                        key={i}
+                        className="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-green-500/15 text-green-400 border border-green-400/40 font-mono font-semibold hover:bg-green-500/25 hover:border-green-400/70 transition-all"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+
                   {/* Buttons */}
                   <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 w-full">
                     {proj.buttons.map((btn, i) => (
@@ -281,6 +295,19 @@ export default function MyProjects() {
                   </div>
                   <div className="text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
                     {proj.description}
+                  </div>
+
+                  {/* Tech Stack Badges */}
+                  <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4 sm:mb-6 w-full">
+                    {proj.techs.map((tech, i) => (
+                      <motion.span
+                        key={i}
+                        className="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-green-500/15 text-green-400 border border-green-400/40 font-mono font-semibold hover:bg-green-500/25 hover:border-green-400/70 transition-all"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
                   </div>
 
                   {/* Buttons */}
