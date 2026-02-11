@@ -15,6 +15,9 @@ export default {
         xs: "380px", // Ultra-small phones
         "2xs": "320px", // Very small phones (150px covered by fluid scaling)
       },
+      fontSize: {
+        "2xs": "0.625rem", // 10px for very small text on mobile
+      },
       keyframes: {
         "glow-pulse": {
           "0%, 100%": { boxShadow: "0 0 5px rgba(34, 197, 94, 0.3)" },
