@@ -116,6 +116,30 @@ const PROJECTS = [
     ],
   },
   {
+    id: "ahatasham-work",
+    title: "Ahatasham Work Portfolio",
+    description:
+      "Professional portfolio website for Ahatasham, an expert in Shopify, ecommerce, and digital marketing with his own agency. Showcases expertise in building high-performing online stores and data-driven marketing strategies. Demonstrates full-stack web development with conversion-optimized design for lead generation.",
+    preview: "https://ahtashamwork.com",
+    picture: "/ahatasham-preview.png",
+    techs: ["Shopify", "Ecommerce", "Marketing", "Portfolio"],
+    difficulty: "Intermediate",
+    buttons: [
+      {
+        link: "/projectpgs/AhtashamWorkPortfolio",
+        text: "Details",
+        color: "cyan",
+        external: false,
+      },
+      {
+        link: "https://ahtashamwork.com",
+        text: "Visit Portfolio",
+        color: "orange",
+        external: true,
+      },
+    ],
+  },
+  {
     id: "on-chain-chat",
     title: "On-Chain Chat App",
     description:
