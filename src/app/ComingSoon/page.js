@@ -13,7 +13,7 @@ export default function ComingSoon() {
         whileHover={{ scale: 1.2, rotate: 5, transition: { duration: 0.3 } }}
         className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6"
       >
-        🚧 Coming Soon  🚧
+        🚧 Coming Soon... 🚧
       </motion.div>
 
       <p className="text-base sm:text-lg md:text-xl max-w-lg leading-relaxed mb-6">
