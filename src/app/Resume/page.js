@@ -222,7 +222,7 @@ export default function ResumePage() {
         </div>
 
         {/* Bottom buttons */}
-        <div className="flex-none border-t border-white bg-gray-100 dark:bg-gray-900 flex px-4 py-2 gap-2">
+        <div className="flex-none border-t border-white bg-gray-100 dark:bg-gray-900 flex px-4 py-4 md:py-2 gap-2">
           <button
             onClick={downloadPDF}
             className="flex-1 font-mono border-2 border-green-400 bg-black text-green-400 rounded-lg shadow-md transition hover:bg-green-900 hover:text-green-200 px-4 py-3"
