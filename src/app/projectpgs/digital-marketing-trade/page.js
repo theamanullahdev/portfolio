@@ -25,7 +25,7 @@ export default function DigitalMarketingTradeDetails() {
 
   return (
     <DynamicBackground circleCount={6} lineCount={5} triangleCount={4} codeCount={8}>
-      <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900/50 text-gray-800 dark:text-white px-2 xs:px-4 sm:px-6 py-6 sm:py-12">
+      <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900/50 text-gray-800 dark:text-white px-2 xs:px-4 sm:px-6 py-6 sm:py-12 mt-[130px]">
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
