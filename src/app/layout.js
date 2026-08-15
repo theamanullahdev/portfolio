@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
         <CursorTrail />
         <div className="flex min-h-screen w-full relative z-10">
           <Navbar />
-          {/* 👇 margin-left only on >=500px */}
+          {/* margin-left only on >=768px, matching the sidebar/hamburger breakpoint in Navbar.module.css */}
           <main className="w-full md:ml-20">{children}</main>
         </div>
       </body>

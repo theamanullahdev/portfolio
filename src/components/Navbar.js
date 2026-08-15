@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -12,40 +13,35 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "@/Styles/Navbar.module.css";
 
+const NAV_ITEMS = [
+  { label: "Home", icon: faHome, href: "/" },
+  { label: "About", icon: faUser, href: "/About" },
+  { label: "Projects", icon: faFolderOpen, href: "/MyProjects" },
+  { label: "Contact", icon: faEnvelope, href: "/MsgMe" },
+];
+
+const DESKTOP_ICON_POSITIONS = [
+  { x: 15, y: -65 },
+  { x: 45, y: -22 },
+  { x: 45, y: 22 },
+  { x: 15, y: 65 },
+];
+
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [overlayVisible, setOverlayVisible] = useState(false);
-  const [navbarVisible, setNavbarVisible] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    if (!overlayVisible) {
-      setOverlayVisible(true);
-      setTimeout(() => setNavbarVisible(true), 600);
-      setTimeout(() => setMobileExpanded(true), 1000);
-    } else {
-      setMobileExpanded(false);
-      setNavbarVisible(false);
-      setTimeout(() => setOverlayVisible(false), 400);
-    }
-  };
-
-  const iconPositions = [
-    { x: 10, y: -60 },
-    { x: 40, y: -30 },
-    { x: 50, y: 20 },
-    { x: 40, y: 60 },
-    { x: 10, y: 80 },
-  ];
-
-  const labels = ["Menu", "Home", "About", "Projects", "Contact"];
-  const icons = [faBars, faHome, faUser, faFolderOpen, faEnvelope];
-  const links = ["#", "/", "/About", "/MyProjects", "/MsgMe"];
+  const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <>
-      <button className={styles.hamburgerBtn} onClick={toggleMobileMenu}>
-        <FontAwesomeIcon icon={overlayVisible ? faTimes : faBars} />
+      <button
+        className={styles.hamburgerBtn}
+        onClick={() => setMobileOpen((open) => !open)}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        aria-expanded={mobileOpen}
+      >
+        <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} />
       </button>
 
       <aside
@@ -58,60 +54,67 @@ const Navbar = () => {
             isExpanded ? styles.expanded : ""
           }`}
         >
-          {icons.map((icon, index) => (
+          {NAV_ITEMS.map((item, index) => (
             <div
-              key={index}
+              key={item.href}
               className={styles.iconParent}
               style={{
                 transform: isExpanded
-                  ? `translate(${iconPositions[index].x}px, ${iconPositions[index].y}px)`
+                  ? `translate(${DESKTOP_ICON_POSITIONS[index].x}px, ${DESKTOP_ICON_POSITIONS[index].y}px)`
                   : "none",
-                paddingLeft:
-                  index === 3 ? "17px" : index === 4 ? "12px" : "0px",
               }}
             >
-              <Link href={links[index]} className={styles.navIcon}>
-                <FontAwesomeIcon icon={icon} />
+              <Link href={item.href} className={styles.navIcon}>
+                <FontAwesomeIcon icon={item.icon} />
               </Link>
-              <span className={styles.iconLabel}>{labels[index]}</span>
+              <span className={styles.iconLabel}>{item.label}</span>
             </div>
           ))}
         </div>
       </aside>
 
-      {overlayVisible && (
-        <div className={`${styles.mobileOverlay} ${styles.showOverlay}`}>
-          <aside
-            className={`${styles.mobileNavbar} ${
-              navbarVisible ? styles.showNavbar : ""
-            }`}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className={styles.mobileOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={closeMobileMenu}
           >
-            <div
-              className={`${styles.iconWrapper} ${
-                mobileExpanded ? styles.expanded : ""
-              }`}
+            <motion.aside
+              className={styles.mobileNavbar}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              {icons.map((icon, index) => (
-                <div
-                  key={index}
-                  className={styles.iconParent}
-                  style={{
-                    transform: mobileExpanded
-                      ? `translate(${iconPositions[index].x}px, ${iconPositions[index].y}px)`
-                      : "none",
-                  }}
-                  onClick={toggleMobileMenu}
-                >
-                  <Link href={links[index]} className={styles.navIcon}>
-                    <FontAwesomeIcon icon={icon} />
-                  <span className={styles.iconLabel}>{labels[index]}</span>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
-      )}
+              <div className={styles.iconWrapper}>
+                {NAV_ITEMS.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    className={styles.iconParent}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * index, duration: 0.2 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={styles.navIcon}
+                      onClick={closeMobileMenu}
+                    >
+                      <FontAwesomeIcon icon={item.icon} />
+                    </Link>
+                    <span className={styles.iconLabel}>{item.label}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
