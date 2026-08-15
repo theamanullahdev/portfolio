@@ -59,7 +59,7 @@ export default function MsgMePage() {
       triangleCount={2}
       codeCount={5}
     >
-      <section className="snap-start min-h-screen flex flex-col items-center justify-start sm:justify-center px-4 sm:px-8 pt-20 sm:pt-28 text-center space-y-12">
+      <section className="snap-start min-h-screen flex flex-col items-center justify-start sm:justify-center px-4 sm:px-8 pt-14 sm:pt-20 text-center space-y-8">
         {/* Top Heading */}
         <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-500 dark:text-green-300 font-mono">
           <HighlightWords text="Let's Connect" />

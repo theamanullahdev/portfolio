@@ -38,7 +38,7 @@ export default function AhtashamWorkPortfolioDetails() {
           transition={{ delay: 0.2 }}
         >
           {/* Hero Section */}
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-6 sm:mb-8">
             <motion.div
               className="text-3xl xs:text-4xl sm:text-5xl font-bold mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 10 }}
@@ -73,7 +73,7 @@ export default function AhtashamWorkPortfolioDetails() {
 
           {/* Key Features */}
           <motion.div
-            className="mb-8 sm:mb-12 p-4 sm:p-6 bg-green-500/10 border border-green-500/50 rounded-lg"
+            className="mb-6 sm:mb-8 p-4 sm:p-6 bg-green-500/10 border border-green-500/50 rounded-lg"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -105,7 +105,7 @@ export default function AhtashamWorkPortfolioDetails() {
 
           {/* Project Stats */}
           <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8 sm:mb-12"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 sm:mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}

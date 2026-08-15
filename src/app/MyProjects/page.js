@@ -225,7 +225,7 @@ export default function MyProjects() {
         {PROJECTS.map((proj, idx) => (
           <section
             key={idx}
-            className="snap-start h-screen flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 gap-6 sm:gap-10 text-center md:text-left"
+            className="snap-start h-screen flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 gap-6 sm:gap-8 text-center md:text-left"
           >
             {idx % 2 === 0 ? (
               <>

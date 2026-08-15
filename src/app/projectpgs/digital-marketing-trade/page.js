@@ -45,13 +45,13 @@ export default function DigitalMarketingTradeDetails() {
 
         {/* Main Content */}
         <motion.div
-          className="max-w-5xl mx-auto"
+          className="max-w-4xl mx-auto"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
           {/* Hero Section */}
-          <motion.div className="mb-8 sm:mb-12" variants={itemVariants}>
+          <motion.div className="mb-6 sm:mb-8" variants={itemVariants}>
             <div className="text-3xl xs:text-4xl sm:text-5xl font-bold mb-4 sm:mb-6">
               <HighlightWords
                 text="Digital Marketing Trade"
@@ -101,7 +101,7 @@ export default function DigitalMarketingTradeDetails() {
 
           {/* Two Column Grid */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8"
             variants={containerVariants}
           >
             {/* My Role */}
@@ -143,7 +143,7 @@ export default function DigitalMarketingTradeDetails() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-black/50 border border-orange-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-8 sm:mb-12"
+            className="bg-black/50 border border-orange-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             <h3 className="text-lg sm:text-xl font-bold text-orange-400 mb-4 sm:mb-6 flex items-center gap-2">
@@ -171,7 +171,7 @@ export default function DigitalMarketingTradeDetails() {
 
           {/* Key Challenges & Solutions */}
           <motion.div
-            className="bg-black/50 border border-green-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-8 sm:mb-12"
+            className="bg-black/50 border border-green-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             <h3 className="text-lg sm:text-xl font-bold text-green-400 mb-4 sm:mb-6">
@@ -214,7 +214,7 @@ export default function DigitalMarketingTradeDetails() {
 
           {/* Real-World Impact */}
           <motion.div
-            className="bg-black/50 border border-cyan-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-8 sm:mb-12"
+            className="bg-black/50 border border-cyan-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             <h3 className="text-lg sm:text-xl font-bold text-cyan-400 mb-4 sm:mb-6">
@@ -239,7 +239,7 @@ export default function DigitalMarketingTradeDetails() {
 
           {/* Why It Matters */}
           <motion.div
-            className="bg-gradient-to-r from-green-500/10 via-cyan-500/10 to-orange-500/10 border border-green-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-8 sm:mb-12"
+            className="bg-gradient-to-r from-green-500/10 via-cyan-500/10 to-orange-500/10 border border-green-400/30 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-green-400 via-cyan-400 to-orange-400 bg-clip-text text-transparent mb-4 sm:mb-6">

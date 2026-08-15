@@ -39,7 +39,7 @@ export default function WineLockerDetails() {
           transition={{ delay: 0.2 }}
         >
           {/* Hero Section */}
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-6 sm:mb-8">
             <motion.div
               className="text-3xl xs:text-4xl sm:text-5xl font-bold mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 10 }}
@@ -78,7 +78,7 @@ export default function WineLockerDetails() {
           </div>
 
           {/* Details Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <motion.div
               className="bg-black/30 backdrop-blur-md p-4 sm:p-6 rounded-lg border border-green-400/20 hover:border-green-400/50 transition"
               initial={{ opacity: 0, y: 20 }}
@@ -116,7 +116,7 @@ export default function WineLockerDetails() {
 
           {/* Full Description */}
           <motion.div
-            className="bg-black/30 backdrop-blur-md p-4 sm:p-6 rounded-lg border border-cyan-400/20 mb-8 sm:mb-12"
+            className="bg-black/30 backdrop-blur-md p-4 sm:p-6 rounded-lg border border-cyan-400/20 mb-6 sm:mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
