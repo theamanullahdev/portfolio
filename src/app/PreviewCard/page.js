@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -27,15 +28,18 @@ export default function PreviewCard() {
         {/* Home Section */}
         <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
           <motion.div
-            className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 sm:mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
+            className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 sm:mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
             initial={{ scale: 0, rotate: 180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 1 }}
           >
-            <img
+            <Image
               src="/piclogo.png"
               alt="Hero"
-              className="object-cover w-full h-full"
+              fill
+              sizes="(max-width: 639px) 144px, (max-width: 767px) 176px, 192px"
+              className="object-cover"
+              priority
             />
           </motion.div>
 

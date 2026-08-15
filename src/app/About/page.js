@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faJs,
@@ -33,7 +34,7 @@ export default function About() {
         {/* Intro Section */}
         <section className="snap-start h-screen flex flex-col items-center justify-center px-6 text-center">
           <motion.div
-            className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
+            className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
             initial={{ scale: 0 }}
             animate={{
               scale: [1, 1.05, 1],
@@ -46,10 +47,13 @@ export default function About() {
               transition: { duration: 0.2 },
             }}
           >
-            <img
+            <Image
               src="/piclogo.png"
               alt="Profile"
-              className="object-cover w-full h-full"
+              fill
+              sizes="(max-width: 639px) 128px, 160px"
+              className="object-cover"
+              priority
             />
           </motion.div>
 

@@ -4,10 +4,15 @@ import React, { useEffect, useRef } from "react";
 const CursorTrail = () => {
   const circleRef = useRef(null);
   const particlesRef = useRef([]);
+  const rafIdRef = useRef(null);
+  const pendingRef = useRef(null);
 
   useEffect(() => {
-    const moveCursor = (e) => {
-      const { clientX: x, clientY: y } = e;
+    const applyMove = () => {
+      rafIdRef.current = null;
+      const pending = pendingRef.current;
+      if (!pending) return;
+      const { x, y } = pending;
 
       // Move main glowing circle
       if (circleRef.current) {
@@ -20,6 +25,15 @@ const CursorTrail = () => {
         spawnChar(x, y);
       } else {
         spawnDot(x, y);
+      }
+    };
+
+    const moveCursor = (e) => {
+      pendingRef.current = { x: e.clientX, y: e.clientY };
+      // Only one DOM update + particle spawn per animation frame,
+      // no matter how many mousemove events fire in between.
+      if (rafIdRef.current === null) {
+        rafIdRef.current = requestAnimationFrame(applyMove);
       }
     };
 
@@ -57,6 +71,9 @@ const CursorTrail = () => {
     window.addEventListener("mousemove", moveCursor);
     return () => {
       window.removeEventListener("mousemove", moveCursor);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
     };
   }, []);
 

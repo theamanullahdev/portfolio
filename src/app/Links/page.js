@@ -3,6 +3,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
 import HighlightWords from "@/components/HighlightWords";
@@ -55,13 +56,20 @@ export default function LandingPage() {
       <div className="snap-y snap-mandatory h-screen w-full flex flex-col items-center justify-center px-6 text-center overflow-y-auto">
         {/* Logo */}
         <motion.div
-          className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
+          className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
           initial={{ scale: 0 }}
           animate={{ scale: [1, 1.05, 1], y: [0, -10, 0] }}
           transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
           whileHover={{ scale: 1.15, rotate: 5, transition: { duration: 0.2 } }}
         >
-          <img src="/piclogo.png" alt="Logo" className="object-cover w-full h-full" />
+          <Image
+            src="/piclogo.png"
+            alt="Logo"
+            fill
+            sizes="(max-width: 639px) 128px, 160px"
+            className="object-cover"
+            priority
+          />
         </motion.div>
 
         {/* Name / Tagline */}

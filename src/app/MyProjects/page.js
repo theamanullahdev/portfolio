@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import HighlightWords from "@/components/HighlightWords";
 import TerminalButton from "@/components/TerminalButton";
 import DynamicBackground from "@/components/DynamicBackground";
@@ -196,11 +197,15 @@ export default function MyProjects() {
             transition={{ duration: 0.7 }}
             className="mb-4 sm:mb-6"
           >
-            <img
-              src="/piclogo.png"
-              alt="Projects"
-              className="w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44"
-            />
+            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44">
+              <Image
+                src="/piclogo.png"
+                alt="Projects"
+                fill
+                sizes="(max-width: 639px) 96px, (max-width: 767px) 128px, 176px"
+                className="object-contain"
+              />
+            </div>
           </motion.div>
 
           <div className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 sm:mb-4">
@@ -226,7 +231,7 @@ export default function MyProjects() {
               <>
                 {/* Image / Preview */}
                 <motion.div
-                  className={`w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
+                  className={`relative w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
                     proj.comingSoon ? "border-orange-500" : "border-green-500"
                   }`}
                   initial={{ x: -40, opacity: 0 }}
@@ -242,7 +247,16 @@ export default function MyProjects() {
                         sandbox="allow-scripts allow-same-origin"
                       />
                     </div>
+                  ) : proj.picture?.startsWith("/") ? (
+                    <Image
+                      src={proj.picture}
+                      alt={proj.title}
+                      fill
+                      sizes="(max-width: 767px) 100vw, 448px"
+                      className="object-cover"
+                    />
                   ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={proj.picture}
                       alt={proj.title}
@@ -351,7 +365,7 @@ export default function MyProjects() {
 
                 {/* Image / Preview */}
                 <motion.div
-                  className={`w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
+                  className={`relative w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
                     proj.comingSoon ? "border-orange-500" : "border-green-500"
                   }`}
                   initial={{ x: 40, opacity: 0 }}
@@ -367,7 +381,16 @@ export default function MyProjects() {
                         sandbox="allow-scripts allow-same-origin"
                       />
                     </div>
+                  ) : proj.picture?.startsWith("/") ? (
+                    <Image
+                      src={proj.picture}
+                      alt={proj.title}
+                      fill
+                      sizes="(max-width: 767px) 100vw, 448px"
+                      className="object-cover"
+                    />
                   ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={proj.picture}
                       alt={proj.title}

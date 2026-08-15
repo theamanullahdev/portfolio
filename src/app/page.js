@@ -2,6 +2,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Cards from "@/components/Cards";
@@ -127,10 +128,13 @@ export default function Home() {
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 via-cyan-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-spin-slow" />
             <div className="absolute inset-1 rounded-full bg-gray-900 z-10" />
 
-            <img
+            <Image
               src="/piclogo.png"
               alt="Hero"
-              className="object-cover w-full h-full relative z-20 rounded-full"
+              fill
+              sizes="(max-width: 379px) 96px, (max-width: 639px) 128px, (max-width: 767px) 160px, 192px"
+              className="object-cover z-20 rounded-full"
+              priority
             />
 
             {/* Glow effect */}

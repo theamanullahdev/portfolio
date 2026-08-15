@@ -120,6 +120,10 @@ function FloatingElement({ type }) {
   );
 }
 
+// Halves whatever count each page passes in, cutting shape/animation
+// render cost across the board without touching every call site.
+const scaleDown = (n) => Math.ceil(n / 2);
+
 const DynamicBackground = ({
   children,
   circleCount,
@@ -128,26 +132,39 @@ const DynamicBackground = ({
   codeCount,
 }) => {
   const [mounted, setMounted] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setReducedMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+    // Fade the shapes in on the next tick instead of popping in abruptly.
+    const id = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
-  if (!mounted) {
-    // Nothing renders on server → no hydration mismatch
+  if (!mounted || reducedMotion) {
+    // Nothing renders on server → no hydration mismatch.
+    // Also skip shapes entirely when the OS asks for reduced motion.
     return <>{children}</>;
   }
 
   const shapes = [
-    ...Array.from({ length: circleCount }, () => "circle"),
-    ...Array.from({ length: lineCount }, () => "line"),
-    ...Array.from({ length: triangleCount }, () => "triangle"),
-    ...Array.from({ length: codeCount }, () => "code"),
+    ...Array.from({ length: scaleDown(circleCount) }, () => "circle"),
+    ...Array.from({ length: scaleDown(lineCount) }, () => "line"),
+    ...Array.from({ length: scaleDown(triangleCount) }, () => "triangle"),
+    ...Array.from({ length: scaleDown(codeCount) }, () => "code"),
   ];
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div
+        className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-700 ${
+          visible ? "opacity-100" : "opacity-0"
+        }`}
+      >
         {shapes.map((type, idx) => (
           <FloatingElement key={idx} type={type} />
         ))}

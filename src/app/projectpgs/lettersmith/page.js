@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faExternalLink } from "@fortawesome/free-solid-svg-icons";
@@ -65,10 +66,12 @@ export default function LettermithDetails() {
               transition={{ delay: 0.5 }}
               whileHover={{ borderColor: "#fb923c" }}
             >
-              <img
+              <Image
                 src="/LTsmith1.png"
                 alt="LetterSmith"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 767px) 100vw, 896px"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </motion.div>
