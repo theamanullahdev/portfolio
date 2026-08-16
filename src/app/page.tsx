@@ -204,8 +204,17 @@ export default function Home() {
               >
                 <FontAwesomeIcon icon={faGithub} className="text-2xl" />
               </Link>
-              <Link
+              {/* <Link
                 href="https://twitter.com/theamanullahdev"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Twitter"
+                className="text-paper-dim hover:text-brass-bright transition-colors"
+              >
+                <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
+              </Link> */}
+              <Link
+                href="https://twitter.com/amanullah_bhlm"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Twitter"
