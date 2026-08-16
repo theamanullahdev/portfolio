@@ -69,7 +69,7 @@ export default {
         // near-imperceptible drift for the whole star-chart SVG.
         "star-drift": {
           "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(1%, -1%)" },
+          "50%": { transform: "translate(2.5%, -2%)" },
         },
       },
       animation: {

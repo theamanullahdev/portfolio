@@ -17,15 +17,43 @@ export default function Home() {
         {/* Hero */}
         <section className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-center py-20 sm:py-28 border-b border-brass/20">
           <div className="flex flex-col items-center lg:items-start gap-3">
-            <div className="relative w-40 h-40 sm:w-48 sm:h-48 border border-brass/50">
-              <Image
-                src="/piclogo.png"
-                alt="Amanullah"
-                fill
-                sizes="(max-width: 639px) 160px, 192px"
-                className="object-cover"
-                priority
-              />
+            <div className="relative w-40 h-40 sm:w-48 sm:h-48">
+              {/* Slow-rotating instrument ring — one continuous transform-only
+                  loop, ~90s per turn. The "something here is alive" moment;
+                  cheap because it's a single element, GPU-composited. */}
+              <svg
+                aria-hidden
+                viewBox="0 0 100 100"
+                className="absolute -inset-6 sm:-inset-8 text-brass/50 animate-[spin_90s_linear_infinite] motion-reduce:animate-none"
+              >
+                <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" strokeWidth="0.4" />
+                {Array.from({ length: 24 }).map((_, i) => {
+                  const angle = (i * 360) / 24;
+                  const long = i % 6 === 0;
+                  return (
+                    <line
+                      key={i}
+                      x1="50"
+                      y1={long ? "2" : "4.5"}
+                      x2="50"
+                      y2={long ? "7" : "7.5"}
+                      stroke="currentColor"
+                      strokeWidth={long ? "0.7" : "0.35"}
+                      transform={`rotate(${angle} 50 50)`}
+                    />
+                  );
+                })}
+              </svg>
+              <div className="relative w-full h-full border border-brass/50">
+                <Image
+                  src="/piclogo.png"
+                  alt="Amanullah"
+                  fill
+                  sizes="(max-width: 639px) 160px, 192px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
             <span className="font-technical text-2xs text-paper-dim">Fig. 1 — Amanullah, 2026</span>
           </div>

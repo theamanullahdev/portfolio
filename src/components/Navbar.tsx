@@ -31,12 +31,20 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop: vertical icon rail, widens to reveal labels */}
+      {/* Desktop: vertical icon rail, shaped like a ribbon bookmark (fishtail
+          notch at the bottom), widens to reveal labels on hover/focus */}
       <aside
         className="group hidden md:flex fixed left-0 top-0 h-screen z-20 flex-col justify-center
                    w-20 hover:w-60 focus-within:w-60 transition-[width] duration-300 ease-out
-                   bg-ink-2 border-r border-brass/30 overflow-hidden"
+                   bg-gradient-to-b from-ink-2 via-ink-2 to-ink-3 border-r border-brass/30 overflow-hidden
+                   [clip-path:polygon(0_0,100%_0,100%_93%,50%_100%,0_93%)]"
       >
+        {/* Stitch line — reads as ribbon seam, not a plain panel */}
+        <span
+          aria-hidden
+          className="absolute inset-y-10 left-10 w-px border-l border-dashed border-brass/20"
+        />
+
         {NAV_ITEMS.map((item, i) => {
           const active = item.href === pathname;
           return (

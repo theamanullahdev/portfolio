@@ -31,7 +31,7 @@ const AmbientBackground = ({ children }: { children: React.ReactNode }) => (
   <div className="relative w-full">
     <svg
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-[0.12] animate-star-drift motion-reduce:animate-none"
+      className="pointer-events-none fixed inset-0 -z-10 h-full w-full opacity-[0.22] animate-star-drift motion-reduce:animate-none"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid slice"
     >
