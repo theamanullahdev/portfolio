@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import Flourish from "@/components/Flourish";
+import Frame from "@/components/Frame";
 
 // "Wax-seal plate" button — docs/DESIGN.md §7. Replaces TerminalButton for
 // migrated pages; TerminalButton itself is untouched and still used by
@@ -23,10 +23,13 @@ interface ButtonProps {
 // Full literal class strings per variant — Tailwind's build-time scanner
 // needs the complete class name to appear as text somewhere in the file,
 // so these can't be assembled at runtime (e.g. via string concatenation).
-const VARIANTS: Record<ButtonColor, { border: string; text: string; fill: string }> = {
-  brass: { border: "border-brass", text: "text-brass", fill: "bg-brass" },
-  verdigris: { border: "border-verdigris", text: "text-verdigris", fill: "bg-verdigris" },
-  rubric: { border: "border-rubric", text: "text-rubric", fill: "bg-rubric" },
+// `frame` drives the ornamental Frame SVG's currentColor independently of
+// the label text (which inverts to ink on hover for contrast against the
+// fill-wipe) — the frame itself should stay in its own color family.
+const VARIANTS: Record<ButtonColor, { text: string; fill: string; frame: string }> = {
+  brass: { text: "text-brass", fill: "bg-brass", frame: "text-brass/80 group-hover:text-brass-bright" },
+  verdigris: { text: "text-verdigris", fill: "bg-verdigris", frame: "text-verdigris/70 group-hover:text-verdigris" },
+  rubric: { text: "text-rubric", fill: "bg-rubric", frame: "text-rubric/70 group-hover:text-rubric" },
 };
 
 // Crafted-object bevel + banded groove (docs/DESIGN.md §7 ornamental
@@ -52,7 +55,7 @@ const Button = ({
   const v = VARIANTS[color];
   const classes = `group relative inline-flex items-center justify-center gap-2
     plaque plaque-fill font-label text-sm sm:text-base tracking-[0.02em] uppercase
-    px-6 py-3 sm:px-7 sm:py-3.5 border-2 ${v.border} ${v.text} ${BEVEL}
+    px-6 py-3 sm:px-7 sm:py-3.5 ${v.text} ${BEVEL}
     transition-colors duration-300 hover:text-ink
     active:scale-[0.97] active:translate-y-px
     ${disabled ? "opacity-40 pointer-events-none" : ""}
@@ -68,7 +71,7 @@ const Button = ({
   const content = (
     <>
       {fill}
-      <Flourish size="w-5 h-5 sm:w-6 sm:h-6" />
+      <Frame className={`${v.frame} transition-colors duration-300`} />
       <span className="relative z-10">{children}</span>
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Tag from "@/components/Tag";
 import Button from "@/components/Button";
-import Flourish from "@/components/Flourish";
+import Frame from "@/components/Frame";
 
 // "Illustrated plate" project card — docs/DESIGN.md §7. Replaces Cards.tsx
 // for migrated pages (local-image case only for now — MyProjects' iframe-
@@ -26,9 +26,9 @@ const PLATE_SHADOW =
 
 const Plate = ({ image, figure, title, caption, description, tags, href, external }: PlateProps) => (
   <div
-    className={`plaque plaque-fill relative flex flex-col border-2 border-brass/30 hover:border-brass/70 transition-colors duration-300 ${PLATE_SHADOW}`}
+    className={`group plaque plaque-fill relative flex flex-col transition-colors duration-300 ${PLATE_SHADOW}`}
   >
-    <Flourish corners={["tl", "tr", "bl", "br"]} size="w-7 h-7 sm:w-8 sm:h-8" />
+    <Frame className="text-brass/40 group-hover:text-brass/80 transition-colors duration-300" />
     <div className="relative w-full h-48 sm:h-56 border-b border-brass/30">
       <Image src={image} alt={title} fill sizes="(max-width: 639px) 100vw, 400px" className="object-cover" />
     </div>

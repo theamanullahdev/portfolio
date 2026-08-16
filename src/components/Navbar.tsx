@@ -12,7 +12,7 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import Flourish from "@/components/Flourish";
+import Frame from "@/components/Frame";
 
 // docs/DESIGN.md §6. Labels are always visible now, not hover-gated — an
 // icon-only rail reads as ambiguous regardless of how the icon itself is
@@ -48,11 +48,14 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className={`plaque plaque-fill relative flex items-center gap-2.5 pl-4 pr-5 py-3
-                ${BEVEL} transition-colors duration-300
-                ${active ? "border-2 border-brass-bright" : "border-2 border-brass/50 hover:border-brass"}`}
+              className={`group plaque plaque-fill relative flex items-center gap-2.5 pl-4 pr-5 py-3
+                ${BEVEL} transition-colors duration-300`}
             >
-              <Flourish corners={["tl", "br"]} size="w-4 h-4" />
+              <Frame
+                className={`transition-colors duration-300 ${
+                  active ? "text-brass-bright" : "text-brass/50 group-hover:text-brass"
+                }`}
+              />
               <FontAwesomeIcon
                 icon={item.icon}
                 className={`w-3.5 h-3.5 shrink-0 ${active ? "text-brass-bright" : "text-brass/70"}`}
@@ -71,13 +74,13 @@ const Navbar = () => {
 
       {/* Mobile: corner tab + full-screen index overlay */}
       <button
-        className={`md:hidden plaque plaque-fill fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center
-          border-2 border-brass/60 text-brass ${BEVEL}`}
+        className={`group md:hidden plaque plaque-fill fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center
+          text-brass ${BEVEL}`}
         onClick={() => setMobileOpen((open) => !open)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
       >
-        <Flourish corners={["tl", "br"]} size="w-4 h-4" />
+        <Frame className="text-brass/70 group-hover:text-brass-bright transition-colors duration-300" />
         <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} />
       </button>
 
@@ -99,10 +102,9 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`plaque plaque-fill relative flex items-center gap-3 pl-4 pr-6 py-3
-                  ${BEVEL} ${active ? "border-2 border-brass-bright" : "border-2 border-brass/50"}`}
+                className={`plaque plaque-fill relative flex items-center gap-3 pl-4 pr-6 py-3 ${BEVEL}`}
               >
-                <Flourish corners={["tl", "tr", "bl", "br"]} size="w-5 h-5" />
+                <Frame className={active ? "text-brass-bright" : "text-brass/50"} />
                 <FontAwesomeIcon
                   icon={item.icon}
                   className={`w-4 h-4 ${active ? "text-brass-bright" : "text-brass/70"}`}
