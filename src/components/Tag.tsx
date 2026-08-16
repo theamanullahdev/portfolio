@@ -17,7 +17,7 @@ const COLOR_CLASS: Record<TagColor, string> = {
 
 const Tag = ({ children, color = "brass", className }: TagProps) => (
   <span
-    className={`inline-flex items-center font-technical text-2xs sm:text-xs tracking-widest uppercase px-2.5 py-1 border ${COLOR_CLASS[color]} ${className ?? ""}`}
+    className={`plaque-sm inline-flex items-center font-label text-2xs sm:text-xs tracking-widest uppercase px-2.5 py-1 border bg-ink-2 ${COLOR_CLASS[color]} ${className ?? ""}`}
   >
     {children}
   </span>

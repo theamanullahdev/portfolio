@@ -1,4 +1,4 @@
-import { Fraunces, Newsreader, Martian_Mono } from "next/font/google";
+import { Fraunces, Newsreader, Martian_Mono, Cinzel } from "next/font/google";
 import "./globals.css";
 import Navbar from "@Comps/Navbar";
 import CursorTrail from "@/components/CursorTrail";
@@ -22,6 +22,18 @@ const newsreader = Newsreader({
 const martianMono = Martian_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+});
+
+// Fourth family, deliberately: for button/tag/nav *labels* specifically —
+// Roman inscription lettering, literally designed to look carved into
+// stone/metal. Answers "buttons still read as generic web UI" in a way the
+// bevel shadow alone didn't; everything else (numerals, body, headings)
+// keeps using the original three. Not variable on Google Fonts, so request
+// explicit weights rather than assuming a wght axis exists.
+const cinzel = Cinzel({
+  variable: "--font-label",
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 export const metadata = {
@@ -49,13 +61,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} antialiased`}
+        className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} ${cinzel.variable} antialiased`}
       >
         <CursorTrail />
         <div className="flex min-h-screen w-full relative z-10">
           <Navbar />
-          {/* margin-left only at md (>=768px) — same breakpoint Navbar.tsx uses for its own hidden/md:block switch, both driven by Tailwind's md so there's only one breakpoint definition to keep in sync now */}
-          <main className="w-full md:ml-20">{children}</main>
+          {/* margin-left only at md (>=768px) — same breakpoint Navbar.tsx uses
+              for its own hidden/md:flex switch. Sized for the nav's floating
+              icon+label plaques (~180px wide at left-5), not a fixed rail
+              width like before — widen this if a label ever gets longer than
+              "Projects". */}
+          <main className="w-full md:ml-52">{children}</main>
         </div>
       </body>
     </html>

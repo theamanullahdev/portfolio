@@ -32,6 +32,26 @@ body {
   font-family: var(--font-body), Georgia, serif;
 }
 
+/*
+ * Cut-corner "plaque" shape (docs/DESIGN.md §7) — the non-rectangular
+ * silhouette for buttons, tags, and nav labels. One shape, two sizes,
+ * reused everywhere instead of soft rounded rectangles.
+ */
+.plaque {
+  clip-path: polygon(
+    10px 0, calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%,
+    0 calc(100% - 10px), 0 10px
+  );
+}
+.plaque-sm {
+  clip-path: polygon(
+    6px 0, calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%,
+    0 calc(100% - 6px), 0 6px
+  );
+}
+
 /* Ultra-responsive breakpoints */
 @media (max-width: 380px) {
   body {

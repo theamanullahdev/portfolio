@@ -13,10 +13,15 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-// "The Medallions" — docs/DESIGN.md §6. Four independent crafted objects,
-// not one panel: each is a small embossed disc (layered box-shadow faking a
-// bevel) rather than a flat bordered circle. Per-item hover reveal, no
-// shared expand/collapse state.
+// docs/DESIGN.md §6. Labels are always visible now, not hover-gated — an
+// icon-only rail reads as ambiguous regardless of how the icon itself is
+// styled (this was flagged twice: once about the single-icon resting state
+// in round 1, again about per-item hover-reveal in round 2). A literal
+// circular fan-out was considered and deliberately not used here: it kept
+// reading as the old terminal nav's shape even re-themed in brass, whereas
+// always-visible icon+label plaques solve the actual complaint (icon-only
+// is unclear) without reusing that silhouette. Each plaque uses the same
+// cut-corner shape as Button/Tag for a consistent object language.
 const NAV_ITEMS = [
   { label: "Home", numeral: "01", icon: faHome, href: "/" },
   { label: "About", numeral: "02", icon: faUser, href: "/About" },
@@ -24,12 +29,8 @@ const NAV_ITEMS = [
   { label: "Contact", numeral: "04", icon: faEnvelope, href: "/MsgMe" },
 ];
 
-// Full literal shadow strings (not assembled at runtime) so Tailwind's
-// scanner generates both — see the note on this in Button.tsx.
-const MEDALLION_SHADOW =
-  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.18),inset_-2px_-2px_5px_rgba(0,0,0,0.65),0_3px_8px_rgba(0,0,0,0.5)]";
-const MEDALLION_SHADOW_ACTIVE =
-  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.25),inset_-2px_-2px_5px_rgba(0,0,0,0.65),0_3px_8px_rgba(0,0,0,0.5),0_0_14px_rgba(230,196,110,0.35)]";
+const BEVEL =
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.6),0_3px_7px_rgba(0,0,0,0.45)]";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -37,52 +38,39 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop: stacked medallions, vertically centered on the left edge */}
-      <aside className="hidden md:flex fixed left-5 top-1/2 -translate-y-1/2 z-20 flex-col gap-5">
+      {/* Desktop: stacked plaques, icon + label always visible */}
+      <aside className="hidden md:flex fixed left-5 top-1/2 -translate-y-1/2 z-20 flex-col gap-3">
         {NAV_ITEMS.map((item) => {
           const active = item.href === pathname;
           return (
-            <div key={item.href} className="group/item relative">
-              <Link
-                href={item.href}
-                aria-label={item.label}
-                className={`relative flex items-center justify-center w-12 h-12 rounded-full
-                  bg-gradient-to-br from-ink-2 to-ink-3 transition-[border-color] duration-300
-                  ${active ? `border-2 border-brass-bright ${MEDALLION_SHADOW_ACTIVE}` : `border border-brass/50 hover:border-brass ${MEDALLION_SHADOW}`}`}
-              >
-                <FontAwesomeIcon
-                  icon={item.icon}
-                  className={`w-4 h-4 ${
-                    active ? "text-brass-bright" : "text-brass/70 group-hover/item:text-brass"
-                  }`}
-                />
-              </Link>
-
-              {/* Per-item label flyout */}
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`plaque flex items-center gap-2.5 pl-3 pr-4 py-2.5
+                bg-gradient-to-br from-ink-2 to-ink-3 ${BEVEL}
+                transition-colors duration-300
+                ${active ? "border-2 border-brass-bright" : "border border-brass/50 hover:border-brass"}`}
+            >
+              <FontAwesomeIcon
+                icon={item.icon}
+                className={`w-3.5 h-3.5 shrink-0 ${active ? "text-brass-bright" : "text-brass/70"}`}
+              />
               <span
-                className="absolute left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap
-                  bg-ink-2 border border-brass/40 px-3 py-1.5
-                  opacity-0 -translate-x-2 pointer-events-none
-                  transition-[opacity,transform] duration-200 ease-out
-                  group-hover/item:opacity-100 group-hover/item:translate-x-0
-                  group-focus-within/item:opacity-100 group-focus-within/item:translate-x-0"
+                className={`font-label text-xs tracking-wide whitespace-nowrap ${
+                  active ? "text-brass-bright" : "text-paper"
+                }`}
               >
-                <span className="font-technical text-2xs text-brass mr-2">§{item.numeral}</span>
-                <span
-                  className={`font-reading text-sm ${active ? "text-brass-bright" : "text-paper"}`}
-                >
-                  {item.label}
-                </span>
+                {item.label}
               </span>
-            </div>
+            </Link>
           );
         })}
       </aside>
 
       {/* Mobile: corner tab + full-screen index overlay */}
       <button
-        className={`md:hidden fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center rounded-full
-          bg-gradient-to-br from-ink-2 to-ink-3 border border-brass/60 text-brass ${MEDALLION_SHADOW}`}
+        className={`md:hidden plaque fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center
+          bg-gradient-to-br from-ink-2 to-ink-3 border border-brass/60 text-brass ${BEVEL}`}
         onClick={() => setMobileOpen((open) => !open)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
@@ -99,7 +87,7 @@ const Navbar = () => {
       >
         <nav
           aria-label="Section index"
-          className="h-full flex flex-col items-center justify-center gap-6"
+          className="h-full flex flex-col items-center justify-center gap-5"
         >
           {NAV_ITEMS.map((item) => {
             const active = item.href === pathname;
@@ -108,21 +96,19 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-4"
+                className={`plaque flex items-center gap-3 pl-4 pr-6 py-3
+                  bg-gradient-to-br from-ink-2 to-ink-3 ${BEVEL}
+                  ${active ? "border-2 border-brass-bright" : "border border-brass/50"}`}
               >
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  className={`w-4 h-4 ${active ? "text-brass-bright" : "text-brass/70"}`}
+                />
                 <span
-                  className={`flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-ink-2 to-ink-3 ${
-                    active
-                      ? `border-2 border-brass-bright ${MEDALLION_SHADOW_ACTIVE}`
-                      : `border border-brass/50 ${MEDALLION_SHADOW}`
+                  className={`font-label text-lg tracking-wide ${
+                    active ? "text-brass-bright" : "text-paper"
                   }`}
                 >
-                  <FontAwesomeIcon
-                    icon={item.icon}
-                    className={`w-4 h-4 ${active ? "text-brass-bright" : "text-brass/70"}`}
-                  />
-                </span>
-                <span className={`font-reading text-2xl ${active ? "text-brass-bright" : "text-paper"}`}>
                   {item.label}
                 </span>
               </Link>

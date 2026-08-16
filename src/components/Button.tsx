@@ -45,8 +45,8 @@ const Button = ({
   disabled,
 }: ButtonProps) => {
   const v = VARIANTS[color];
-  const classes = `group relative inline-flex items-center justify-center gap-2 overflow-hidden
-    font-technical text-xs sm:text-sm tracking-[0.08em] uppercase
+  const classes = `group relative inline-flex items-center justify-center gap-2
+    plaque font-label text-sm sm:text-base tracking-[0.04em] uppercase
     px-5 py-2.5 sm:px-6 sm:py-3 border ${v.border} ${v.text} bg-ink-2 ${BEVEL}
     transition-colors duration-300 hover:text-ink
     active:scale-[0.97] active:translate-y-px

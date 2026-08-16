@@ -39,6 +39,7 @@ export default {
         display: ["var(--font-display)", "Georgia", "serif"],
         reading: ["var(--font-body)", "Georgia", "serif"],
         technical: ["var(--font-mono)", "monospace"],
+        label: ["var(--font-label)", "Georgia", "serif"],
       },
       keyframes: {
         "glow-pulse": {

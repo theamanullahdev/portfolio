@@ -49,7 +49,7 @@ export default function Home() {
                     );
                   })}
                 </svg>
-                <div className="relative w-full h-full border border-brass/50">
+                <div className="relative w-full h-full rounded-full overflow-hidden border border-brass/50">
                   <Image
                     src="/piclogo.png"
                     alt="Amanullah"
@@ -96,14 +96,14 @@ export default function Home() {
               <div className="flex flex-col">
                 <div className="font-reading text-base text-paper-dim space-y-4 max-w-[65ch]">
                   <p>
-                    I&apos;m a full-stack developer with a strong focus on blockchain. I build
-                    smart contracts, decentralized applications, and complete web solutions that
-                    perform reliably in the real world.
+                    Full-stack development and blockchain systems are where I spend most of my
+                    time — smart contracts, decentralized applications, and production web
+                    platforms built to hold up under real traffic, not just demos.
                   </p>
                   <p>
-                    I also bring a background in cybersecurity, ensuring every project is secure,
-                    reliable, and resilient. When codebases get messy, I step in to clean up and
-                    restore clarity so teams can move faster with confidence.
+                    Security isn&apos;t an add-on; it&apos;s how I build. And when a codebase has
+                    gotten away from a team, I&apos;m usually the one brought in to make sense of
+                    it again — clarity first, then speed.
                   </p>
                   <p className="text-brass">theamanullahdev@gmail.com</p>
                 </div>
