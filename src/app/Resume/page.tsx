@@ -22,7 +22,8 @@ const RESUME_SECTIONS: ResumeSection[] = [
       "Email: theamanullahdev@gmail.com",
       "Portfolio: amanullahdev.com",
       "GitHub: github.com/theamanullahdev",
-      "Twitter: @theamanullahdev",
+      // "Twitter: @theamanullahdev",
+      "Twitter: @amanullah_bhlm",
     ],
   },
   {

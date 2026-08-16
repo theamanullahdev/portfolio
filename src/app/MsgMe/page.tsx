@@ -66,8 +66,12 @@ export default function MsgMePage() {
           </Button>
         </Panel>
         <Panel title="Twitter" color="verdigris" className="flex flex-col items-start gap-3">
-          <p className="font-reading text-sm text-paper-dim">@theAmanullahDev</p>
+          {/* <p className="font-reading text-sm text-paper-dim">@theAmanullahDev</p>
           <Button href="https://twitter.com/theAmanullahDev" external color="verdigris" className="text-2xs !px-4 !py-2">
+            Open Twitter
+          </Button> */}
+          <p className="font-reading text-sm text-paper-dim">@amanullah_bhlm</p>
+          <Button href="https://twitter.com/amanullah_bhlm" external color="verdigris" className="text-2xs !px-4 !py-2">
             Open Twitter
           </Button>
         </Panel>

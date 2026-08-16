@@ -8,7 +8,8 @@ import AmbientBackground from "@/components/AmbientBackground";
 const LINKS = [
   { href: "/Resume", icon: faFile, label: "Resume", external: false },
   { href: "https://github.com/theamanullahdev", icon: faGithub, label: "GitHub", external: true },
-  { href: "https://twitter.com/theAmanullahDev", icon: faTwitter, label: "Twitter", external: true },
+  // { href: "https://twitter.com/theAmanullahDev", icon: faTwitter, label: "Twitter", external: true },
+  { href: "https://twitter.com/amanullah_bhlm", icon: faTwitter, label: "Twitter", external: true },
   { href: "mailto:theamanullahdev@gmail.com", icon: faEnvelope, label: "Email", external: true },
   { href: "https://amanullahdev.com", icon: faGlobe, label: "Portfolio", external: true },
 ];
