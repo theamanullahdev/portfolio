@@ -1,23 +1,29 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-const Typewriter = ({ text, delay, color }) => {
+type TypewriterColor = "green" | "orange" | "cyan" | "white";
+
+interface TypewriterProps {
+  text: string;
+  delay?: number;
+  color?: TypewriterColor;
+}
+
+const Typewriter = ({ text, delay = 100, color = "white" }: TypewriterProps) => {
   const [displayed, setDisplayed] = useState("");
   const [isComplete, setIsComplete] = useState(false);
 
   // Define terminal color themes
-  const colorThemes = {
+  const colorThemes: Record<TypewriterColor, string> = {
     green: "text-green-400",
     orange: "text-orange-400",
     cyan: "text-cyan-400",
     white: "text-white",
   };
 
-  // Default to white if invalid or not provided
-  const colorClass = colorThemes[color] || colorThemes.white;
+  const colorClass = colorThemes[color];
 
   useEffect(() => {
     let i = 0;
@@ -44,17 +50,6 @@ const Typewriter = ({ text, delay, color }) => {
       </motion.span>
     </span>
   );
-};
-
-Typewriter.propTypes = {
-  text: PropTypes.string.isRequired,
-  delay: PropTypes.number,
-  color: PropTypes.oneOf(["green", "orange", "cyan", "white"]),
-};
-
-Typewriter.defaultProps = {
-  delay: 100,
-  color: "white", // safer default for non-terminal pages
 };
 
 export default Typewriter;

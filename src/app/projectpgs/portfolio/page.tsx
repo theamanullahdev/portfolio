@@ -124,7 +124,7 @@ export default function PortfolioDetails() {
             <h3 className="text-lg sm:text-xl font-bold text-cyan-400 mb-3 sm:mb-4">📋 Project Details</h3>
             <div className="text-xs sm:text-sm text-gray-300 space-y-3 sm:space-y-4 leading-relaxed">
               <p>
-                This portfolio is more than just a resume—it's a showcase of my technical capabilities and creative approach to web development. Every component has been carefully crafted to demonstrate best practices in modern web development.
+                This portfolio is more than just a resume—it&apos;s a showcase of my technical capabilities and creative approach to web development. Every component has been carefully crafted to demonstrate best practices in modern web development.
               </p>
               <p>
                 Key aspects of this project:

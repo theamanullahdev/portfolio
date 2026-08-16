@@ -131,12 +131,14 @@ export default function AhtashamWorkPortfolioDetails() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <a href="https://ahtashamwork.com" target="_blank" rel="noopener noreferrer">
-              <TerminalButton
-                text="Visit Portfolio"
-                icon={faExternalLink}
-              />
-            </a>
+            <TerminalButton
+              href="https://ahtashamwork.com"
+              color="orange"
+              external
+            >
+              <FontAwesomeIcon icon={faExternalLink} className="mr-2" />
+              Visit Portfolio
+            </TerminalButton>
           </motion.div>
         </motion.div>
       </div>

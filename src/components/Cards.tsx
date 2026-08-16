@@ -1,13 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 const PLACEHOLDER =
   "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
 
-const ITEM_FALLBACK = {
+interface CardItem {
+  picture: string;
+  title: string;
+  description: string;
+  link: string;
+  buttonText: string;
+  techs?: string[];
+}
+
+const ITEM_FALLBACK: CardItem = {
   picture: PLACEHOLDER,
   title: "Untitled",
   description: "No description provided.",
@@ -15,16 +23,20 @@ const ITEM_FALLBACK = {
   buttonText: "See More",
 };
 
-function normalizeItems(items) {
+function normalizeItems(items?: Partial<CardItem>[]): CardItem[] {
   return (Array.isArray(items) && items.length ? items : [ITEM_FALLBACK]).map(
     (it) => ({ ...ITEM_FALLBACK, ...(it || {}) })
   );
 }
 
-const Cards = ({ items }) => {
+interface CardsProps {
+  items?: Partial<CardItem>[];
+}
+
+const Cards = ({ items }: CardsProps) => {
   const safeItems = normalizeItems(items);
-  const [layout, setLayout] = useState("row"); // "row", "two-rows", "scroll"
-  const [activeCard, setActiveCard] = useState(null);
+  const [layout, setLayout] = useState<"row" | "two-rows" | "scroll">("row");
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   useEffect(() => {
     function updateLayout() {
@@ -91,7 +103,6 @@ const Cards = ({ items }) => {
             whileHover={{ scale: 1.03 }}
             animate={{ y: [0, -2, 0] }}
             transition={{
-              hover: { type: "tween", duration: 0.3 },
               y: {
                 duration: 3,
                 repeat: Infinity,
@@ -184,22 +195,6 @@ const Cards = ({ items }) => {
       `}</style>
     </div>
   );
-};
-
-Cards.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      picture: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      link: PropTypes.string,
-      buttonText: PropTypes.string,
-    })
-  ),
-};
-
-Cards.defaultProps = {
-  items: [],
 };
 
 export default Cards;

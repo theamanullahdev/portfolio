@@ -1,14 +1,20 @@
 "use client";
 
 import React from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-const HighlightWords = ({ text, color }) => {
+type HighlightColor = "green" | "orange" | "cyan" | "blue" | "white";
+
+interface HighlightWordsProps {
+  text: string;
+  color?: HighlightColor;
+}
+
+const HighlightWords = ({ text, color = "green" }: HighlightWordsProps) => {
   const words = text.split(" ");
 
   // Define terminal color themes
-  const colorThemes = {
+  const colorThemes: Record<HighlightColor, { text: string; border: string; glow: string }> = {
     green: {
       text: "text-green-500 dark:text-green-300",
       border: "border-green-400 dark:border-green-300",
@@ -100,15 +106,6 @@ const HighlightWords = ({ text, color }) => {
       ))}
     </h2>
   );
-};
-
-HighlightWords.propTypes = {
-  text: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(["green", "orange", "cyan", "blue", "white"]),
-};
-
-HighlightWords.defaultProps = {
-  color: "green", // terminal default
 };
 
 export default HighlightWords;

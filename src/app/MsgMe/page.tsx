@@ -15,11 +15,13 @@ export default function MsgMePage() {
 
   const FORMSUBMIT_URL = `https://formsubmit.co/${process.env.NEXT_PUBLIC_FORMSUBMIT_KEY}`;
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
     setError("");
@@ -59,7 +61,7 @@ export default function MsgMePage() {
       triangleCount={2}
       codeCount={5}
     >
-      <section className="snap-start min-h-screen flex flex-col items-center justify-start sm:justify-center px-4 sm:px-8 pt-14 sm:pt-20 text-center space-y-8">
+      <section className="flex flex-col items-center justify-start sm:justify-center px-4 sm:px-8 pt-14 sm:pt-20 pb-16 text-center space-y-8">
         {/* Top Heading */}
         <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-500 dark:text-green-300 font-mono">
           <HighlightWords text="Let's Connect" />
@@ -170,7 +172,7 @@ export default function MsgMePage() {
                 value={form.message}
                 onChange={handleChange}
                 required
-                rows="4"
+                rows={4}
                 className="p-2 rounded-md bg-white text-black outline-none resize-none text-sm sm:text-base"
               />
             </label>

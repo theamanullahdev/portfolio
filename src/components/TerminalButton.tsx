@@ -2,11 +2,34 @@
 
 import React from "react";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-const TerminalButton = ({ href, children, external, type, onClick, color }) => {
-  const colorThemes = {
+type TerminalButtonColor = "green" | "orange" | "cyan";
+
+interface TerminalButtonProps {
+  href?: string;
+  children: React.ReactNode;
+  external?: boolean;
+  type?: "button" | "submit" | "reset";
+  onClick?: () => void;
+  // Accepts any string since some callers source this from plain data
+  // arrays; falls back to green for anything outside the known themes.
+  color?: TerminalButtonColor | (string & {});
+  className?: string;
+  disabled?: boolean;
+}
+
+const TerminalButton = ({
+  href,
+  children,
+  external = false,
+  type = "button",
+  onClick,
+  color = "green",
+  className,
+  disabled,
+}: TerminalButtonProps) => {
+  const colorThemes: Record<TerminalButtonColor, string> = {
     green:
       "text-green-400 border-green-400 hover:bg-green-900/50 hover:text-green-200 hover:shadow-lg hover:shadow-green-400/30",
     orange:
@@ -14,20 +37,21 @@ const TerminalButton = ({ href, children, external, type, onClick, color }) => {
     cyan: "text-cyan-400 border-cyan-400 hover:bg-cyan-900/50 hover:text-cyan-200 hover:shadow-lg hover:shadow-cyan-400/30",
   };
 
-  const colorClass = colorThemes[color] || colorThemes.green;
+  const colorClass = colorThemes[color as TerminalButtonColor] || colorThemes.green;
 
-  const classes = `font-mono bg-black/70 backdrop-blur-sm px-4 xs:px-5 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-lg sm:rounded-lg shadow-md border-2 transition text-xs xs:text-sm sm:text-base ${colorClass}`;
+  const classes = `font-mono bg-black/70 backdrop-blur-sm px-4 xs:px-5 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-lg sm:rounded-lg shadow-md border-2 transition text-xs xs:text-sm sm:text-base ${colorClass}${
+    className ? ` ${className}` : ""
+  }${disabled ? " opacity-50 cursor-not-allowed" : ""}`;
 
   const content = (
     <motion.span
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      animate={{ 
+      animate={{
         // Idle pulse animation for engagement
         opacity: [1, 0.95, 1],
       }}
       transition={{
-        tap: { type: "spring" },
         opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
       }}
       className="inline-block"
@@ -56,27 +80,15 @@ const TerminalButton = ({ href, children, external, type, onClick, color }) => {
 
   // Case 3: Button (form or action)
   return (
-    <button type={type || "button"} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={classes}
+    >
       {content}
     </button>
   );
-};
-
-TerminalButton.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  external: PropTypes.bool,
-  type: PropTypes.oneOf(["button", "submit", "reset"]),
-  onClick: PropTypes.func,
-  color: PropTypes.oneOf(["green", "orange", "cyan"]), 
-};
-
-TerminalButton.defaultProps = {
-  href: null,
-  external: false,
-  type: "button",
-  onClick: undefined,
-  color: "green", // default to terminal green
 };
 
 export default TerminalButton;

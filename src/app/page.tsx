@@ -24,7 +24,7 @@ export default function Home() {
     setMounted(true);
     
     // Track mouse for interactive elements
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
@@ -78,9 +78,9 @@ export default function Home() {
         />
       </div>
 
-      <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white relative z-10">
+      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white relative z-10">
         {/* Home Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 text-center relative overflow-hidden">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 text-center relative overflow-hidden">
           {/* Multiple glowing orbs for depth */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="absolute w-72 sm:w-96 h-72 sm:h-96 bg-green-500/15 rounded-full blur-[100px] animate-pulse" />
@@ -212,7 +212,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 text-center relative">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 text-center relative">
           {/* Section divider */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
 
@@ -302,19 +302,19 @@ export default function Home() {
         </section>
 
         {/* Skills Showcase Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 relative">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 relative">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent" />
           <SkillsShowcase />
         </section>
 
         {/* Stats Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 relative">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 relative">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           <StatsSection />
         </section>
 
         {/* Projects Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 text-center relative">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 text-center relative">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
 
           <motion.div
@@ -335,7 +335,6 @@ export default function Home() {
             className="w-full"
           >
             <Cards
-              numberOfCards={3}
               items={[
                 {
                   picture: "/winlock.png",
@@ -379,7 +378,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 text-center relative">
+        <section className="flex flex-col items-center justify-center px-2 sm:px-4 md:px-6 py-16 sm:py-20 text-center relative">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent" />
 
           <motion.div

@@ -53,7 +53,7 @@ export default function LandingPage() {
 
   return (
     <DynamicBackground circleCount={5} lineCount={4} triangleCount={2} codeCount={6}>
-      <div className="snap-y snap-mandatory h-screen w-full flex flex-col items-center justify-center px-6 text-center overflow-y-auto">
+      <div className="w-full flex flex-col items-center justify-center px-6 py-16 sm:py-20 text-center">
         {/* Logo */}
         <motion.div
           className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"

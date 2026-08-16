@@ -188,9 +188,9 @@ export default function MyProjects() {
       triangleCount={3}
       codeCount={10}
     >
-      <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
+      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
         {/* Hero */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -225,7 +225,7 @@ export default function MyProjects() {
         {PROJECTS.map((proj, idx) => (
           <section
             key={idx}
-            className="snap-start h-screen flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 gap-6 sm:gap-8 text-center md:text-left"
+            className="flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 py-16 sm:py-20 gap-6 sm:gap-8 text-center md:text-left"
           >
             {idx % 2 === 0 ? (
               <>
@@ -404,7 +404,7 @@ export default function MyProjects() {
         ))}
 
         {/* Outro */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6">
+        <section className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-16 sm:py-20">
           <motion.div
             className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-4"
             initial={{ opacity: 0 }}

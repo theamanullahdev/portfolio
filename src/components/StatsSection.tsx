@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { STATS_DATA } from "@/data/experience";
 
-const AnimatedCounter = ({ end, unit = "" }) => {
+const AnimatedCounter = ({ end, unit = "" }: { end: number; unit?: string }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function StatsSection() {
     },
   };
 
-  const colorMap = {
+  const colorMap: Record<string, string> = {
     green: "border-green-400/30 hover:border-green-400/70 text-green-400",
     orange: "border-orange-400/30 hover:border-orange-400/70 text-orange-400",
     cyan: "border-cyan-400/30 hover:border-cyan-400/70 text-cyan-400",

@@ -24,9 +24,9 @@ export default function PreviewCard() {
       triangleCount={4}
       codeCount={8}
     >
-      <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
+      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
         {/* Home Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
           <motion.div
             className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 sm:mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
             initial={{ scale: 0, rotate: 180 }}

@@ -2,15 +2,15 @@
 "use client";
 
 import React, { useMemo, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-const randomRange = (min, max) => Math.random() * (max - min) + min;
+type ShapeType = "circle" | "line" | "triangle" | "code";
 
-function FloatingElement({ type }) {
+const randomRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+function FloatingElement({ type }: { type: ShapeType }) {
   // Generate all random values ONCE per client render
   const {
-    size,
     startX,
     startY,
     delay,
@@ -26,8 +26,8 @@ function FloatingElement({ type }) {
     const dur = randomRange(18, 32);
     const y = randomRange(100, 120);
 
-    let bs = {};
-    let txt = null;
+    let bs: React.CSSProperties = {};
+    let txt: string | null = null;
 
     switch (type) {
       case "circle":
@@ -122,15 +122,23 @@ function FloatingElement({ type }) {
 
 // Halves whatever count each page passes in, cutting shape/animation
 // render cost across the board without touching every call site.
-const scaleDown = (n) => Math.ceil(n / 2);
+const scaleDown = (n: number) => Math.ceil(n / 2);
+
+interface DynamicBackgroundProps {
+  children: React.ReactNode;
+  circleCount?: number;
+  lineCount?: number;
+  triangleCount?: number;
+  codeCount?: number;
+}
 
 const DynamicBackground = ({
   children,
-  circleCount,
-  lineCount,
-  triangleCount,
-  codeCount,
-}) => {
+  circleCount = 6,
+  lineCount = 6,
+  triangleCount = 6,
+  codeCount = 6,
+}: DynamicBackgroundProps) => {
   const [mounted, setMounted] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -151,11 +159,11 @@ const DynamicBackground = ({
     return <>{children}</>;
   }
 
-  const shapes = [
-    ...Array.from({ length: scaleDown(circleCount) }, () => "circle"),
-    ...Array.from({ length: scaleDown(lineCount) }, () => "line"),
-    ...Array.from({ length: scaleDown(triangleCount) }, () => "triangle"),
-    ...Array.from({ length: scaleDown(codeCount) }, () => "code"),
+  const shapes: ShapeType[] = [
+    ...Array.from({ length: scaleDown(circleCount) }, (): ShapeType => "circle"),
+    ...Array.from({ length: scaleDown(lineCount) }, (): ShapeType => "line"),
+    ...Array.from({ length: scaleDown(triangleCount) }, (): ShapeType => "triangle"),
+    ...Array.from({ length: scaleDown(codeCount) }, (): ShapeType => "code"),
   ];
 
   return (
@@ -172,21 +180,6 @@ const DynamicBackground = ({
       <div className="relative z-10">{children}</div>
     </div>
   );
-};
-
-DynamicBackground.propTypes = {
-  children: PropTypes.node.isRequired,
-  circleCount: PropTypes.number,
-  lineCount: PropTypes.number,
-  triangleCount: PropTypes.number,
-  codeCount: PropTypes.number,
-};
-
-DynamicBackground.defaultProps = {
-  circleCount: 6,
-  lineCount: 6,
-  triangleCount: 6,
-  codeCount: 6,
 };
 
 export default DynamicBackground;

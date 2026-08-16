@@ -2,10 +2,10 @@
 import React, { useEffect, useRef } from "react";
 
 const CursorTrail = () => {
-  const circleRef = useRef(null);
-  const particlesRef = useRef([]);
-  const rafIdRef = useRef(null);
-  const pendingRef = useRef(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<(HTMLSpanElement | HTMLDivElement)[]>([]);
+  const rafIdRef = useRef<number | null>(null);
+  const pendingRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const applyMove = () => {
@@ -28,7 +28,7 @@ const CursorTrail = () => {
       }
     };
 
-    const moveCursor = (e) => {
+    const moveCursor = (e: MouseEvent) => {
       pendingRef.current = { x: e.clientX, y: e.clientY };
       // Only one DOM update + particle spawn per animation frame,
       // no matter how many mousemove events fire in between.
@@ -37,7 +37,7 @@ const CursorTrail = () => {
       }
     };
 
-    const spawnChar = (x, y) => {
+    const spawnChar = (x: number, y: number) => {
       const span = document.createElement("span");
       span.className = "cursor-particle";
       span.innerText = getRandomChar();
@@ -53,7 +53,7 @@ const CursorTrail = () => {
       }, 900);
     };
 
-    const spawnDot = (x, y) => {
+    const spawnDot = (x: number, y: number) => {
       const dot = document.createElement("div");
       dot.className = "cursor-dot";
       dot.style.left = `${x}px`;

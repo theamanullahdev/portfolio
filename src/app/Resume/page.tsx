@@ -1,20 +1,21 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
-import { Document, Packer, Paragraph } from "docx";
-import { saveAs } from "file-saver";
 import DynamicBackground from "@/components/DynamicBackground";
 
+type ResumeSection =
+  | { type: "heading"; text: string }
+  | { type: "subheading"; text: string }
+  | { type: "section"; title: string; items: string[] };
+
 export default function ResumePage() {
-  const resumeRef = useRef();
+  const resumeRef = useRef<HTMLDivElement>(null);
 
   const [pdfBtnText, setPdfBtnText] = useState("Download PDF");
   const [docxBtnText, setDocxBtnText] = useState("Download DOCX");
   const [copyBtnText, setCopyBtnText] = useState("Copy");
 
-  const resumeSections = [
+  const resumeSections: ResumeSection[] = [
     { type: "heading", text: "Amanullah" },
     {
       type: "subheading",
@@ -71,31 +72,32 @@ export default function ResumePage() {
     },
   ];
 
-  const downloadPDF = () => {
+  const downloadPDF = async () => {
+    const { jsPDF } = await import("jspdf");
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     let y = 40;
 
     resumeSections.forEach((section) => {
       if (section.type === "heading") {
         doc.setFontSize(22);
-        doc.setFont(undefined, "bold");
+        doc.setFont("helvetica", "bold");
         doc.text(section.text, 40, y);
         y += 28;
       } else if (section.type === "subheading") {
         doc.setFontSize(14);
-        doc.setFont(undefined, "normal");
+        doc.setFont("helvetica", "normal");
         doc.text(section.text, 40, y);
         y += 22;
       } else if (section.type === "section") {
         doc.setFontSize(14);
-        doc.setFont(undefined, "bold");
+        doc.setFont("helvetica", "bold");
         doc.text(section.title, 40, y);
         y += 18;
         doc.setFontSize(12);
-        doc.setFont(undefined, "normal");
+        doc.setFont("helvetica", "normal");
         section.items.forEach((item) => {
-          const splitText = doc.splitTextToSize("- " + item, 500);
-          splitText.forEach((line) => {
+          const splitText: string[] = doc.splitTextToSize("- " + item, 500);
+          splitText.forEach((line: string) => {
             doc.text(line, 45, y);
             y += 16;
           });
@@ -114,6 +116,8 @@ export default function ResumePage() {
   };
 
   const downloadDOCX = async () => {
+    const { Document, Packer, Paragraph } = await import("docx");
+    const { default: saveAs } = await import("file-saver");
     const doc = new Document({
       sections: [
         {
@@ -122,12 +126,12 @@ export default function ResumePage() {
               return [new Paragraph({ text: section.text, heading: "Title" })];
             } else if (section.type === "subheading") {
               return [
-                new Paragraph({ text: section.text, heading: "Subtitle" }),
+                new Paragraph({ text: section.text, heading: "Heading1" }),
               ];
             } else if (section.type === "section") {
               const titlePara = new Paragraph({
                 text: section.title,
-                bold: true,
+                run: { bold: true },
               });
               const itemsPara = section.items.map(
                 (item) => new Paragraph({ text: "- " + item })

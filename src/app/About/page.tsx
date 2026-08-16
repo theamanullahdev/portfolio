@@ -30,9 +30,9 @@ export default function About() {
       triangleCount={3}
       codeCount={10}
     >
-      <div className="snap-y snap-mandatory h-screen overflow-scroll bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
+      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
         {/* Intro Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
           <motion.div
             className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
             initial={{ scale: 0 }}
@@ -87,7 +87,7 @@ export default function About() {
         </section>
 
         {/* Skills Section */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
           <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
             <HighlightWords text="My Skills" color="orange" />
           </div>
@@ -144,7 +144,7 @@ export default function About() {
         </section>
 
         {/* Journey / Timeline */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
           <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
             <HighlightWords text="My Journey" color="blue" />
           </div>
@@ -197,7 +197,7 @@ export default function About() {
         </section>
 
         {/* Call to Action */}
-        <section className="snap-start h-screen flex flex-col items-center justify-center px-4 sm:px-6 text-center space-y-6">
+        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center space-y-6">
           <div className="text-2xl sm:text-3xl md:text-4xl font-semibold">
             <HighlightWords text="Let&#39;s Work Together" color="green" />
           </div>
