@@ -8,8 +8,10 @@ import React, { useEffect, useRef, useState } from "react";
 // marker a definite height equal to the row (the waypoint), so its line
 // fills exactly that waypoint's height with no JS measurement. Consecutive
 // waypoints (no vertical gap between them) chain into what reads as one
-// continuous track. Reveal reuses Heading's one-shot IntersectionObserver
-// pattern — no scroll-percentage listener, no resize edge cases.
+// continuous track. Reveal reuses Heading's IntersectionObserver pattern —
+// no scroll-percentage listener, no resize edge cases — and is reversible,
+// not one-shot: scrolling a waypoint back out of view un-reveals its
+// marker and retracts its line the same way it grew in.
 interface RouteMarkerProps {
   number: string;
   final?: boolean;
@@ -23,12 +25,7 @@ export function RouteMarker({ number, final = false }: RouteMarkerProps) {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRevealed(true);
-          observer.disconnect();
-        }
-      },
+      ([entry]) => setRevealed(entry.isIntersecting),
       { threshold: 0.3 }
     );
     observer.observe(el);

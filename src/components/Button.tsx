@@ -16,6 +16,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   color?: ButtonColor;
+  size?: "sm" | "md";
   className?: string;
   disabled?: boolean;
 }
@@ -48,6 +49,16 @@ const VARIANTS: Record<ButtonColor, { text: string; fill: string; frame: string 
 const BEVEL =
   "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.12),inset_-2px_-2px_4px_rgba(0,0,0,0.5),inset_0_0_0_4px_rgba(13,11,8,0.95),inset_0_0_0_6px_rgba(230,196,110,0.6),0_2px_5px_rgba(0,0,0,0.4)] active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]";
 
+// Ornament sizing per button size — a small button (a "Details" link
+// inside a Panel card, say) rendered with the same fixed chamfer/stud/tick
+// sizing as a hero CTA is what made ornaments read as "weird" at small
+// sizes: a 16px chamfer eats half the height of a 32px-tall button, and
+// full-size ticks look cluttered relative to the button's own scale.
+const SIZE: Record<"sm" | "md", { plaque: string; padding: string; text: string; chamfer: number; compact: boolean }> = {
+  sm: { plaque: "plaque-sm", padding: "px-4 py-2", text: "text-2xs", chamfer: 7, compact: true },
+  md: { plaque: "plaque", padding: "px-6 py-3 sm:px-7 sm:py-3.5", text: "text-sm sm:text-base", chamfer: 12, compact: false },
+};
+
 const Button = ({
   href,
   children,
@@ -55,13 +66,15 @@ const Button = ({
   type = "button",
   onClick,
   color = "brass",
+  size = "md",
   className,
   disabled,
 }: ButtonProps) => {
   const v = VARIANTS[color];
+  const s = SIZE[size];
   const classes = `group relative inline-flex items-center justify-center gap-2
-    plaque plaque-fill font-label text-sm sm:text-base tracking-[0.02em] uppercase
-    px-6 py-3 sm:px-7 sm:py-3.5 ${v.text} ${BEVEL}
+    ${s.plaque} plaque-fill font-label ${s.text} tracking-[0.02em] uppercase
+    ${s.padding} ${v.text} ${BEVEL}
     transition-colors duration-300 hover:text-ink
     active:scale-[0.97] active:translate-y-px
     ${disabled ? "opacity-40 pointer-events-none" : ""}
@@ -77,7 +90,7 @@ const Button = ({
   const content = (
     <>
       {fill}
-      <Frame className={`${v.frame} transition-colors duration-300`} />
+      <Frame chamfer={s.chamfer} compact={s.compact} className={`${v.frame} transition-colors duration-300`} />
       <span className="relative z-10">{children}</span>
     </>
   );

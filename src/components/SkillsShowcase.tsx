@@ -1,20 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SKILLS_DATA } from "@/data/skills";
 
 // Home-only. No longer renders its own Heading/section — folded into the
 // "The Work" waypoint in page.tsx alongside the bio + stats strip.
+// Reversible: fills to `level` on scroll-into-view, retracts to 0 on
+// scroll-out, so it replays instead of firing once and going inert.
 const SkillBar = ({ level }: { level: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const id = requestAnimationFrame(() => setWidth(level));
-    return () => cancelAnimationFrame(id);
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setWidth(entry.isIntersecting ? level : 0),
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [level]);
 
   return (
-    <div className="h-[3px] bg-ink-3">
+    <div ref={ref} className="h-[3px] bg-ink-3">
       <div
         className="h-full bg-verdigris transition-[width] duration-700 ease-out"
         style={{ width: `${width}%` }}

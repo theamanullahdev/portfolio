@@ -4,10 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 
 // "Entry numeral + rule-draw" heading — docs/DESIGN.md §7. Replaces
 // HighlightWords for migrated pages. The rule-draw is IntersectionObserver-
-// driven (one-shot, disconnects after firing) rather than CSS
-// animation-timeline — simpler and reliably supported everywhere, which
-// DESIGN.md §5 treats as an acceptable fallback; using it as the primary
-// implementation is a deliberate simplification, not a missed feature.
+// driven rather than CSS animation-timeline — simpler and reliably
+// supported everywhere, which DESIGN.md §5 treats as an acceptable
+// fallback. Reversible, not one-shot: the observer stays connected and
+// mirrors `entry.isIntersecting` in both directions, so scrolling back up
+// past a heading un-draws its rule the same way scrolling down drew it —
+// the page stays "alive" on reverse scroll instead of everything staying
+// permanently revealed after the first pass.
 type HeadingColor = "brass" | "verdigris" | "rubric";
 
 interface HeadingProps {
@@ -38,12 +41,7 @@ const Heading = ({ number, text, color = "brass", as: Tag = "h2", className }: H
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
+      ([entry]) => setInView(entry.isIntersecting),
       { threshold: 0.4 }
     );
     observer.observe(el);

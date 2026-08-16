@@ -61,23 +61,23 @@ export default function MsgMePage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
         <Panel title="Email Me" color="brass" className="flex flex-col items-start gap-3">
           <p className="font-reading text-sm text-paper-dim">theamanullahdev@gmail.com</p>
-          <Button href="mailto:theamanullahdev@gmail.com" external color="brass" className="text-2xs !px-4 !py-2">
+          <Button href="mailto:theamanullahdev@gmail.com" external color="brass" size="sm">
             Send Email
           </Button>
         </Panel>
         <Panel title="Twitter" color="verdigris" className="flex flex-col items-start gap-3">
           {/* <p className="font-reading text-sm text-paper-dim">@theAmanullahDev</p>
-          <Button href="https://twitter.com/theAmanullahDev" external color="verdigris" className="text-2xs !px-4 !py-2">
+          <Button href="https://twitter.com/theAmanullahDev" external color="verdigris" size="sm">
             Open Twitter
           </Button> */}
           <p className="font-reading text-sm text-paper-dim">@amanullah_bhlm</p>
-          <Button href="https://twitter.com/amanullah_bhlm" external color="verdigris" className="text-2xs !px-4 !py-2">
+          <Button href="https://twitter.com/amanullah_bhlm" external color="verdigris" size="sm">
             Open Twitter
           </Button>
         </Panel>
         <Panel title="Resume" color="brass" className="flex flex-col items-start gap-3">
           <p className="font-reading text-sm text-paper-dim">Full resume and download options</p>
-          <Button href="/Resume" color="brass" className="text-2xs !px-4 !py-2">
+          <Button href="/Resume" color="brass" size="sm">
             Open Resume
           </Button>
         </Panel>

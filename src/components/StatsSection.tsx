@@ -1,31 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { STATS_DATA } from "@/data/experience";
 
 // Home-only. No longer renders its own Heading/section — folded into the
 // "The Work" waypoint in page.tsx as one composed unit alongside the
 // skills ledger, instead of a separate full-width stacked section.
+// Reversible, not mount-triggered: counts up on scroll-into-view, resets
+// to 0 on scroll-out, so it replays instead of firing once and going inert.
 const AnimatedCounter = ({ end, unit = "" }: { end: number; unit?: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let current = 0;
-    const increment = end / 40;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, 30);
-    return () => clearInterval(timer);
+    const el = ref.current;
+    if (!el) return;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (timer) clearInterval(timer);
+        if (!entry.isIntersecting) {
+          setCount(0);
+          return;
+        }
+        let current = 0;
+        const increment = end / 40;
+        timer = setInterval(() => {
+          current += increment;
+          if (current >= end) {
+            setCount(end);
+            if (timer) clearInterval(timer);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, 30);
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timer) clearInterval(timer);
+    };
   }, [end]);
 
   return (
-    <span>
+    <span ref={ref}>
       {count}
       {unit}
     </span>

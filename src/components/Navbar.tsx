@@ -48,21 +48,35 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className={`group plaque plaque-fill relative flex items-center gap-2.5 pl-4 pr-5 py-3
-                ${BEVEL} transition-colors duration-300`}
+              className={`group plaque plaque-fill relative flex items-center gap-2.5 pl-4 pr-5 py-3 border-2
+                ${BEVEL} transition-[color,border-color,transform] duration-300
+                ${active ? "border-brass-bright" : "border-brass/25 hover:border-brass/60"}
+                hover:translate-x-1`}
             >
+              {/* Current-page indicator — a small tab riding the left edge,
+                  not just a subtler text color, so "where am I" reads at a
+                  glance instead of needing to compare opacity between items. */}
+              {active && (
+                <span
+                  aria-hidden
+                  className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-5 bg-brass-bright"
+                />
+              )}
+              {active && <span aria-hidden className="absolute inset-0 -z-10 bg-brass/10" />}
               <Frame
                 className={`transition-colors duration-300 ${
-                  active ? "text-brass-bright" : "text-brass/50 group-hover:text-brass"
+                  active ? "text-brass-bright" : "text-brass/50 group-hover:text-brass-bright"
                 }`}
               />
               <FontAwesomeIcon
                 icon={item.icon}
-                className={`w-3.5 h-3.5 shrink-0 ${active ? "text-brass-bright" : "text-brass/70"}`}
+                className={`w-3.5 h-3.5 shrink-0 transition-colors duration-300 ${
+                  active ? "text-brass-bright" : "text-brass/70 group-hover:text-brass-bright"
+                }`}
               />
               <span
-                className={`font-label text-xs tracking-wide whitespace-nowrap ${
-                  active ? "text-brass-bright" : "text-paper"
+                className={`font-label text-xs tracking-wide whitespace-nowrap transition-colors duration-300 ${
+                  active ? "text-brass-bright" : "text-paper group-hover:text-brass-bright"
                 }`}
               >
                 {item.label}
@@ -102,8 +116,13 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`plaque plaque-fill relative flex items-center gap-3 pl-4 pr-6 py-3 ${BEVEL}`}
+                className={`group plaque plaque-fill relative flex items-center gap-3 pl-4 pr-6 py-3 border-2 ${BEVEL}
+                  transition-colors duration-300 ${active ? "border-brass-bright" : "border-brass/25 active:border-brass/60"}`}
               >
+                {active && (
+                  <span aria-hidden className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-brass-bright" />
+                )}
+                {active && <span aria-hidden className="absolute inset-0 -z-10 bg-brass/10" />}
                 <Frame className={active ? "text-brass-bright" : "text-brass/50"} />
                 <FontAwesomeIcon
                   icon={item.icon}
