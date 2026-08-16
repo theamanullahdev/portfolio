@@ -17,8 +17,15 @@ interface PlateProps {
   external?: boolean;
 }
 
+// Same bevel language as Button (docs/DESIGN.md §7 addendum) — the plate
+// reads as a mounted plaque, not a flat card.
+const PLATE_SHADOW =
+  "shadow-[inset_0_1px_0_rgba(230,196,110,0.1),inset_0_-1px_0_rgba(0,0,0,0.4),0_4px_10px_rgba(0,0,0,0.35)]";
+
 const Plate = ({ image, figure, title, caption, description, tags, href, external }: PlateProps) => (
-  <div className="flex flex-col border border-brass/30 bg-ink-2 hover:border-brass/70 transition-colors duration-300">
+  <div
+    className={`flex flex-col border border-brass/30 bg-ink-2 hover:border-brass/70 transition-colors duration-300 ${PLATE_SHADOW}`}
+  >
     <div className="relative w-full h-48 sm:h-56 border-b border-brass/30">
       <Image src={image} alt={title} fill sizes="(max-width: 639px) 100vw, 400px" className="object-cover" />
     </div>

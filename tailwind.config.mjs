@@ -71,6 +71,13 @@ export default {
           "0%, 100%": { transform: "translate(0, 0)" },
           "50%": { transform: "translate(2.5%, -2%)" },
         },
+        // The Route's one-shot arrival ping (docs/DESIGN.md §5) — plays a
+        // fixed number of times (see the `animate-[..._2]` iteration count
+        // where it's used), not an infinite loop.
+        "route-arrive": {
+          "0%": { transform: "scale(1)", opacity: "0.8" },
+          "100%": { transform: "scale(2.4)", opacity: "0" },
+        },
       },
       animation: {
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",

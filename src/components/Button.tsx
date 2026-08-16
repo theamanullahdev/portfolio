@@ -28,6 +28,12 @@ const VARIANTS: Record<ButtonColor, { border: string; text: string; fill: string
   rubric: { border: "border-rubric", text: "text-rubric", fill: "bg-rubric" },
 };
 
+// Crafted-object bevel (docs/DESIGN.md §7 addendum) — reads as an embossed
+// plate rather than a flat bordered rectangle. Deeper inset on :active
+// reads as a physical press.
+const BEVEL =
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.12),inset_-2px_-2px_4px_rgba(0,0,0,0.5),0_2px_5px_rgba(0,0,0,0.4)] active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]";
+
 const Button = ({
   href,
   children,
@@ -41,7 +47,7 @@ const Button = ({
   const v = VARIANTS[color];
   const classes = `group relative inline-flex items-center justify-center gap-2 overflow-hidden
     font-technical text-xs sm:text-sm tracking-[0.08em] uppercase
-    px-5 py-2.5 sm:px-6 sm:py-3 border ${v.border} ${v.text} bg-ink-2
+    px-5 py-2.5 sm:px-6 sm:py-3 border ${v.border} ${v.text} bg-ink-2 ${BEVEL}
     transition-colors duration-300 hover:text-ink
     active:scale-[0.97] active:translate-y-px
     ${disabled ? "opacity-40 pointer-events-none" : ""}

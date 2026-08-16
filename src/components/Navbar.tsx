@@ -13,11 +13,10 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-// "The Bookmark" — docs/DESIGN.md §6. All 4 destinations show as icons at
-// rest (reads unambiguously as a menu, not a single logo-like icon), the
-// rail widens on hover/focus to reveal numerals + labels. Pure CSS
-// transition, one useState for the mobile overlay only — no framer-motion,
-// no timers.
+// "The Medallions" — docs/DESIGN.md §6. Four independent crafted objects,
+// not one panel: each is a small embossed disc (layered box-shadow faking a
+// bevel) rather than a flat bordered circle. Per-item hover reveal, no
+// shared expand/collapse state.
 const NAV_ITEMS = [
   { label: "Home", numeral: "01", icon: faHome, href: "/" },
   { label: "About", numeral: "02", icon: faUser, href: "/About" },
@@ -25,67 +24,65 @@ const NAV_ITEMS = [
   { label: "Contact", numeral: "04", icon: faEnvelope, href: "/MsgMe" },
 ];
 
+// Full literal shadow strings (not assembled at runtime) so Tailwind's
+// scanner generates both — see the note on this in Button.tsx.
+const MEDALLION_SHADOW =
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.18),inset_-2px_-2px_5px_rgba(0,0,0,0.65),0_3px_8px_rgba(0,0,0,0.5)]";
+const MEDALLION_SHADOW_ACTIVE =
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.25),inset_-2px_-2px_5px_rgba(0,0,0,0.65),0_3px_8px_rgba(0,0,0,0.5),0_0_14px_rgba(230,196,110,0.35)]";
+
 const Navbar = () => {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      {/* Desktop: vertical icon rail, shaped like a ribbon bookmark (fishtail
-          notch at the bottom), widens to reveal labels on hover/focus */}
-      <aside
-        className="group hidden md:flex fixed left-0 top-0 h-screen z-20 flex-col justify-center
-                   w-20 hover:w-60 focus-within:w-60 transition-[width] duration-300 ease-out
-                   bg-gradient-to-b from-ink-2 via-ink-2 to-ink-3 border-r border-brass/30 overflow-hidden
-                   [clip-path:polygon(0_0,100%_0,100%_93%,50%_100%,0_93%)]"
-      >
-        {/* Stitch line — reads as ribbon seam, not a plain panel */}
-        <span
-          aria-hidden
-          className="absolute inset-y-10 left-10 w-px border-l border-dashed border-brass/20"
-        />
-
-        {NAV_ITEMS.map((item, i) => {
+      {/* Desktop: stacked medallions, vertically centered on the left edge */}
+      <aside className="hidden md:flex fixed left-5 top-1/2 -translate-y-1/2 z-20 flex-col gap-5">
+        {NAV_ITEMS.map((item) => {
           const active = item.href === pathname;
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="relative flex items-center gap-4 h-16 pl-6 shrink-0"
-            >
-              {active && (
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-0 h-full w-[3px] bg-brass-bright"
-                />
-              )}
-              <FontAwesomeIcon
-                icon={item.icon}
-                className={`w-4 h-4 shrink-0 transition-colors ${
-                  active ? "text-brass-bright" : "text-brass/60 group-hover:text-brass"
-                }`}
-              />
-              <span
-                className="flex items-baseline gap-2 whitespace-nowrap opacity-0 -translate-x-1 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 group-focus-within:opacity-100 group-focus-within:translate-x-0"
-                style={{ transitionDelay: `${i * 40}ms` }}
+            <div key={item.href} className="group/item relative">
+              <Link
+                href={item.href}
+                aria-label={item.label}
+                className={`relative flex items-center justify-center w-12 h-12 rounded-full
+                  bg-gradient-to-br from-ink-2 to-ink-3 transition-[border-color] duration-300
+                  ${active ? `border-2 border-brass-bright ${MEDALLION_SHADOW_ACTIVE}` : `border border-brass/50 hover:border-brass ${MEDALLION_SHADOW}`}`}
               >
-                <span className="font-technical text-2xs text-brass">§{item.numeral}</span>
-                <span
-                  className={`font-reading text-base ${
-                    active ? "text-brass-bright" : "text-paper"
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  className={`w-4 h-4 ${
+                    active ? "text-brass-bright" : "text-brass/70 group-hover/item:text-brass"
                   }`}
+                />
+              </Link>
+
+              {/* Per-item label flyout */}
+              <span
+                className="absolute left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap
+                  bg-ink-2 border border-brass/40 px-3 py-1.5
+                  opacity-0 -translate-x-2 pointer-events-none
+                  transition-[opacity,transform] duration-200 ease-out
+                  group-hover/item:opacity-100 group-hover/item:translate-x-0
+                  group-focus-within/item:opacity-100 group-focus-within/item:translate-x-0"
+              >
+                <span className="font-technical text-2xs text-brass mr-2">§{item.numeral}</span>
+                <span
+                  className={`font-reading text-sm ${active ? "text-brass-bright" : "text-paper"}`}
                 >
                   {item.label}
                 </span>
               </span>
-            </Link>
+            </div>
           );
         })}
       </aside>
 
       {/* Mobile: corner tab + full-screen index overlay */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center rounded border border-brass/60 bg-ink-2 text-brass"
+        className={`md:hidden fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center rounded-full
+          bg-gradient-to-br from-ink-2 to-ink-3 border border-brass/60 text-brass ${MEDALLION_SHADOW}`}
         onClick={() => setMobileOpen((open) => !open)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
@@ -102,7 +99,7 @@ const Navbar = () => {
       >
         <nav
           aria-label="Section index"
-          className="h-full flex flex-col items-center justify-center gap-8"
+          className="h-full flex flex-col items-center justify-center gap-6"
         >
           {NAV_ITEMS.map((item) => {
             const active = item.href === pathname;
@@ -111,12 +108,23 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-4 font-reading text-2xl ${
-                  active ? "text-brass-bright" : "text-paper"
-                }`}
+                className="flex items-center gap-4"
               >
-                <span className="font-technical text-sm text-brass">§{item.numeral}</span>
-                {item.label}
+                <span
+                  className={`flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-ink-2 to-ink-3 ${
+                    active
+                      ? `border-2 border-brass-bright ${MEDALLION_SHADOW_ACTIVE}`
+                      : `border border-brass/50 ${MEDALLION_SHADOW}`
+                  }`}
+                >
+                  <FontAwesomeIcon
+                    icon={item.icon}
+                    className={`w-4 h-4 ${active ? "text-brass-bright" : "text-brass/70"}`}
+                  />
+                </span>
+                <span className={`font-reading text-2xl ${active ? "text-brass-bright" : "text-paper"}`}>
+                  {item.label}
+                </span>
               </Link>
             );
           })}
