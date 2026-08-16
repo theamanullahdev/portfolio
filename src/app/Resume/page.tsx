@@ -207,7 +207,7 @@ export default function ResumePage() {
         </Button>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 sm:px-8 pt-16 sm:pt-20 pb-12">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-8 pt-16 sm:pt-20 pb-28 md:pb-12">
         <div className="max-w-3xl mx-auto">
           <Roller />
 
@@ -253,9 +253,14 @@ export default function ResumePage() {
         </div>
       </div>
 
-      {/* Mobile: no left rail to dock into, so the actions stay a
-          full-width bar pinned to the viewport bottom. */}
-      <div className="md:hidden flex-none border-t border-brass/20 bg-ink-2 flex gap-2 px-4 py-4">
+      {/* Mobile: no left rail to dock into, so the actions are a fixed
+          full-width bar pinned to the viewport bottom — `fixed`, not just
+          `flex-none`, because this page's content is taller than one
+          screen and the outer column only has a `min-h-screen` (it grows
+          with content), so anything merely flowing at the end of it sits
+          at the bottom of the whole document, not the bottom of the
+          viewport, and needed a full page scroll to ever reach. */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-brass/20 bg-ink-2 flex gap-2 px-4 py-4">
         <Button onClick={downloadPDF} color="brass" className="flex-1">
           {pdfBtnText}
         </Button>
