@@ -12,6 +12,7 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import Flourish from "@/components/Flourish";
 
 // docs/DESIGN.md §6. Labels are always visible now, not hover-gated — an
 // icon-only rail reads as ambiguous regardless of how the icon itself is
@@ -29,8 +30,9 @@ const NAV_ITEMS = [
   { label: "Contact", numeral: "04", icon: faEnvelope, href: "/MsgMe" },
 ];
 
+// Same bevel + banded-groove language as Button.tsx (docs/DESIGN.md §7).
 const BEVEL =
-  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.6),0_3px_7px_rgba(0,0,0,0.45)]";
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.6),inset_0_0_0_4px_rgba(13,11,8,0.95),inset_0_0_0_6px_rgba(230,196,110,0.6),0_3px_7px_rgba(0,0,0,0.45)]";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -46,11 +48,11 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className={`plaque flex items-center gap-2.5 pl-3 pr-4 py-2.5
-                bg-gradient-to-br from-ink-2 to-ink-3 ${BEVEL}
-                transition-colors duration-300
-                ${active ? "border-2 border-brass-bright" : "border border-brass/50 hover:border-brass"}`}
+              className={`plaque plaque-fill relative flex items-center gap-2.5 pl-4 pr-5 py-3
+                ${BEVEL} transition-colors duration-300
+                ${active ? "border-2 border-brass-bright" : "border-2 border-brass/50 hover:border-brass"}`}
             >
+              <Flourish corners={["tl", "br"]} size="w-4 h-4" />
               <FontAwesomeIcon
                 icon={item.icon}
                 className={`w-3.5 h-3.5 shrink-0 ${active ? "text-brass-bright" : "text-brass/70"}`}
@@ -69,12 +71,13 @@ const Navbar = () => {
 
       {/* Mobile: corner tab + full-screen index overlay */}
       <button
-        className={`md:hidden plaque fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center
-          bg-gradient-to-br from-ink-2 to-ink-3 border border-brass/60 text-brass ${BEVEL}`}
+        className={`md:hidden plaque plaque-fill fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center
+          border-2 border-brass/60 text-brass ${BEVEL}`}
         onClick={() => setMobileOpen((open) => !open)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
       >
+        <Flourish corners={["tl", "br"]} size="w-4 h-4" />
         <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} />
       </button>
 
@@ -96,10 +99,10 @@ const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`plaque flex items-center gap-3 pl-4 pr-6 py-3
-                  bg-gradient-to-br from-ink-2 to-ink-3 ${BEVEL}
-                  ${active ? "border-2 border-brass-bright" : "border border-brass/50"}`}
+                className={`plaque plaque-fill relative flex items-center gap-3 pl-4 pr-6 py-3
+                  ${BEVEL} ${active ? "border-2 border-brass-bright" : "border-2 border-brass/50"}`}
               >
+                <Flourish corners={["tl", "tr", "bl", "br"]} size="w-5 h-5" />
                 <FontAwesomeIcon
                   icon={item.icon}
                   className={`w-4 h-4 ${active ? "text-brass-bright" : "text-brass/70"}`}

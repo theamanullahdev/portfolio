@@ -48,6 +48,18 @@ export default function Home() {
                       />
                     );
                   })}
+                  {/* Cardinal accent studs — the ring's own "riveted
+                      instrument" detail, echoing the button/plaque rivets. */}
+                  {[0, 90, 180, 270].map((angle) => (
+                    <circle
+                      key={angle}
+                      cx="50"
+                      cy="3.5"
+                      r="1.4"
+                      className="fill-brass-bright"
+                      transform={`rotate(${angle} 50 50)`}
+                    />
+                  ))}
                 </svg>
                 <div className="relative w-full h-full rounded-full overflow-hidden border border-brass/50">
                   <Image

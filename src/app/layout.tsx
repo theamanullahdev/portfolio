@@ -1,4 +1,4 @@
-import { Fraunces, Newsreader, Martian_Mono, Cinzel } from "next/font/google";
+import { Fraunces, Newsreader, Martian_Mono, MedievalSharp } from "next/font/google";
 import "./globals.css";
 import Navbar from "@Comps/Navbar";
 import CursorTrail from "@/components/CursorTrail";
@@ -24,16 +24,16 @@ const martianMono = Martian_Mono({
   subsets: ["latin"],
 });
 
-// Fourth family, deliberately: for button/tag/nav *labels* specifically —
-// Roman inscription lettering, literally designed to look carved into
-// stone/metal. Answers "buttons still read as generic web UI" in a way the
-// bevel shadow alone didn't; everything else (numerals, body, headings)
-// keeps using the original three. Not variable on Google Fonts, so request
-// explicit weights rather than assuming a wght axis exists.
-const cinzel = Cinzel({
+// Fourth family, for button/tag/nav *labels* specifically. Was Cinzel
+// (Roman inscription lettering) — swapped after feedback that Cinzel reads
+// as classical, not medieval, which is what "carved plaque" actually needs.
+// MedievalSharp is purpose-built for fantasy/game UI labels. Scoped to short
+// labels only, same as before; everything else (numerals, body, headings)
+// keeps using the original three. Single static weight on Google Fonts.
+const medievalSharp = MedievalSharp({
   variable: "--font-label",
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400"],
 });
 
 export const metadata = {
@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} ${cinzel.variable} antialiased`}
+        className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} ${medievalSharp.variable} antialiased`}
       >
         <CursorTrail />
         <div className="flex min-h-screen w-full relative z-10">

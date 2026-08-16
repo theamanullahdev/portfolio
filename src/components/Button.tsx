@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Flourish from "@/components/Flourish";
 
 // "Wax-seal plate" button — docs/DESIGN.md §7. Replaces TerminalButton for
 // migrated pages; TerminalButton itself is untouched and still used by
@@ -28,11 +29,15 @@ const VARIANTS: Record<ButtonColor, { border: string; text: string; fill: string
   rubric: { border: "border-rubric", text: "text-rubric", fill: "bg-rubric" },
 };
 
-// Crafted-object bevel (docs/DESIGN.md §7 addendum) — reads as an embossed
-// plate rather than a flat bordered rectangle. Deeper inset on :active
+// Crafted-object bevel + banded groove (docs/DESIGN.md §7 ornamental
+// addendum) — the emboss layers from before, plus an inset ink channel and
+// a thin inner brass line reading as a machined double-edge rather than a
+// single hairline. All in one shadow value (can't split the groove into a
+// separate CSS class without it fighting this one over which box-shadow
+// wins — see the note removed from globals.css). Deeper inset on :active
 // reads as a physical press.
 const BEVEL =
-  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.12),inset_-2px_-2px_4px_rgba(0,0,0,0.5),0_2px_5px_rgba(0,0,0,0.4)] active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]";
+  "shadow-[inset_1px_1px_2px_rgba(230,196,110,0.12),inset_-2px_-2px_4px_rgba(0,0,0,0.5),inset_0_0_0_4px_rgba(13,11,8,0.95),inset_0_0_0_6px_rgba(230,196,110,0.6),0_2px_5px_rgba(0,0,0,0.4)] active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]";
 
 const Button = ({
   href,
@@ -46,8 +51,8 @@ const Button = ({
 }: ButtonProps) => {
   const v = VARIANTS[color];
   const classes = `group relative inline-flex items-center justify-center gap-2
-    plaque font-label text-sm sm:text-base tracking-[0.04em] uppercase
-    px-5 py-2.5 sm:px-6 sm:py-3 border ${v.border} ${v.text} bg-ink-2 ${BEVEL}
+    plaque plaque-fill font-label text-sm sm:text-base tracking-[0.02em] uppercase
+    px-6 py-3 sm:px-7 sm:py-3.5 border-2 ${v.border} ${v.text} ${BEVEL}
     transition-colors duration-300 hover:text-ink
     active:scale-[0.97] active:translate-y-px
     ${disabled ? "opacity-40 pointer-events-none" : ""}
@@ -63,6 +68,7 @@ const Button = ({
   const content = (
     <>
       {fill}
+      <Flourish size="w-5 h-5 sm:w-6 sm:h-6" />
       <span className="relative z-10">{children}</span>
     </>
   );

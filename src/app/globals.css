@@ -39,17 +39,36 @@ body {
  */
 .plaque {
   clip-path: polygon(
+    16px 0, calc(100% - 16px) 0, 100% 16px,
+    100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%,
+    0 calc(100% - 16px), 0 16px
+  );
+}
+.plaque-sm {
+  clip-path: polygon(
     10px 0, calc(100% - 10px) 0, 100% 10px,
     100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%,
     0 calc(100% - 10px), 0 10px
   );
 }
-.plaque-sm {
-  clip-path: polygon(
-    6px 0, calc(100% - 6px) 0, 100% 6px,
-    100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%,
-    0 calc(100% - 6px), 0 6px
-  );
+
+/*
+ * Brushed-metal fill (docs/DESIGN.md §7) — a faint diagonal texture layered
+ * under the ink-2→ink-3 gradient, so plaques read as cut sheet metal rather
+ * than a flat CSS gradient. One declaration (not a separate class stacked
+ * on a Tailwind gradient utility) since background-image doesn't merge
+ * across classes — the texture and the gradient have to be comma-separated
+ * layers in the same rule.
+ */
+.plaque-fill {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgb(var(--brass-bright) / 0.035) 0px,
+      rgb(var(--brass-bright) / 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(to bottom right, rgb(var(--ink-2)), rgb(var(--ink-3)));
 }
 
 /* Ultra-responsive breakpoints */
