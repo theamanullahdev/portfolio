@@ -2,24 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
-
+/*
+ * Almanac design tokens (docs/DESIGN.md §2). Single deliberate mode —
+ * no prefers-color-scheme toggle. --background/--foreground are kept as
+ * aliases pointing at --ink/--paper (a couple of Tailwind utilities
+ * reference them); the real palette lives in the named tokens below.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* RGB channel triplets (not hex) so Tailwind's opacity-modifier syntax
+     (e.g. border-brass/30) works — Tailwind needs rgb(var(--x) / <alpha>)
+     to blend alpha, which requires bare channels, not a hex string. */
+  --ink: 13 11 8; /* #0d0b08 */
+  --ink-2: 23 20 15; /* #17140f */
+  --ink-3: 34 30 23; /* #221e17 */
+  --paper: 236 228 211; /* #ece4d3 */
+  --paper-dim: 168 156 133; /* #a89c85 */
+  --brass: 201 162 75; /* #c9a24b */
+  --brass-bright: 230 196 110; /* #e6c46e */
+  --verdigris: 92 156 133; /* #5c9c85 */
+  --rubric: 179 70 50; /* #b34632 */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--ink);
+  --foreground: var(--paper);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Ubuntu Sans, sans-serif;
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  font-family: var(--font-body), Georgia, serif;
 }
 
 /* Ultra-responsive breakpoints */

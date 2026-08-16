@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Newsreader, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@Comps/Navbar";
 import CursorTrail from "@/components/CursorTrail";
@@ -7,13 +7,20 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const newsreader = Newsreader({
+  variable: "--font-body",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const martianMono = Martian_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -42,12 +49,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} antialiased`}
       >
         <CursorTrail />
         <div className="flex min-h-screen w-full relative z-10">
           <Navbar />
-          {/* margin-left only on >=768px, matching the sidebar/hamburger breakpoint in Navbar.module.css */}
+          {/* margin-left only at md (>=768px) — same breakpoint Navbar.tsx uses for its own hidden/md:block switch, both driven by Tailwind's md so there's only one breakpoint definition to keep in sync now */}
           <main className="w-full md:ml-20">{children}</main>
         </div>
       </body>

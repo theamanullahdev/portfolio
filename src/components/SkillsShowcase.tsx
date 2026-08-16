@@ -1,117 +1,54 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { SKILLS_DATA } from "@/data/skills";
+import Heading from "@/components/Heading";
+
+// Home-only component (not imported elsewhere), rewritten in place.
+const SkillBar = ({ level }: { level: number }) => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setWidth(level));
+    return () => cancelAnimationFrame(id);
+  }, [level]);
+
+  return (
+    <div className="h-[3px] bg-ink-3">
+      <div
+        className="h-full bg-verdigris transition-[width] duration-700 ease-out"
+        style={{ width: `${width}%` }}
+      />
+    </div>
+  );
+};
 
 export default function SkillsShowcase() {
   const categories = Object.entries(SKILLS_DATA);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3 },
-    },
-  };
-
-  // Removed unused progressVariants
-
   return (
-    <div className="w-full h-full py-4 xs:py-6 sm:py-8 md:py-12 px-2 xs:px-3 sm:px-6 flex flex-col items-center justify-center overflow-y-auto">
-      <motion.div
-        className="max-w-6xl mx-auto w-full"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={containerVariants}
-      >
-        {/* Section Title */}
-        <motion.div
-          className="text-center mb-6 xs:mb-7 sm:mb-10 md:mb-12"
-          variants={itemVariants}
-        >
-          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 xs:mb-3 sm:mb-4">
-            <span className="bg-gradient-to-r from-green-400 via-cyan-400 to-orange-400 bg-clip-text text-transparent">
-              Technical Arsenal
-            </span>
-          </h2>
-          <p className="text-2xs xs:text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-            Technologies & Tools
-          </p>
-        </motion.div>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
-          {categories.map(([category, skills]) => (
-            <motion.div
-              key={category}
-              className="relative"
-              variants={itemVariants}
-            >
-              {/* Category Card */}
-              <div className="bg-black/50 border border-green-400/30 hover:border-green-400/60 rounded-lg sm:rounded-xl p-2.5 xs:p-3 sm:p-4 md:p-6 transition-all h-full">
-                {/* Category Header */}
-                <motion.h3
-                  className="text-xs xs:text-sm sm:text-base md:text-lg font-bold text-green-400 mb-2 xs:mb-3 sm:mb-4 md:mb-6 capitalize flex items-center gap-1.5"
-                  whileHover={{ x: 3 }}
-                >
-                  <span className="text-sm xs:text-base md:text-xl">{">"}</span>
-                  <span className="truncate">{category.replace(/([A-Z])/g, " $1").trim()}</span>
-                </motion.h3>
-
-                {/* Skills List */}
-                <div className="space-y-1.5 xs:space-y-2 sm:space-y-3 md:space-y-4">
-                  {skills.map((skill, idx) => (
-                    <motion.div
-                      key={`${category}-${idx}`}
-                      variants={itemVariants}
-                      className="group"
-                    >
-                      {/* Skill Name + Icon + Level */}
-                      <div className="flex items-center justify-between mb-0.5 xs:mb-1 sm:mb-1.5 md:mb-2">
-                        <div className="flex items-center gap-1.5 xs:gap-1.5 sm:gap-2 min-w-0">
-                          <span className="text-xs xs:text-sm sm:text-base md:text-lg flex-shrink-0">
-                            {skill.icon}
-                          </span>
-                          <span className="text-2xs xs:text-xs sm:text-sm font-mono text-gray-300 truncate">
-                            {skill.name}
-                          </span>
-                        </div>
-                        <span className="text-2xs xs:text-xs text-green-400/70 font-bold ml-1 xs:ml-2 flex-shrink-0">
-                          {skill.level}%
-                        </span>
-                      </div>
-
-                      {/* Progress Bar - Fixed */}
-                      <div className="relative h-1 xs:h-1.5 sm:h-2 bg-gray-700/40 rounded-full overflow-hidden border border-green-400/20">
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-green-500 to-cyan-500"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
-                          viewport={{ once: true }}
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
+    <div className="w-full">
+      <Heading number="03" text="Technical Arsenal" color="verdigris" />
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-brass/20 border border-brass/30">
+        {categories.map(([category, skills]) => (
+          <div key={category} className="bg-ink-2 p-5">
+            <h3 className="font-technical text-xs tracking-widest uppercase text-verdigris mb-4">
+              {category.replace(/([A-Z])/g, " $1").trim()}
+            </h3>
+            <div className="space-y-3">
+              {skills.map((skill) => (
+                <div key={skill.name}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-reading text-sm text-paper">{skill.name}</span>
+                    <span className="font-technical text-2xs text-paper-dim">{skill.level}%</span>
+                  </div>
+                  <SkillBar level={skill.level} />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

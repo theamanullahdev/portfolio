@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -11,32 +12,72 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "@/Styles/Navbar.module.css";
 
+// "The Bookmark" — docs/DESIGN.md §6. All 4 destinations show as icons at
+// rest (reads unambiguously as a menu, not a single logo-like icon), the
+// rail widens on hover/focus to reveal numerals + labels. Pure CSS
+// transition, one useState for the mobile overlay only — no framer-motion,
+// no timers.
 const NAV_ITEMS = [
-  { label: "Home", icon: faHome, href: "/" },
-  { label: "About", icon: faUser, href: "/About" },
-  { label: "Projects", icon: faFolderOpen, href: "/MyProjects" },
-  { label: "Contact", icon: faEnvelope, href: "/MsgMe" },
-];
-
-const DESKTOP_ICON_POSITIONS = [
-  { x: 15, y: -65 },
-  { x: 45, y: -22 },
-  { x: 45, y: 22 },
-  { x: 15, y: 65 },
+  { label: "Home", numeral: "01", icon: faHome, href: "/" },
+  { label: "About", numeral: "02", icon: faUser, href: "/About" },
+  { label: "Projects", numeral: "03", icon: faFolderOpen, href: "/MyProjects" },
+  { label: "Contact", numeral: "04", icon: faEnvelope, href: "/MsgMe" },
 ];
 
 const Navbar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <>
+      {/* Desktop: vertical icon rail, widens to reveal labels */}
+      <aside
+        className="group hidden md:flex fixed left-0 top-0 h-screen z-20 flex-col justify-center
+                   w-20 hover:w-60 focus-within:w-60 transition-[width] duration-300 ease-out
+                   bg-ink-2 border-r border-brass/30 overflow-hidden"
+      >
+        {NAV_ITEMS.map((item, i) => {
+          const active = item.href === pathname;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="relative flex items-center gap-4 h-16 pl-6 shrink-0"
+            >
+              {active && (
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-0 h-full w-[3px] bg-brass-bright"
+                />
+              )}
+              <FontAwesomeIcon
+                icon={item.icon}
+                className={`w-4 h-4 shrink-0 transition-colors ${
+                  active ? "text-brass-bright" : "text-brass/60 group-hover:text-brass"
+                }`}
+              />
+              <span
+                className="flex items-baseline gap-2 whitespace-nowrap opacity-0 -translate-x-1 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 group-focus-within:opacity-100 group-focus-within:translate-x-0"
+                style={{ transitionDelay: `${i * 40}ms` }}
+              >
+                <span className="font-technical text-2xs text-brass">§{item.numeral}</span>
+                <span
+                  className={`font-reading text-base ${
+                    active ? "text-brass-bright" : "text-paper"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </span>
+            </Link>
+          );
+        })}
+      </aside>
+
+      {/* Mobile: corner tab + full-screen index overlay */}
       <button
-        className={styles.hamburgerBtn}
+        className="md:hidden fixed top-4 left-4 z-50 w-11 h-11 flex items-center justify-center rounded border border-brass/60 bg-ink-2 text-brass"
         onClick={() => setMobileOpen((open) => !open)}
         aria-label={mobileOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileOpen}
@@ -44,77 +85,35 @@ const Navbar = () => {
         <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} />
       </button>
 
-      <aside
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => setIsExpanded(false)}
-        className={`${styles.navbar} ${isExpanded ? styles.expanded : ""}`}
+      <div
+        className={`md:hidden fixed inset-0 z-40 bg-ink transition-[clip-path] duration-300 ease-out ${
+          mobileOpen
+            ? "[clip-path:circle(150%_at_2.375rem_2.375rem)]"
+            : "[clip-path:circle(0%_at_2.375rem_2.375rem)] pointer-events-none"
+        }`}
       >
-        <div
-          className={`${styles.iconWrapper} ${
-            isExpanded ? styles.expanded : ""
-          }`}
+        <nav
+          aria-label="Section index"
+          className="h-full flex flex-col items-center justify-center gap-8"
         >
-          {NAV_ITEMS.map((item, index) => (
-            <div
-              key={item.href}
-              className={styles.iconParent}
-              style={{
-                transform: isExpanded
-                  ? `translate(${DESKTOP_ICON_POSITIONS[index].x}px, ${DESKTOP_ICON_POSITIONS[index].y}px)`
-                  : "none",
-              }}
-            >
-              <Link href={item.href} className={styles.navIcon}>
-                <FontAwesomeIcon icon={item.icon} />
+          {NAV_ITEMS.map((item) => {
+            const active = item.href === pathname;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={`flex items-center gap-4 font-reading text-2xl ${
+                  active ? "text-brass-bright" : "text-paper"
+                }`}
+              >
+                <span className="font-technical text-sm text-brass">§{item.numeral}</span>
+                {item.label}
               </Link>
-              <span className={styles.iconLabel}>{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </aside>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            className={styles.mobileOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={closeMobileMenu}
-          >
-            <motion.aside
-              className={styles.mobileNavbar}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className={styles.iconWrapper}>
-                {NAV_ITEMS.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    className={styles.iconParent}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * index, duration: 0.2 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={styles.navIcon}
-                      onClick={closeMobileMenu}
-                    >
-                      <FontAwesomeIcon icon={item.icon} />
-                    </Link>
-                    <span className={styles.iconLabel}>{item.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.aside>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            );
+          })}
+        </nav>
+      </div>
     </>
   );
 };
