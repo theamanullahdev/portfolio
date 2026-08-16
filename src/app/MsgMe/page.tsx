@@ -1,12 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import HighlightWords from "@/components/HighlightWords";
-import Typewriter from "@/components/Typewriter";
-import TerminalButton from "@/components/TerminalButton";
-import DynamicBackground from "@/components/DynamicBackground";
-import Link from "next/link";
+import Button from "@/components/Button";
+import Heading from "@/components/Heading";
+import Panel from "@/components/Panel";
 
 export default function MsgMePage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -36,10 +33,7 @@ export default function MsgMePage() {
       formData.append("_captcha", "false");
       formData.append("_template", "table");
 
-      const res = await fetch(FORMSUBMIT_URL, {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(FORMSUBMIT_URL, { method: "POST", body: formData });
       if (res.ok) {
         setStatus("success");
         setForm({ name: "", email: "", message: "" });
@@ -48,147 +42,71 @@ export default function MsgMePage() {
         setStatus("error");
         setError(text || "Failed to send message. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setError("Network error. Please check your connection and try again.");
     }
   };
 
+  const inputClasses =
+    "plaque bg-ink-2 border border-brass/30 focus:border-brass-bright outline-none text-paper font-reading text-sm px-4 py-2.5 transition-colors duration-300";
+
   return (
-    <DynamicBackground
-      circleCount={4}
-      lineCount={3}
-      triangleCount={2}
-      codeCount={5}
-    >
-      <section className="flex flex-col items-center justify-start sm:justify-center px-4 sm:px-8 pt-14 sm:pt-20 pb-16 text-center space-y-8">
-        {/* Top Heading */}
-        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-500 dark:text-green-300 font-mono">
-          <HighlightWords text="Let's Connect" />
-        </div>
-        <div className="mb-6 text-base sm:text-lg md:text-xl text-green-400 dark:text-green-200 font-mono">
-          <Typewriter text="Drop me a message, reach me directly, or check my resume!" />
-        </div>
+    <div className="min-h-screen px-4 sm:px-8 pt-16 sm:pt-20 pb-20 max-w-3xl mx-auto">
+      <Heading number="04" text="Let's Connect" color="brass" />
+      <p className="font-reading text-paper-dim mt-4 mb-10 max-w-xl">
+        Drop me a message, reach me directly, or check my resume.
+      </p>
 
-        {/* Contact & Resume Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
-          {/* Email Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="p-6 bg-black border-4 border-green-400 rounded-xl shadow-lg text-green-400 font-mono flex flex-col items-center"
-          >
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Email Me</h3>
-            <p className="mb-4 text-sm sm:text-base">
-              theamanullahdev@gmail.com
-            </p>
-            <TerminalButton href="mailto:theamanullahdev@gmail.com" external>
-              Send Email
-            </TerminalButton>
-          </motion.div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <Panel title="Email Me" color="brass" className="flex flex-col items-start gap-3">
+          <p className="font-reading text-sm text-paper-dim">theamanullahdev@gmail.com</p>
+          <Button href="mailto:theamanullahdev@gmail.com" external color="brass" className="text-2xs !px-4 !py-2">
+            Send Email
+          </Button>
+        </Panel>
+        <Panel title="Twitter" color="verdigris" className="flex flex-col items-start gap-3">
+          <p className="font-reading text-sm text-paper-dim">@theAmanullahDev</p>
+          <Button href="https://twitter.com/theAmanullahDev" external color="verdigris" className="text-2xs !px-4 !py-2">
+            Open Twitter
+          </Button>
+        </Panel>
+        <Panel title="Resume" color="brass" className="flex flex-col items-start gap-3">
+          <p className="font-reading text-sm text-paper-dim">Full resume and download options</p>
+          <Button href="/Resume" color="brass" className="text-2xs !px-4 !py-2">
+            Open Resume
+          </Button>
+        </Panel>
+      </div>
 
-          {/* Twitter Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-6 bg-black border-4 border-green-400 rounded-xl shadow-lg text-green-400 font-mono flex flex-col items-center"
-          >
-            <h3 className="text-lg sm:text-xl font-bold mb-2">
-              DM Me on Twitter (X)
-            </h3>
-            <p className="mb-4 text-sm sm:text-base">@theAmanullahDev</p>
-            <TerminalButton href="https://twitter.com/theAmanullahDev" external>
-              Open Twitter
-            </TerminalButton>
-          </motion.div>
-
-          {/* Resume Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="p-6 bg-black border-4 border-green-400 rounded-xl shadow-lg text-green-400 font-mono flex flex-col items-center"
-          >
-            <h3 className="text-lg sm:text-xl font-bold mb-2">View Resume</h3>
-            <p className="mb-4 text-sm sm:text-base">
-              Check my full resume and download options
-            </p>
-            <Link href="/Resume">
-              <TerminalButton>Open Resume</TerminalButton>
-            </Link>
-          </motion.div>
-        </div>
-
-        {/* Form or Success */}
-        {status === "success" ? (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full max-w-md bg-black border-4 border-green-400 rounded-xl shadow-lg p-6 text-center text-green-400 font-mono"
-          >
-            <p className="text-base sm:text-lg">
-              ✅ Thanks! Your message has been sent.
-            </p>
-          </motion.div>
-        ) : (
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full max-w-md bg-black border-4 border-green-400 rounded-xl shadow-lg p-6 flex flex-col gap-4 text-left text-green-400 font-mono"
-          >
-            <label className="flex flex-col">
-              <span className="mb-1 text-sm sm:text-base">Name</span>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="p-2 rounded-md bg-white text-black outline-none text-sm sm:text-base"
-              />
+      {status === "success" ? (
+        <Panel color="verdigris" className="text-center">
+          <p className="font-reading text-paper">Thanks — your message has been sent.</p>
+        </Panel>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <Panel color="brass" className="flex flex-col gap-4 text-left">
+            <label className="flex flex-col gap-1.5">
+              <span className="font-label text-2xs tracking-wide text-paper-dim uppercase">Name</span>
+              <input type="text" name="name" value={form.name} onChange={handleChange} required className={inputClasses} />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className="font-label text-2xs tracking-wide text-paper-dim uppercase">Email</span>
+              <input type="email" name="email" value={form.email} onChange={handleChange} required className={inputClasses} />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className="font-label text-2xs tracking-wide text-paper-dim uppercase">Message</span>
+              <textarea name="message" value={form.message} onChange={handleChange} required rows={4} className={`${inputClasses} resize-none`} />
             </label>
 
-            <label className="flex flex-col">
-              <span className="mb-1 text-sm sm:text-base">Email</span>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="p-2 rounded-md bg-white text-black outline-none text-sm sm:text-base"
-              />
-            </label>
+            {status === "error" && <p className="text-rubric text-sm font-reading">{error}</p>}
 
-            <label className="flex flex-col">
-              <span className="mb-1 text-sm sm:text-base">Message</span>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={4}
-                className="p-2 rounded-md bg-white text-black outline-none resize-none text-sm sm:text-base"
-              />
-            </label>
-
-            {status === "error" && (
-              <p className="text-red-400 text-sm">{error}</p>
-            )}
-
-            <div className="flex justify-center mt-4">
-              <TerminalButton type="submit" disabled={status === "submitting"}>
-                {status === "submitting" ? "Sending..." : "Send Message"}
-              </TerminalButton>
-            </div>
-          </motion.form>
-        )}
-      </section>
-    </DynamicBackground>
+            <Button type="submit" disabled={status === "submitting"} color="brass" className="self-start mt-2">
+              {status === "submitting" ? "Sending…" : "Send Message"}
+            </Button>
+          </Panel>
+        </form>
+      )}
+    </div>
   );
 }

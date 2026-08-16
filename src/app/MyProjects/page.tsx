@@ -1,432 +1,247 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-import HighlightWords from "@/components/HighlightWords";
-import TerminalButton from "@/components/TerminalButton";
-import DynamicBackground from "@/components/DynamicBackground";
+import Heading from "@/components/Heading";
+import Button from "@/components/Button";
+import Tag from "@/components/Tag";
+import Frame from "@/components/Frame";
+import { RouteMarker } from "@/components/Route";
 
-const PROJECTS = [
+type ProjectButton = {
+  link: string;
+  text: string;
+  color: "brass" | "verdigris" | "rubric";
+  external: boolean;
+};
+
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  preview?: string;
+  picture: string;
+  techs: string[];
+  comingSoon?: boolean;
+  buttons: ProjectButton[];
+};
+
+const PROJECTS: Project[] = [
+  {
+    id: "chain-presence",
+    title: "ChainPresence AI",
+    description:
+      "On-chain attendance system — check in via a wallet transaction to a Solidity contract on Sepolia, then Gemini reads the on-chain log and writes a plain-English trend summary. Built at a hackathon.",
+    preview: "https://chain-presence-next-gamma.vercel.app",
+    picture: "/piclogo.png",
+    techs: ["Solidity", "Next.js", "Gemini AI"],
+    buttons: [
+      { link: "https://github.com/theamanullahdev/ChainPresence", text: "GitHub", color: "brass", external: true },
+      { link: "https://chain-presence-next-gamma.vercel.app", text: "Live Demo", color: "rubric", external: true },
+    ],
+  },
+  {
+    id: "clauselens",
+    title: "ClauseLens",
+    description:
+      "Contract review that thinks like a lawyer — upload an original and revised contract and get every change risk-scored (critical / moderate / minor) and explained in plain English, powered by Claude.",
+    preview: "https://clauselensapp.vercel.app",
+    picture: "/piclogo.png",
+    techs: ["Next.js", "Claude AI", "shadcn/ui"],
+    buttons: [
+      { link: "https://github.com/theamanullahdev/ClauseLens", text: "GitHub", color: "brass", external: true },
+      { link: "https://clauselensapp.vercel.app", text: "Live Demo", color: "rubric", external: true },
+    ],
+  },
   {
     id: "digital-marketing-trade",
     title: "Digital Marketing Trade",
     description:
-      "Multi-service digital agency platform delivering Web3, ecommerce, and marketing solutions. Technical infrastructure design, core web platform, service architecture, and client interaction systems. Production-level system demonstrating enterprise architecture, business systems engineering, and real-world deployment at scale.",
+      "Multi-service digital agency platform delivering Web3, ecommerce, and marketing solutions — technical infrastructure, core web platform, and client systems, live at enterprise scale.",
     preview: "https://alhijaz.agency",
     picture: "/alhijaz.png",
-    techs: ["Full-Stack", "Next.js", "Architecture", "Business Systems"],
-    difficulty: "Enterprise",
-    featured: true,
+    techs: ["Full-Stack", "Next.js", "Architecture"],
     buttons: [
-      {
-        link: "/projectpgs/digital-marketing-trade",
-        text: "Details",
-        color: "cyan",
-        external: false,
-      },
-      {
-        link: "https://alhijaz.agency",
-        text: "Live Platform",
-        color: "orange",
-        external: true,
-      },
+      { link: "/projectpgs/digital-marketing-trade", text: "Details", color: "brass", external: false },
+      { link: "https://alhijaz.agency", text: "Live Platform", color: "verdigris", external: true },
     ],
   },
   {
     id: "lettersmith",
     title: "LetterSmith",
     description:
-      "AI-powered cover letter generator using Next.js, TailwindCSS, Framer Motion, and REST APIs. Users input CV, job description, and prompts to generate polished cover letters instantly. Full-Stack development showcasing API integration, frontend optimization, and real-time processing.",
+      "AI-powered cover letter generator — CV, job description, and prompt in, a polished letter out. Next.js, REST APIs, real-time processing.",
     preview: "https://lettersmithai.vercel.app",
     picture: "/LTsmith1.png",
-    techs: ["Next.js", "React", "TailwindCSS", "Framer Motion", "APIs"],
-    difficulty: "Intermediate",
+    techs: ["Next.js", "React", "AI"],
     buttons: [
-      {
-        link: "/projectpgs/lettersmith",
-        text: "Details",
-        color: "cyan",
-        external: false,
-      },
-      {
-        link: "https://github.com/theamanullahdev/lettersmith",
-        text: "GitHub",
-        color: "green",
-        external: true,
-      },
-      {
-        link: "https://lettersmithai.vercel.app/",
-        text: "Live Demo",
-        color: "orange",
-        external: true,
-      },
+      { link: "/projectpgs/lettersmith", text: "Details", color: "brass", external: false },
+      { link: "https://github.com/theamanullahdev/lettersmith", text: "GitHub", color: "verdigris", external: true },
+      { link: "https://lettersmithai.vercel.app/", text: "Live Demo", color: "rubric", external: true },
     ],
   },
   {
     id: "portfolio",
     title: "Portfolio Website",
     description:
-      "Personal portfolio website featuring responsive design, smooth animations, and terminal-inspired aesthetics. Built with Next.js, TailwindCSS, and Framer Motion. Demonstrates frontend expertise, component architecture, ultra-responsive design (150px - 8K), and attention to user experience details.",
-    preview: "https://www.amanullahdev.com/PreviewCard",  
+      "This site — responsive design, a rebuilt Almanac design system, and attention to the small details of frontend craft.",
+    preview: "https://www.amanullahdev.com/PreviewCard",
     picture: "/portfolio.png",
-    techs: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
-    difficulty: "Intermediate",
+    techs: ["Next.js", "React", "Design"],
     buttons: [
-      {
-        link: "/projectpgs/portfolio",
-        text: "Details",
-        color: "cyan",
-        external: false,
-      },
-      {
-        link: "https://github.com/theamanullahdev/portfolio",
-        text: "GitHub",
-        color: "green",
-        external: true,
-      },
-      {
-        link: "https://amanullahdev.com",
-        text: "Live Site",
-        color: "orange",
-        external: true,
-      },
+      { link: "/projectpgs/portfolio", text: "Details", color: "brass", external: false },
+      { link: "https://github.com/theamanullahdev/portfolio", text: "GitHub", color: "verdigris", external: true },
+      { link: "https://amanullahdev.com", text: "Live Site", color: "rubric", external: true },
     ],
   },
   {
     id: "wine-locker",
     title: "Wine-Locker",
     description:
-      "Linux security utility using shell scripts to lock Wine executables for enhanced system security. Features temporary unlock timers, toggleable access control, and multi-user security workflows. System-level development demonstrating Linux internals expertise and security best practices.",
+      "Linux security utility using shell scripts to lock Wine executables — temporary unlock timers, toggleable access control, multi-user workflows.",
     picture: "/winlock.png",
-    techs: ["Bash", "Linux", "Security", "Scripting"],
-    difficulty: "Advanced",
+    techs: ["Bash", "Linux", "Security"],
     buttons: [
-      {
-        link: "/projectpgs/wine-locker",
-        text: "Details",
-        color: "cyan",
-        external: false,
-      },
-      {
-        link: "https://github.com/theamanullahdev/wine-locker",
-        text: "GitHub",
-        color: "green",
-        external: true,
-      },
+      { link: "/projectpgs/wine-locker", text: "Details", color: "brass", external: false },
+      { link: "https://github.com/theamanullahdev/wine-locker", text: "GitHub", color: "verdigris", external: true },
     ],
   },
   {
     id: "ahatasham-work",
     title: "Ahatasham Work Portfolio",
     description:
-      "Professional portfolio website for Ahatasham, an expert in Shopify, ecommerce, and digital marketing with his own agency. Showcases expertise in building high-performing online stores and data-driven marketing strategies. Demonstrates full-stack web development with conversion-optimized design for lead generation.",
+      "Professional portfolio for a Shopify/ecommerce agency owner — case studies and conversion-optimized design built for lead generation.",
     preview: "https://ahtashamwork.com",
     picture: "/ahatasham-preview.png",
-    techs: ["Shopify", "Ecommerce", "Marketing", "Portfolio"],
-    difficulty: "Intermediate",
+    techs: ["Shopify", "Ecommerce", "Marketing"],
     buttons: [
-      {
-        link: "/projectpgs/AhtashamWorkPortfolio",
-        text: "Details",
-        color: "cyan",
-        external: false,
-      },
-      {
-        link: "https://ahtashamwork.com",
-        text: "Visit Portfolio",
-        color: "orange",
-        external: true,
-      },
+      { link: "/projectpgs/AhtashamWorkPortfolio", text: "Details", color: "brass", external: false },
+      { link: "https://ahtashamwork.com", text: "Visit Portfolio", color: "rubric", external: true },
     ],
   },
   {
     id: "on-chain-chat",
     title: "On-Chain Chat App",
     description:
-      "Decentralized chat application built on Injective using CosmWasm smart contracts. Fully on-chain profiles, messaging, and identity management with Next.js and Framer Motion frontend. Blockchain architecture and smart contract development for production dApps.",
-    picture:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
-    techs: ["CosmWasm", "Solidity", "Next.js", "Web3.js", "Blockchain"],
-    difficulty: "Advanced",
+      "Decentralized chat built on Injective using CosmWasm — fully on-chain profiles, messaging, and identity management.",
+    picture: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Solana_logo.png",
+    techs: ["CosmWasm", "Next.js", "Blockchain"],
     comingSoon: true,
-    buttons: [
-      {
-        link: "/ComingSoon",
-        text: "Coming Soon",
-        color: "orange",
-        external: false,
-      },
-    ],
+    buttons: [{ link: "/ComingSoon", text: "Coming Soon", color: "rubric", external: false }],
   },
   {
     id: "nft-launchpad",
     title: "NFT Launchpad",
     description:
-      "NFT collection launch platform featuring minting dashboards, whitelist management, and blockchain integration. Solana/Ethereum SDKs with Next.js frontend. Full-Stack and blockchain expertise demonstrating scalable dApp architecture and Web3 integration.",
-    picture:
-      "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
-    techs: ["Solidity", "Next.js", "Web3.js", "Smart Contracts"],
-    difficulty: "Advanced",
+      "NFT collection launch platform — minting dashboards, whitelist management, and Solana/Ethereum SDK integration.",
+    picture: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ethereum-icon-purple.svg",
+    techs: ["Solidity", "Next.js", "Web3.js"],
     comingSoon: true,
-    buttons: [
-      {
-        link: "/ComingSoon",
-        text: "Coming Soon",
-        color: "orange",
-        external: false,
-      },
-    ],
+    buttons: [{ link: "/ComingSoon", text: "Coming Soon", color: "rubric", external: false }],
   },
 ];
 
+const PLATE_SHADOW =
+  "shadow-[inset_0_1px_0_rgba(230,196,110,0.1),inset_0_-1px_0_rgba(0,0,0,0.4),inset_0_0_0_4px_rgba(13,11,8,0.95),inset_0_0_0_6px_rgba(230,196,110,0.55),0_4px_10px_rgba(0,0,0,0.35)]";
+
+function ProjectMedia({ project }: { project: Project }) {
+  if (project.preview) {
+    // No pointer-events lockout — these are real, scrollable live sites,
+    // not screenshots, and should behave like it. The frame around this
+    // (see the padded "mat" wrapper below) is what gives it a clean edge,
+    // not disabling the iframe's own interaction/scroll.
+    return (
+      <iframe
+        src={project.preview}
+        title={project.title}
+        className="w-full h-full"
+        sandbox="allow-scripts allow-same-origin"
+      />
+    );
+  }
+  if (project.picture.startsWith("/")) {
+    return (
+      <Image
+        src={project.picture}
+        alt={project.title}
+        fill
+        sizes="(max-width: 767px) 100vw, 448px"
+        className="object-cover"
+      />
+    );
+  }
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={project.picture} alt={project.title} className="object-contain w-full h-full p-8 opacity-70" />;
+}
+
 export default function MyProjects() {
   return (
-    <DynamicBackground
-      circleCount={6}
-      lineCount={6}
-      triangleCount={3}
-      codeCount={10}
-    >
-      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
-        {/* Hero */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="mb-4 sm:mb-6"
-          >
-            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44">
-              <Image
-                src="/piclogo.png"
-                alt="Projects"
-                fill
-                sizes="(max-width: 639px) 96px, (max-width: 767px) 128px, 176px"
-                className="object-contain"
-              />
-            </div>
-          </motion.div>
-
-          <div className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 sm:mb-4">
-            <HighlightWords text="My Projects" color="green" />
-          </div>
-          <div className="text-sm sm:text-base md:text-xl max-w-2xl leading-relaxed">
-            From <span className="text-green-500 font-semibold">security</span>{" "}
-            to{" "}
-            <span className="text-orange-500 font-semibold">
-              AI & blockchain
-            </span>
-            , here’s a taste of what I’ve been building.
-          </div>
-        </section>
-
-        {/* Projects */}
-        {PROJECTS.map((proj, idx) => (
-          <section
-            key={idx}
-            className="flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 py-16 sm:py-20 gap-6 sm:gap-8 text-center md:text-left"
-          >
-            {idx % 2 === 0 ? (
-              <>
-                {/* Image / Preview */}
-                <motion.div
-                  className={`relative w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
-                    proj.comingSoon ? "border-orange-500" : "border-green-500"
-                  }`}
-                  initial={{ x: -40, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {proj.preview ? (
-                    <div className="w-full h-full overflow-auto scrollbar-hide">
-                      <iframe
-                        src={proj.preview}
-                        title={proj.title}
-                        className="w-full h-full"
-                        sandbox="allow-scripts allow-same-origin"
-                      />
-                    </div>
-                  ) : proj.picture?.startsWith("/") ? (
-                    <Image
-                      src={proj.picture}
-                      alt={proj.title}
-                      fill
-                      sizes="(max-width: 767px) 100vw, 448px"
-                      className="object-cover"
-                    />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={proj.picture}
-                      alt={proj.title}
-                      className="object-cover w-full h-full"
-                    />
-                  )}
-                </motion.div>
-
-                {/* Text */}
-                <motion.div
-                  initial={{ x: 40, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full max-w-md flex flex-col items-center md:items-start"
-                >
-                  <div
-                    className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-4 ${
-                      proj.comingSoon
-                        ? "text-orange-600 dark:text-orange-400"
-                        : "text-green-600 dark:text-green-400"
-                    }`}
-                  >
-                    {proj.title}
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
-                    {proj.description}
-                  </div>
-
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4 sm:mb-6 w-full">
-                    {proj.techs.map((tech, i) => (
-                      <motion.span
-                        key={i}
-                        className="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-green-500/15 text-green-400 border border-green-400/40 font-mono font-semibold hover:bg-green-500/25 hover:border-green-400/70 transition-all"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 w-full">
-                    {proj.buttons.map((btn, i) => (
-                      <TerminalButton
-                        key={i}
-                        href={btn.link}
-                        color={btn.color}
-                        external={btn.external}
-                      >
-                        {btn.text}
-                      </TerminalButton>
-                    ))}
-                  </div>
-                </motion.div>
-              </>
-            ) : (
-              <>
-                {/* Text */}
-                <motion.div
-                  initial={{ x: -40, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full max-w-md flex flex-col items-center md:items-start"
-                >
-                  <div
-                    className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-4 ${
-                      proj.comingSoon
-                        ? "text-orange-600 dark:text-orange-400"
-                        : "text-green-600 dark:text-green-400"
-                    }`}
-                  >
-                    {proj.title}
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
-                    {proj.description}
-                  </div>
-
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4 sm:mb-6 w-full">
-                    {proj.techs.map((tech, i) => (
-                      <motion.span
-                        key={i}
-                        className="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-green-500/15 text-green-400 border border-green-400/40 font-mono font-semibold hover:bg-green-500/25 hover:border-green-400/70 transition-all"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 w-full">
-                    {proj.buttons.map((btn, i) => (
-                      <TerminalButton
-                        key={i}
-                        href={btn.link}
-                        color={btn.color}
-                        external={btn.external}
-                      >
-                        {btn.text}
-                      </TerminalButton>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Image / Preview */}
-                <motion.div
-                  className={`relative w-full max-w-md h-52 sm:h-64 md:h-64 rounded-xl shadow-lg overflow-hidden border-4 ${
-                    proj.comingSoon ? "border-orange-500" : "border-green-500"
-                  }`}
-                  initial={{ x: 40, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {proj.preview ? (
-                    <div className="w-full h-full overflow-auto scrollbar-hide">
-                      <iframe
-                        src={proj.preview}
-                        title={proj.title}
-                        className="w-full h-full"
-                        sandbox="allow-scripts allow-same-origin"
-                      />
-                    </div>
-                  ) : proj.picture?.startsWith("/") ? (
-                    <Image
-                      src={proj.picture}
-                      alt={proj.title}
-                      fill
-                      sizes="(max-width: 767px) 100vw, 448px"
-                      className="object-cover"
-                    />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={proj.picture}
-                      alt={proj.title}
-                      className="object-cover w-full h-full"
-                    />
-                  )}
-                </motion.div>
-              </>
-            )}
-          </section>
-        ))}
-
-        {/* Outro */}
-        <section className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-16 sm:py-20">
-          <motion.div
-            className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-          >
-            <HighlightWords text="More Cooking Soon..." color="orange" />
-          </motion.div>
-          <div className="text-xs sm:text-sm md:text-base max-w-xl">
-            Some ideas are still in progress. Check back later or follow me on
-            GitHub to see updates!
-          </div>
-          <div className="mt-4 sm:mt-6">
-            <TerminalButton
-              href="https://github.com/theamanullahdev"
-              color="green"
-              external={true}
-            >
-              Visit My GitHub
-            </TerminalButton>
-          </div>
-        </section>
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-16 sm:pt-20 pb-20">
+      <div className="text-center mb-14 sm:mb-16">
+        <span className="font-technical text-2xs text-brass tracking-widest">§ INDEX — PROJECTS</span>
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-paper mt-3">My Projects</h1>
+        <p className="font-reading text-paper-dim max-w-xl mx-auto mt-4">
+          From security to AI &amp; blockchain — a taste of what I&apos;ve been building.
+        </p>
       </div>
-    </DynamicBackground>
+
+      {PROJECTS.map((project, idx) => {
+        const num = String(idx + 1).padStart(2, "0");
+        return (
+          <section
+            key={project.id}
+            className="relative lg:grid lg:grid-cols-[2rem_1fr] lg:gap-6 py-10 sm:py-12 border-b border-brass/20 last:border-b-0"
+          >
+            <RouteMarker number={num} final={idx === PROJECTS.length - 1} />
+            <div
+              className={`flex flex-col ${
+                idx % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+              } items-center gap-6 sm:gap-8`}
+            >
+              {/* Ornamental frame sits on this outer plaque; the media itself
+                  (especially live, scrollable iframes) is inset in its own
+                  "mat" so the linework surrounds the card instead of
+                  overlaying the live content inside it. */}
+              <div
+                className={`group plaque plaque-fill relative w-full max-w-md h-52 sm:h-64 shrink-0 border p-2.5 sm:p-3 ${
+                  project.comingSoon ? "border-rubric/30" : "border-brass/30"
+                } ${PLATE_SHADOW}`}
+              >
+                <Frame className="text-brass/40 group-hover:text-brass/80 transition-colors duration-300" />
+                <div className="relative w-full h-full overflow-hidden bg-ink-2">
+                  <ProjectMedia project={project} />
+                </div>
+              </div>
+
+              <div className="w-full flex flex-col items-center md:items-start text-center md:text-left">
+                <Heading number={num} text={project.title} color={project.comingSoon ? "rubric" : "brass"} as="h2" />
+                <p className="font-reading text-sm sm:text-base text-paper-dim mt-4 mb-4 max-w-md">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap justify-center md:justify-start gap-1.5 mb-5">
+                  {project.techs.map((t) => (
+                    <Tag key={t}>{t}</Tag>
+                  ))}
+                </div>
+                <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                  {project.buttons.map((btn) => (
+                    <Button key={btn.text} href={btn.link} color={btn.color} external={btn.external}>
+                      {btn.text}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      <div className="text-center pt-14 sm:pt-16">
+        <h2 className="font-display text-2xl sm:text-3xl text-paper mb-3">More Cooking Soon…</h2>
+        <p className="font-reading text-paper-dim max-w-xl mx-auto mb-6">
+          Some ideas are still in progress. Check back later or follow along on GitHub.
+        </p>
+        <Button href="https://github.com/theamanullahdev" color="brass" external>
+          Visit My GitHub
+        </Button>
+      </div>
+    </div>
   );
 }

@@ -26,10 +26,16 @@ interface ButtonProps {
 // `frame` drives the ornamental Frame SVG's currentColor independently of
 // the label text (which inverts to ink on hover for contrast against the
 // fill-wipe) — the frame itself should stay in its own color family.
+// Frame flips to `text-ink` on hover, not a brighter version of its own
+// hue — the fill-wipe turns the whole button that color, and same-hue
+// linework on a same-hue fill has ~zero contrast (confirmed by forcing the
+// hover state and screenshotting: the entire ornamental border vanished,
+// leaving a flat blob). Dark linework on a bright fill is also closer to
+// the reference (ornate panels keep a dark outline even on gold/silver).
 const VARIANTS: Record<ButtonColor, { text: string; fill: string; frame: string }> = {
-  brass: { text: "text-brass", fill: "bg-brass", frame: "text-brass/80 group-hover:text-brass-bright" },
-  verdigris: { text: "text-verdigris", fill: "bg-verdigris", frame: "text-verdigris/70 group-hover:text-verdigris" },
-  rubric: { text: "text-rubric", fill: "bg-rubric", frame: "text-rubric/70 group-hover:text-rubric" },
+  brass: { text: "text-brass", fill: "bg-brass", frame: "text-brass/80 group-hover:text-ink" },
+  verdigris: { text: "text-verdigris", fill: "bg-verdigris", frame: "text-verdigris/70 group-hover:text-ink" },
+  rubric: { text: "text-rubric", fill: "bg-rubric", frame: "text-rubric/70 group-hover:text-ink" },
 };
 
 // Crafted-object bevel + banded groove (docs/DESIGN.md §7 ornamental

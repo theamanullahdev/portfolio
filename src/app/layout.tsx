@@ -1,7 +1,6 @@
 import { Fraunces, Newsreader, Martian_Mono, MedievalSharp } from "next/font/google";
 import "./globals.css";
 import Navbar from "@Comps/Navbar";
-import CursorTrail from "@/components/CursorTrail";
 // Only once globally
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -63,7 +62,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${fraunces.variable} ${newsreader.variable} ${martianMono.variable} ${medievalSharp.variable} antialiased`}
       >
-        <CursorTrail />
         <div className="flex min-h-screen w-full relative z-10">
           <Navbar />
           {/* margin-left only at md (>=768px) — same breakpoint Navbar.tsx uses

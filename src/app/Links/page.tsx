@@ -1,133 +1,46 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import DynamicBackground from "@/components/DynamicBackground";
-import HighlightWords from "@/components/HighlightWords";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faFile, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import Button from "@/components/Button";
+import AmbientBackground from "@/components/AmbientBackground";
 
+const LINKS = [
+  { href: "/Resume", icon: faFile, label: "Resume", external: false },
+  { href: "https://github.com/theamanullahdev", icon: faGithub, label: "GitHub", external: true },
+  { href: "https://twitter.com/theAmanullahDev", icon: faTwitter, label: "Twitter", external: true },
+  { href: "mailto:theamanullahdev@gmail.com", icon: faEnvelope, label: "Email", external: true },
+  { href: "https://amanullahdev.com", icon: faGlobe, label: "Portfolio", external: true },
+];
 
 export default function LandingPage() {
-  const links = [
-    {
-      href: "/Resume", 
-      icon: faFile,
-      label: "Resume",
-      color: "text-green-400",
-      external: true,
-    },
-    {
-      href: "https://github.com/theamanullahdev",
-      icon: faGithub,
-      label: "GitHub",
-      color: "text-gray-300",
-      external: true,
-    },
-    {
-      href: "https://twitter.com/theAmanullahDev",
-      icon: faTwitter,
-      label: "Twitter",
-      color: "text-blue-400",
-      external: true,
-    },
-    {
-      href: "mailto:theamanullahdev@gmail.com",
-      icon: faEnvelope,
-      label: "Email",
-      color: "text-orange-400",
-      external: true,
-    },
-    {
-      href: "https://amanullahdev.com",
-      icon: faGlobe,
-      label: "Portfolio",
-      color: "text-purple-400",
-      external: true,
-    },
-  ];
-
   return (
-    <DynamicBackground circleCount={5} lineCount={4} triangleCount={2} codeCount={6}>
-      <div className="w-full flex flex-col items-center justify-center px-6 py-16 sm:py-20 text-center">
-        {/* Logo */}
-        <motion.div
-          className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
-          initial={{ scale: 0 }}
-          animate={{ scale: [1, 1.05, 1], y: [0, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          whileHover={{ scale: 1.15, rotate: 5, transition: { duration: 0.2 } }}
-        >
-          <Image
-            src="/piclogo.png"
-            alt="Logo"
-            fill
-            sizes="(max-width: 639px) 128px, 160px"
-            className="object-cover"
-            priority
-          />
-        </motion.div>
+    <AmbientBackground>
+      <div className="min-h-screen w-full flex flex-col items-center justify-center px-6 py-16 sm:py-20 text-center">
+        <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-brass mb-6">
+          <Image src="/piclogo.png" alt="Amanullah" fill sizes="(max-width: 639px) 112px, 144px" className="object-cover" priority />
+        </div>
 
-        {/* Name / Tagline */}
-        <motion.div
-          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 text-green-500 dark:text-green-300 font-mono"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <HighlightWords text="Amanullah" />
-        </motion.div>
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl text-paper mb-2">Amanullah</h1>
+        <p className="font-reading text-sm sm:text-base text-paper-dim max-w-xl mb-8">
+          Full-Stack Developer — Blockchain — dApps — Security — Smart Contracts
+        </p>
 
-        <motion.div
-          className="text-base sm:text-lg md:text-xl text-green-400 dark:text-green-200 max-w-xl mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Full-Stack Developer | Blockchain | dApps | Cybersecurity | Smart Contracts
-        </motion.div>
-
-        {/* Icon Links */}
-        <div className="flex flex-col gap-4 mt-4 w-full max-w-xs">
-          {links.map((link, idx) => (
-            <motion.div key={idx} whileHover={{ scale: 1.1, y: -2 }} transition={{ duration: 0.2 }}>
-              {link.external ? (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-3 px-4 py-3 rounded-lg bg-black border-2 border-green-400 hover:bg-green-900 hover:text-white transition ${link.color}`}
-                >
-                  <FontAwesomeIcon icon={link.icon} size="lg" />
-                  <div className="font-mono text-base sm:text-lg">{link.label}</div>
-                </a>
-              ) : (
-                <Link
-                  href={link.href}
-                  className={`flex items-center justify-center gap-3 px-4 py-3 rounded-lg bg-black border-2 border-green-400 hover:bg-green-900 hover:text-white transition ${link.color}`}
-                >
-                  <FontAwesomeIcon icon={link.icon} size="lg" />
-                  <div className="font-mono text-base sm:text-lg">{link.label}</div>
-                </Link>
-              )}
-            </motion.div>
+        <div className="flex flex-col gap-3 w-full max-w-xs">
+          {LINKS.map((link) => (
+            <Button key={link.label} href={link.href} external={link.external} color="brass" className="w-full !justify-start !px-5">
+              <span className="inline-flex items-center gap-3">
+                <FontAwesomeIcon icon={link.icon} className="w-4 h-4" />
+                {link.label}
+              </span>
+            </Button>
           ))}
         </div>
 
-        {/* Footer */}
-        <motion.div
-          className="text-sm sm:text-base text-green-200 dark:text-green-400 mt-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
+        <p className="font-technical text-2xs text-paper-dim mt-10">
           &copy; {new Date().getFullYear()} Amanullah. All rights reserved.
-        </motion.div>
+        </p>
       </div>
-    </DynamicBackground>
+    </AmbientBackground>
   );
 }

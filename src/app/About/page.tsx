@@ -1,232 +1,125 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faJs,
-  faReact,
-  faNode,
-  faGithub,
-  faPython,
-  faRust,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faDatabase,
-  faCube,
-  faRocket,
-} from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import DynamicBackground from "@/components/DynamicBackground";
-import HighlightWords from "@/components/HighlightWords";
-import TerminalButton from "@/components/TerminalButton";
+import { faJs, faReact, faNode, faPython, faRust } from "@fortawesome/free-brands-svg-icons";
+import { faDatabase, faCube, faRocket } from "@fortawesome/free-solid-svg-icons";
+import Heading from "@/components/Heading";
+import Button from "@/components/Button";
+import Panel from "@/components/Panel";
+import { RouteMarker } from "@/components/Route";
+
+const SKILLS = [
+  { icon: faJs, label: "JavaScript" },
+  { icon: faReact, label: "React" },
+  { icon: faNode, label: "Node.js" },
+  { icon: faPython, label: "Python" },
+  { icon: faRust, label: "Rust" },
+  { icon: faDatabase, label: "Databases" },
+  { icon: faCube, label: "Blockchain" },
+  { icon: faRocket, label: "dApps" },
+];
+
+const JOURNEY = [
+  {
+    year: "2021 — Getting Started",
+    text: "Began with web development fundamentals and basic projects, learning the core concepts of coding and software design.",
+  },
+  {
+    year: "2022 — Blockchain Exploration",
+    text: "Entered the blockchain world, experimenting with smart contracts and building early dApps on Solana and Ethereum.",
+  },
+  {
+    year: "2023 — Full-Stack Projects",
+    text: "Built full-stack CRUD applications, integrated backend services with databases, and optimized code for maintainability.",
+  },
+  {
+    year: "2025 — Present",
+    text: "Expanding into AI, blockchain, and modern web development simultaneously, focusing on secure, scalable, and high-performance applications.",
+  },
+];
 
 export default function About() {
   return (
-    <DynamicBackground
-      circleCount={6}
-      lineCount={6}
-      triangleCount={3}
-      codeCount={10}
-    >
-      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
-        {/* Intro Section */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <motion.div
-            className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-xl border-4 border-green-400 mb-6"
-            initial={{ scale: 0 }}
-            animate={{
-              scale: [1, 1.05, 1],
-              y: [0, -10, 0],
-            }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            whileHover={{
-              scale: 1.15,
-              rotate: 5,
-              transition: { duration: 0.2 },
-            }}
-          >
-            <Image
-              src="/piclogo.png"
-              alt="Profile"
-              fill
-              sizes="(max-width: 639px) 128px, 160px"
-              className="object-cover"
-              priority
-            />
-          </motion.div>
-
-          <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            <HighlightWords text="About Me" color="green" />
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-8 pt-16 sm:pt-20 pb-20">
+      {/* §01 Intro */}
+      <section className="relative lg:grid lg:grid-cols-[2rem_1fr] lg:gap-6 py-10 sm:py-14 border-b border-brass/20">
+        <RouteMarker number="01" />
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+          <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-full overflow-hidden border-2 border-brass">
+            <Image src="/piclogo.png" alt="Amanullah" fill sizes="(max-width: 639px) 112px, 144px" className="object-cover" priority />
           </div>
-
-          <div className="text-base sm:text-lg max-w-2xl leading-relaxed space-y-4">
-            <p>
-              I&#39;m a <strong>Full-Stack Developer</strong> and{" "}
-              <strong>Backend Expert</strong> with a strong focus on{" "}
-              <strong>blockchain</strong>. I build{" "}
-              <strong>smart contracts</strong>, <strong>dApps</strong>, and
-              scalable web solutions... Whether it&#39;s designing secure
-              blockchain apps or optimizing messy codebases, I&#39;m your{" "}
-              <strong>Vibe Code Cleanup Specialist</strong>, making sure
-              everything runs smoothly and efficiently.
-            </p>
-            <p>
-              My work spans frontend frameworks like <strong>React</strong>,
-              backend services in <strong>Node.js</strong>, and open-source
-              contributions. Security and reliability are always top of mind,
-              especially in decentralized and blockchain systems.
-            </p>
-            <p>
-              I love blending creativity with precision, building applications
-              that are not only functional, but maintainable, optimized, and
-              ready for real-world use.
-            </p>
+          <div>
+            <Heading number="01" text="About Me" color="brass" />
+            <div className="font-reading text-sm sm:text-base text-paper-dim leading-relaxed space-y-4 mt-4">
+              <p>
+                I&apos;m a full-stack developer with a strong focus on blockchain —
+                smart contracts, dApps, and scalable web solutions. Whether it&apos;s
+                designing secure blockchain apps or untangling a messy
+                codebase, I&apos;m usually the one making sure everything runs
+                smoothly and efficiently.
+              </p>
+              <p>
+                My work spans frontend frameworks like React, backend
+                services in Node.js, and open-source contributions. Security
+                and reliability stay top of mind, especially in decentralized
+                systems.
+              </p>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Skills Section */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
-            <HighlightWords text="My Skills" color="orange" />
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              { icon: faJs, label: "JavaScript", color: "text-yellow-400" },
-              { icon: faReact, label: "React", color: "text-cyan-400" },
-              { icon: faNode, label: "Node.js", color: "text-green-500" },
-              { icon: faPython, label: "Python", color: "text-blue-400" },
-              { icon: faRust, label: "Rust", color: "text-orange-600" },
-              {
-                icon: faDatabase,
-                label: "Databases",
-                color: "text-purple-400",
-              },
-              { icon: faCube, label: "Blockchain", color: "text-indigo-400" },
-              { icon: faRocket, label: "dApps", color: "text-pink-500" },
-            ].map((skill, idx) => (
-              <motion.div
-                key={idx}
-                className="flex flex-col items-center justify-center p-4 rounded-xl shadow-md border bg-white/10 dark:bg-gray-800/40"
-                animate={{ y: [0, -5, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                  delay: idx * 0.2,
-                }}
-                whileHover={{
-                  scale: 1.15,
-                  y: -10,
-                  transition: { duration: 0.2 },
-                }}
-              >
-                <FontAwesomeIcon
-                  icon={skill.icon}
-                  className={`text-3xl sm:text-4xl mb-2 ${skill.color}`}
-                />
-                <span className="font-medium text-sm sm:text-base md:text-lg">
-                  {skill.label}
-                </span>
-              </motion.div>
+      {/* §02 Skills */}
+      <section className="relative lg:grid lg:grid-cols-[2rem_1fr] lg:gap-6 py-10 sm:py-14 border-b border-brass/20">
+        <RouteMarker number="02" />
+        <div>
+          <Heading number="02" text="Skills" color="verdigris" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+            {SKILLS.map((skill) => (
+              <Panel key={skill.label} color="verdigris" className="flex flex-col items-center gap-2 !p-4">
+                <FontAwesomeIcon icon={skill.icon} className="text-2xl text-verdigris" />
+                <span className="font-label text-2xs tracking-wide text-paper text-center">{skill.label}</span>
+              </Panel>
             ))}
           </div>
+        </div>
+      </section>
 
-          <p className="mt-6 text-base sm:text-lg max-w-xl">
-            Key skills: <strong>Full-Stack Development</strong>,{" "}
-            <strong>Backend Engineering</strong>,{" "}
-            <strong>Smart Contracts</strong>, <strong>dApps</strong>,{" "}
-            <strong>Blockchain Architecture</strong>, <strong>Databases</strong>
-            , <strong>React</strong>, <strong>Node.js</strong>,{" "}
-            <strong>Python</strong>, <strong>Rust</strong>, and code
-            optimization & cleanup.
-          </p>
-        </section>
-
-        {/* Journey / Timeline */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
-            <HighlightWords text="My Journey" color="blue" />
-          </div>
-          <div className="space-y-6 max-w-2xl text-left text-sm sm:text-base md:text-lg">
-            {[
-              {
-                year: "2021 … Getting Started",
-                text: "Began with web development fundamentals and basic projects, learning the core concepts of coding and software design.",
-                color: "border-green-400",
-              },
-              {
-                year: "2022 … Blockchain Exploration",
-                text: "Entered the blockchain world, experimenting with smart contracts and building early dApps on Solana and Ethereum.",
-                color: "border-orange-400",
-              },
-              {
-                year: "2023 … Full-Stack Projects",
-                text: "Built full-stack CRUD applications, integrated backend services with databases, and optimized code for maintainability.",
-                color: "border-blue-400",
-              },
-              {
-                year: "2025 … Present",
-                text: "Expanding into AI, blockchain, and modern web development simultaneously, focusing on secure, scalable, and high-performance applications.",
-                color: "border-purple-400",
-              },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{
-                  scale: 1.05,
-                  x: 10,
-                  transition: { duration: 0.2 },
-                }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 4,
-                  delay: idx * 0.3,
-                  ease: "easeInOut",
-                }}
-                className={`p-4 border-l-4 ${item.color} bg-white/10 dark:bg-gray-800/40 rounded`}
-              >
-                <div className="font-bold text-base sm:text-lg md:text-xl">
-                  {item.year}
-                </div>
-                <p className="text-sm sm:text-base">{item.text}</p>
-              </motion.div>
+      {/* §03 Journey */}
+      <section className="relative lg:grid lg:grid-cols-[2rem_1fr] lg:gap-6 py-10 sm:py-14 border-b border-brass/20">
+        <RouteMarker number="03" />
+        <div>
+          <Heading number="03" text="Journey" color="rubric" />
+          <div className="space-y-4 mt-6 max-w-2xl">
+            {JOURNEY.map((item) => (
+              <div key={item.year} className="border-l-2 border-brass/40 pl-4 py-1">
+                <div className="font-label text-sm text-brass-bright mb-1">{item.year}</div>
+                <p className="font-reading text-sm text-paper-dim">{item.text}</p>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Call to Action */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center space-y-6">
-          <div className="text-2xl sm:text-3xl md:text-4xl font-semibold">
-            <HighlightWords text="Let&#39;s Work Together" color="green" />
-          </div>
-
-          <p className="text-base sm:text-lg md:text-xl max-w-xl">
-            I&apos;m always open to collaborations, freelance opportunities, or
-            consulting on blockchain and full-stack projects. Let&apos;s build
-            secure, scalable, and high-performance applications together ...
-            from backend to frontend.
+      {/* §04 CTA */}
+      <section className="relative lg:grid lg:grid-cols-[2rem_1fr] lg:gap-6 py-10 sm:py-14">
+        <RouteMarker number="04" final />
+        <div>
+          <Heading number="04" text="Let's Work Together" color="brass" />
+          <p className="font-reading text-sm sm:text-base text-paper-dim max-w-xl mt-4 mb-6">
+            I&apos;m always open to collaborations, freelance work, or consulting
+            on blockchain and full-stack projects — from backend to
+            frontend, secure and built to last.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <TerminalButton
-              href="https://github.com/theamanullahdev"
-              external
-              className="px-4 sm:px-6 py-2 sm:py-3"
-            >
+          <div className="flex flex-wrap gap-3">
+            <Button href="https://github.com/theamanullahdev" external color="brass">
               Connect on GitHub
-            </TerminalButton>
-
-            <TerminalButton
-            color="orange"
-              href="/Resume"
-              className="px-4 sm:px-6 py-2 sm:py-3 bg-orange-500 border-orange-500 hover:bg-orange-600 hover:border-orange-600"
-            >
+            </Button>
+            <Button href="/Resume" color="verdigris">
               View Resume
-            </TerminalButton>
+            </Button>
           </div>
-        </section>
-      </div>
-    </DynamicBackground>
+        </div>
+      </section>
+    </div>
   );
 }

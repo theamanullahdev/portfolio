@@ -1,76 +1,23 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import Cards from "@/components/Cards";
-import Link from "next/link";
-import DynamicBackground from "@/components/DynamicBackground";
-import HighlightWords from "@/components/HighlightWords";
-import Typewriter from "@/components/Typewriter";
-import TerminalButton from "@/components/TerminalButton";
+import AmbientBackground from "@/components/AmbientBackground";
 
+// Standalone mini hero used as an iframe preview embed (see the
+// "Portfolio Website" project card in src/app/page.tsx / MyProjects) — not
+// reachable via the nav, so it stays deliberately minimal, no chrome.
 export default function PreviewCard() {
   return (
-    <DynamicBackground
-      circleCount={5}
-      lineCount={5}
-      triangleCount={4}
-      codeCount={8}
-    >
-      <div className="bg-gray-100/50 text-gray-800 dark:bg-gray-900/50 dark:text-white">
-        {/* Home Section */}
-        <section className="flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <motion.div
-            className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mb-4 sm:mb-6 rounded-full border-4 border-white flex items-center justify-center overflow-hidden shadow-lg"
-            initial={{ scale: 0, rotate: 180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <Image
-              src="/piclogo.png"
-              alt="Hero"
-              fill
-              sizes="(max-width: 639px) 144px, (max-width: 767px) 176px, 192px"
-              className="object-cover"
-              priority
-            />
-          </motion.div>
-
-          {/* Title */}
-          <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 drop-shadow-lg">
-            <HighlightWords text="Welcome to my portfolio" color="green" />
-          </div>
-
-          {/* Tagline */}
-          <motion.div
-            className="text-sm sm:text-base md:text-lg max-w-xl font-medium mb-2 sm:mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <Typewriter
-              text="I build modern websites and dApps on any blockchain. Let's create something amazing together!"
-              delay={20}
-              color="white"
-            />
-          </motion.div>
-
-          <div className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6">
-            <Typewriter
-              text="The Amanullah Developer!"
-              delay={20}
-              color="green"
-            />
-          </div>
-        </section>
+    <AmbientBackground>
+      <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-12">
+        <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-brass mb-5">
+          <Image src="/piclogo.png" alt="Amanullah" fill sizes="128px" className="object-cover" priority />
+        </div>
+        <h1 className="font-display text-2xl sm:text-3xl text-paper mb-3">Welcome to my portfolio</h1>
+        <p className="font-reading text-sm sm:text-base text-paper-dim max-w-md mb-2">
+          I build modern websites and dApps on any blockchain. Let&apos;s create
+          something amazing together.
+        </p>
+        <p className="font-label text-brass-bright text-sm tracking-wide">The Amanullah Developer</p>
       </div>
-    </DynamicBackground>
+    </AmbientBackground>
   );
 }
