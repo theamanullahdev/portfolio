@@ -146,31 +146,34 @@ export default function Home() {
           <div>
             <Heading number="03" text="Field Notes" color="rubric" />
             <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Curated to back the three claims made above, one plate
+                  each: smart contracts/dApps, production at real scale,
+                  and security. */}
+              <Plate
+                preview="https://chain-presence-next-gamma.vercel.app"
+                figure="Fig. 2"
+                title="ChainPresence AI"
+                description="On-chain attendance check-in — a wallet tx hits a Solidity contract on Sepolia, then AI reads the log and writes the trend summary. Built at a hackathon."
+                tags={["Solidity", "Gemini AI"]}
+                href="https://github.com/theamanullahdev/ChainPresence"
+                external
+              />
+              <Plate
+                image="/alhijaz.png"
+                figure="Fig. 3"
+                title="Digital Marketing Trade"
+                description="Technical infrastructure for a multi-service digital agency — Web3, ecommerce, and marketing, live at enterprise scale."
+                tags={["Full-Stack", "Architecture"]}
+                href="https://alhijaz.agency"
+                external
+              />
               <Plate
                 image="/winlock.png"
-                figure="Fig. 2"
+                figure="Fig. 4"
                 title="Wine-Locker"
                 description="A Linux security utility that lets you lock Wine so only root can run it, blocking random .exe files from executing."
                 tags={["Security", "Linux"]}
                 href="https://github.com/theamanullahdev/wine-locker"
-                external
-              />
-              <Plate
-                image="/LTsmith1.png"
-                figure="Fig. 3"
-                title="LetterSmith"
-                description="An AI-powered tool that generates tailored cover letters. Input your CV, job post, and prompt — instantly download a polished letter."
-                tags={["Next.js", "AI"]}
-                href="https://github.com/theamanullahdev/lettersmith"
-                external
-              />
-              <Plate
-                image="/portfolio.png"
-                figure="Fig. 4"
-                title="Portfolio Website"
-                description="The site you're looking at right now — built with Next.js, TailwindCSS, and a rebuilt Almanac design system."
-                tags={["Next.js", "Design"]}
-                href="https://github.com/theamanullahdev/portfolio"
                 external
               />
             </div>

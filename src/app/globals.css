@@ -78,6 +78,59 @@ body {
   }
 }
 
+/*
+ * Cursor companion (docs/DESIGN.md §7 / CursorTrail.tsx) — a brass compass
+ * that lags gently behind the pointer, plus a sparse trail of fading brass
+ * dots. Both layers are fixed at 0,0 and positioned purely via `transform`
+ * (compass) or inline left/top (dots, cheap one-off writes on spawn only)
+ * so nothing here triggers layout.
+ */
+.cursor-compass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  filter: drop-shadow(0 0 3px rgb(var(--brass-bright) / 0.5));
+  will-change: transform;
+}
+
+.cursor-dot-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(var(--brass-bright));
+  opacity: 0.7;
+  transform: translate(-50%, -50%);
+  animation: cursor-dot-fade 0.6s ease-out forwards;
+}
+
+@keyframes cursor-dot-fade {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-compass,
+  .cursor-dot-layer {
+    display: none;
+  }
+}
+
 /* Smooth transitions for all interactive elements */
 * {
   @apply transition-[box-shadow,transform,background-color,border-color] duration-300;
