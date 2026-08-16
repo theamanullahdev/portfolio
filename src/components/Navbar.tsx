@@ -8,9 +8,11 @@ import {
   faHome,
   faUser,
   faFolderOpen,
+  faScroll,
   faEnvelope,
   faBars,
   faTimes,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Frame from "@/components/Frame";
 
@@ -27,7 +29,8 @@ const NAV_ITEMS = [
   { label: "Home", numeral: "01", icon: faHome, href: "/" },
   { label: "About", numeral: "02", icon: faUser, href: "/About" },
   { label: "Projects", numeral: "03", icon: faFolderOpen, href: "/MyProjects" },
-  { label: "Contact", numeral: "04", icon: faEnvelope, href: "/MsgMe" },
+  { label: "Resume", numeral: "04", icon: faScroll, href: "/Resume" },
+  { label: "Contact", numeral: "05", icon: faEnvelope, href: "/MsgMe" },
 ];
 
 // Same bevel + banded-groove language as Button.tsx (docs/DESIGN.md §7).
@@ -97,6 +100,21 @@ const Navbar = () => {
         <Frame className="text-brass/70 group-hover:text-brass-bright transition-colors duration-300" />
         <FontAwesomeIcon icon={mobileOpen ? faTimes : faBars} />
       </button>
+
+      {/* First-glance hint for the hamburger — separate element, not part
+          of the button itself, so the button's own shape/behavior stays
+          untouched. Hides once the menu is opened. */}
+      {!mobileOpen && (
+        <div
+          aria-hidden
+          className="md:hidden fixed top-[1.55rem] left-[4.25rem] z-50 flex items-center gap-1.5 pointer-events-none"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} className="w-3 h-3 text-brass-bright" />
+          <span className="font-label text-2xs tracking-wide text-brass-bright whitespace-nowrap">
+            Open menu here
+          </span>
+        </div>
+      )}
 
       <div
         className={`md:hidden fixed inset-0 z-40 bg-ink transition-[clip-path] duration-300 ease-out ${
