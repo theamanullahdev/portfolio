@@ -7,6 +7,7 @@ import Heading from "@/components/Heading";
 import Button from "@/components/Button";
 import Tag from "@/components/Tag";
 import Frame from "@/components/Frame";
+import LivePreview from "@/components/LivePreview";
 
 // Shared chrome for the 5 project detail pages (docs/DESIGN.md §8) — back
 // link, hero (image or live iframe), title/description/tags, then each
@@ -83,7 +84,7 @@ export default function ProjectDossier({
             // scrollable site rather than sitting on top of it — the site
             // keeps its own scroll/interaction, nothing disabled here.
             <div className="relative w-full h-full overflow-hidden bg-ink-2">
-              <iframe src={iframeSrc} title={title} className="w-full h-full" sandbox="allow-scripts allow-same-origin" />
+              <LivePreview src={iframeSrc} title={title} />
             </div>
           ) : (
             <Image src={image!} alt={title} fill sizes="(max-width: 767px) 100vw, 896px" className="object-cover" />

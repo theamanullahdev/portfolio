@@ -3,6 +3,7 @@ import Image from "next/image";
 import Tag from "@/components/Tag";
 import Button from "@/components/Button";
 import Frame from "@/components/Frame";
+import LivePreview from "@/components/LivePreview";
 
 // "Illustrated plate" project card — docs/DESIGN.md §7. Replaces Cards.tsx.
 // Either a static `image` or a live `preview` iframe (not both) — the
@@ -35,7 +36,7 @@ const Plate = ({ image, preview, figure, title, caption, description, tags, href
     <div className={`relative w-full h-48 sm:h-56 border-b border-brass/30 ${preview ? "p-1.5 sm:p-2" : ""}`}>
       {preview ? (
         <div className="relative w-full h-full overflow-hidden bg-ink-2">
-          <iframe src={preview} title={title} className="w-full h-full" sandbox="allow-scripts allow-same-origin" />
+          <LivePreview src={preview} title={title} />
         </div>
       ) : (
         <Image src={image!} alt={title} fill sizes="(max-width: 639px) 100vw, 400px" className="object-cover" />

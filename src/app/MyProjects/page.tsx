@@ -3,6 +3,7 @@ import Heading from "@/components/Heading";
 import Button from "@/components/Button";
 import Tag from "@/components/Tag";
 import Frame from "@/components/Frame";
+import LivePreview from "@/components/LivePreview";
 import { RouteMarker } from "@/components/Route";
 
 type ProjectButton = {
@@ -33,7 +34,8 @@ const PROJECTS: Project[] = [
     picture: "/piclogo.png",
     techs: ["Solidity", "Next.js", "Gemini AI"],
     buttons: [
-      { link: "https://github.com/theamanullahdev/ChainPresence", text: "GitHub", color: "brass", external: true },
+      { link: "/projectpgs/chain-presence", text: "Details", color: "brass", external: false },
+      { link: "https://github.com/theamanullahdev/ChainPresence", text: "GitHub", color: "verdigris", external: true },
       { link: "https://chain-presence-next-gamma.vercel.app", text: "Live Demo", color: "rubric", external: true },
     ],
   },
@@ -46,7 +48,8 @@ const PROJECTS: Project[] = [
     picture: "/piclogo.png",
     techs: ["Next.js", "Claude AI", "shadcn/ui"],
     buttons: [
-      { link: "https://github.com/theamanullahdev/ClauseLens", text: "GitHub", color: "brass", external: true },
+      { link: "/projectpgs/clauselens", text: "Details", color: "brass", external: false },
+      { link: "https://github.com/theamanullahdev/ClauseLens", text: "GitHub", color: "verdigris", external: true },
       { link: "https://clauselensapp.vercel.app", text: "Live Demo", color: "rubric", external: true },
     ],
   },
@@ -143,18 +146,7 @@ const PLATE_SHADOW =
 
 function ProjectMedia({ project }: { project: Project }) {
   if (project.preview) {
-    // No pointer-events lockout — these are real, scrollable live sites,
-    // not screenshots, and should behave like it. The frame around this
-    // (see the padded "mat" wrapper below) is what gives it a clean edge,
-    // not disabling the iframe's own interaction/scroll.
-    return (
-      <iframe
-        src={project.preview}
-        title={project.title}
-        className="w-full h-full"
-        sandbox="allow-scripts allow-same-origin"
-      />
-    );
+    return <LivePreview src={project.preview} title={project.title} />;
   }
   if (project.picture.startsWith("/")) {
     return (
